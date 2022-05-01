@@ -1,10 +1,16 @@
 @import 'vars';
 
 nav {
+	background-color: white;
+	position: fixed;
+	top: 0;
+	width: 96vw;
+	box-shadow: 0px 0px 25px -10px;
 	display: flex;
 	justify-content: space-between;
-	padding: 0 24px;
+	padding: 1vh 2vw;
 	border-bottom: 1px solid var(--very-light-pink);
+	margin-bottom: 60px;
 }
 .menu {
 	display: none;
@@ -23,6 +29,12 @@ nav {
 }
 .navbar-left {
 	display: flex;
+	align-items:center;
+}
+
+.navbar-right {
+	display: flex;
+	align-items:center;
 }
 .navbar-left ul {
 	margin-left: 12px;
@@ -30,10 +42,11 @@ nav {
 .navbar-left ul li a,
 .navbar-right ul li a {
 	text-decoration: none;
-	color: var(--very-light-pink);
+	color: var(--gray);
 	border: 1px solid var(--white);
 	padding: 8px;
 	border-radius: 8px;
+    font-weight: bold;
 }
 .navbar-left ul li a:hover,
 .navbar-right ul li a:hover {
@@ -41,7 +54,7 @@ nav {
 	color: var(--hospital-green);
 }
 .navbar-email {
-	color: var(--very-light-pink);
+	color: var(--gray);
 	font-size: var(--sm);
 	margin-right: 12px;
 }

@@ -17,7 +17,7 @@ const MyOrder = () => {
 		<aside className="MyOrder">
 			<div className="title-container">
 				<img src={arrow} alt="arrow" />
-				<p className="title">My order</p>
+				<p className="title-order">Carrito actual</p>
 			</div>
 			<div className="my-order-content">
 				{state.cart.map(product => (
@@ -27,10 +27,10 @@ const MyOrder = () => {
 					<p>
 						<span>Total</span>
 					</p>
-					<p>${sumTotal()}</p>
+					<p>¢40,000</p>
 				</div>
 				<button className="primary-button">
-					Checkout
+					Solicitar
 				</button>
 			</div>
 		</aside>

@@ -3,7 +3,7 @@ import '@styles/Header.scss';
 import Menu from '@components/Menu';
 import MyOrder from '../containers/MyOrder';
 import menu from '@icons/icon_menu.svg';
-import logo from '@logos/logo_yard_sale.svg';
+import logo from '@logos/desatados.png';
 import AppContext from '../context/AppContext';
 import shoppingCart from '@icons/icon_shopping_cart.svg';
 
@@ -23,29 +23,29 @@ const Header = () => {
 				<img src={logo} alt="logo" className="nav-logo" />
 				<ul>
 					<li>
-						<a href="/">All</a>
+						<a href="/">Categorias</a>
 					</li>
 					<li>
-						<a href="/">Clothes</a>
+						<a href="/">Subcategorias</a>
 					</li>
 					<li>
-						<a href="/">Electronics</a>
+						<a href="/">Productos</a>
 					</li>
 					<li>
-						<a href="/">Furnitures</a>
+						<a href="/">Marcas</a>
 					</li>
 					<li>
-						<a href="/">Toys</a>
+						<a href="/">Tamaños</a>
 					</li>
 					<li>
-						<a href="/">Others</a>
+						<a href="/">Cuentas</a>
 					</li>
 				</ul>
 			</div>
 			<div className="navbar-right">
 				<ul>
 					<li className="navbar-email" onClick={handleToggle}>
-						platzi@example.com
+						Hola Rafa!
 					</li>
 					<li
 						className="navbar-shopping-cart"
