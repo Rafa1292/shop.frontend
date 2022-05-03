@@ -15,6 +15,8 @@ import Categories from '@pages/Categories';
 import Brands from '@pages/Brands';
 import Colors from '@pages/Colors';
 import Subcategories from '@pages/Subcategories';
+import Sizes from '@pages/Sizes';
+import Accounts from '@pages/Accounts';
 import NotFound from '@pages/NotFound';
 import AppContext from '../context/AppContext';
 import useInitialState from '../hooks/useInitialState';
@@ -41,6 +43,8 @@ const App = () => {
 						<Route exact path="/brands" component={Brands} />
 						<Route exact path="/subcategories" component={Subcategories} />
 						<Route exact path="/colors" component={Colors} />
+						<Route exact path="/sizes" component={Sizes} />
+						<Route exact path="/accounts" component={Accounts} />
 						<Route path="*" component={NotFound} />
 					</Switch>
 				</Layout>

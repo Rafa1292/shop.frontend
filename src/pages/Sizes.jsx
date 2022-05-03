@@ -1,73 +1,73 @@
 import Title from '@components/Title';
-import '@styles/Colors.scss';
+import '@styles/Sizes.scss';
 import { useGetList, usePost, useDelete, usePatch } from '../hooks/useAPI';
 import React, { useRef, useState, useEffect } from "react";
 
 
-const Colors = () => {
-    let [colors, setColors] = useState([]);
+const Sizes = () => {
+    let [sizes, setSizes] = useState([]);
     const [editId, setEditId] = useState(0);
 
     let nameInput = useRef();
     let nameEditInput = useRef();
 
     useEffect(async () => {
-        await loadColors();
+        await loadSizes();
     }, []);
 
     const handleClickPost = async () => {
-        const response = await usePost('colors', { name: nameInput.current.value});
+        const response = await usePost('sizes', { name: nameInput.current.value});
         if (response.status == "201") {
-            loadColors();
+            loadSizes();
             nameInput.current.value = null;
         }
     };
 
     const handleClickDelete = async (id) => {
-        const response = await useDelete(`colors/${id}`);
+        const response = await useDelete(`sizes/${id}`);
         if (response.status == "201") {
-            loadColors();
+            loadSizes();
         }
     };
 
-    const loadColors = async () => {
-        const response = await useGetList('colors');
-        setColors(response.data);
+    const loadSizes = async () => {
+        const response = await useGetList('sizes');
+        setSizes(response.data);
     };
 
     const handleClickPatch = async (id) => {
-        const response = await usePatch(`colors/${id}`, { name: nameEditInput.current.value });
+        const response = await usePatch(`sizes/${id}`, { name: nameEditInput.current.value });
 
         if (response.status == "200") {
-            loadColors();
+            loadSizes();
             nameInput.current.value = null;
             setEditId(0);
         }
     };
 
     return (
-        <div className="color-index">
-            <Title title="Lista de colores"></Title>
-            <div className='add-color-container my-2 col-sm-10 center'>
+        <div className="size-index">
+            <Title title="Lista de tamaños"></Title>
+            <div className='add-size-container my-2 col-sm-10 center'>
                 <span className='col-10 center'>
-                    <input type="text" placeholder="Nuevo color" className="input" ref={nameInput} />
+                    <input type="text" placeholder="Nuevo tamaño" className="input" ref={nameInput} />
                 </span>
                 <span className='my-2 center'>
                     <input type='button' className='btn mx-2' value='Agregar' onClick={handleClickPost} />
                 </span>
             </div>
-            <div className="color-index-container">
-                {colors.map(color => (
-                    <div className="color-index-item col-sm-6 center" key={color.id}>
+            <div className="size-index-container">
+                {sizes.map(size => (
+                    <div className="size-index-item col-sm-6 center" key={size.id}>
                         {
-                            editId == color.id
+                            editId == size.id
                             &&
                             <>
                                 <span className='col-3 center'>
-                                    <input type="text" className="input col-10" defaultValue={color.name} ref={nameEditInput} />
+                                    <input type="text" className="input col-10" defaultValue={size.name} ref={nameEditInput} />
                                 </span>
                                 <span className='col-3 mx-2 center'>
-                                    <input className='btn success col-10' type="button" value='Cambiar' onClick={() => handleClickPatch(color.id)} />
+                                    <input className='btn success col-10' type="button" value='Cambiar' onClick={() => handleClickPatch(size.id)} />
                                 </span>
                                 <span className='col-3 center'>
                                     <input className='btn danger col-10' type="button" value='X' onClick={() => setEditId(0)} />
@@ -75,12 +75,12 @@ const Colors = () => {
                             </>
                             ||
                             <>
-                                <span className='col-3 center'>{color.name}</span>
+                                <span className='col-3 center'>{size.name}</span>
                                 <span className='center'>
-                                    <input className='btn mx-2' type="button" value='Editar' onClick={() => setEditId(color.id)} />
+                                    <input className='btn mx-2' type="button" value='Editar' onClick={() => setEditId(size.id)} />
                                 </span>
                                 <span className=' center'>
-                                    <input className='btn danger' type="button" value='Eliminar' onClick={() => handleClickDelete(color.id)} />
+                                    <input className='btn danger' type="button" value='Eliminar' onClick={() => handleClickDelete(size.id)} />
                                 </span>
                             </>
                         }
@@ -93,4 +93,4 @@ const Colors = () => {
     );
 }
 
-export default Colors;
+export default Sizes;

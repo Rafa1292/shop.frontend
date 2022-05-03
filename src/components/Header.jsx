@@ -31,16 +31,22 @@ const Header = () => {
 						<a href="/subCategories">Subcategorias</a>
 					</li>
 					<li>
-						<a href="/products">Productos</a>
+						<a href="/brands">Marcas</a>
 					</li>
 					<li>
-						<a href="/brands">Marcas</a>
+						<a href="/colors">Colores</a>
+					</li>
+					<li>
+						<a href="/products">Productos</a>
 					</li>
 					<li>
 						<a href="/sizes">Tamaños</a>
 					</li>
 					<li>
 						<a href="/accounts">Cuentas</a>
+					</li>
+					<li>
+						<a href="/states">Estados</a>
 					</li>
 				</ul>
 			</div>
