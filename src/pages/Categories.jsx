@@ -6,13 +6,13 @@ import React, { useRef, useState, useEffect } from "react";
 
 const Categories = () => {
     let [categories, setCategories] = useState([]);
-    let [editId, setEditId] = useState(0);
+    const [editId, setEditId] = useState(0);
 
     let nameInput = useRef();
     let nameEditInput = useRef();
 
     useEffect(async () => {
-        loadCategories();
+        await loadCategories();
     }, []);
 
     const handleClickPost = async () => {
@@ -37,7 +37,7 @@ const Categories = () => {
 
     const handleClickPatch = async (id) => {
         const response = await usePatch(`categories/${id}`, { name: nameEditInput.current.value });
-        console.log(response);
+
         if (response.status == "200") {
             loadCategories();
             nameInput.current.value = null;

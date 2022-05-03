@@ -12,6 +12,7 @@ import Checkout from '@pages/Checkout';
 import Orders from '@pages/Orders';
 import Products from '@pages/Products';
 import Categories from '@pages/Categories';
+import Subcategories from '@pages/Subcategories';
 import NotFound from '@pages/NotFound';
 import AppContext from '../context/AppContext';
 import useInitialState from '../hooks/useInitialState';
@@ -35,6 +36,7 @@ const App = () => {
 						<Route exact path="/orders" component={Orders} />
 						<Route exact path="/products" component={Products} />
 						<Route exact path="/categories" component={Categories} />
+						<Route exact path="/subcategories" component={Subcategories} />
 						<Route path="*" component={NotFound} />
 					</Switch>
 				</Layout>
