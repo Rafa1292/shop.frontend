@@ -1,0 +1,21 @@
+@import 'vars';
+
+.title-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.product-index-item{
+    padding: 5px 0px;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.product-index-item-img{
+    width: 8vw;
+    border-radius: 10px;
+}
+.item-colors-container{
+    display: flex;
+    flex-wrap: wrap;
+}

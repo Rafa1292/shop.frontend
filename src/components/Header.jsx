@@ -20,25 +20,27 @@ const Header = () => {
 		<nav>
 			<img src={menu} alt="menu" className="menu" />
 			<div className="navbar-left">
-				<img src={logo} alt="logo" className="nav-logo" />
+				<a href='/'>
+					<img src={logo} alt="logo" className="nav-logo" />
+				</a>
 				<ul>
 					<li>
-						<a href="/">Categorias</a>
+						<a href="/categories">Categorias</a>
 					</li>
 					<li>
-						<a href="/">Subcategorias</a>
+						<a href="/subCategories">Subcategorias</a>
 					</li>
 					<li>
-						<a href="/">Productos</a>
+						<a href="/products">Productos</a>
 					</li>
 					<li>
-						<a href="/">Marcas</a>
+						<a href="/brands">Marcas</a>
 					</li>
 					<li>
-						<a href="/">Tamaños</a>
+						<a href="/sizes">Tamaños</a>
 					</li>
 					<li>
-						<a href="/">Cuentas</a>
+						<a href="/accounts">Cuentas</a>
 					</li>
 				</ul>
 			</div>

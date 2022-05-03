@@ -10,6 +10,8 @@ import MyAccount from '@pages/MyAccount';
 import CreateAccount from '@pages/CreateAccount';
 import Checkout from '@pages/Checkout';
 import Orders from '@pages/Orders';
+import Products from '@pages/Products';
+import Categories from '@pages/Categories';
 import NotFound from '@pages/NotFound';
 import AppContext from '../context/AppContext';
 import useInitialState from '../hooks/useInitialState';
@@ -31,6 +33,8 @@ const App = () => {
 						<Route exact path="/signup" component={CreateAccount} />
 						<Route exact path="/checkout" component={Checkout} />
 						<Route exact path="/orders" component={Orders} />
+						<Route exact path="/products" component={Products} />
+						<Route exact path="/categories" component={Categories} />
 						<Route path="*" component={NotFound} />
 					</Switch>
 				</Layout>
