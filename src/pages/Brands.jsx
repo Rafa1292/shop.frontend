@@ -49,7 +49,7 @@ const Brands = () => {
         <div className="brand-index">
             <Title title="Lista de marcas"></Title>
             <div className='add-brand-container my-2 col-sm-10 center'>
-                <span className='col-sm-2 center'>
+                <span className='col-sm-10 center'>
                     <input type="text" placeholder="Nueva marca" className="input" ref={nameInput} />
                 </span>
                 <span className='my-2 center'>

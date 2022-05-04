@@ -11,12 +11,15 @@ import CreateAccount from '@pages/CreateAccount';
 import Checkout from '@pages/Checkout';
 import Orders from '@pages/Orders';
 import Products from '@pages/Products';
+import CreateProduct from '@pages/CreateProduct';
 import Categories from '@pages/Categories';
 import Brands from '@pages/Brands';
 import Colors from '@pages/Colors';
 import Subcategories from '@pages/Subcategories';
 import Sizes from '@pages/Sizes';
+import States from '@pages/States';
 import Accounts from '@pages/Accounts';
+import Paymethods from '@pages/Paymethods';
 import NotFound from '@pages/NotFound';
 import AppContext from '../context/AppContext';
 import useInitialState from '../hooks/useInitialState';
@@ -39,12 +42,15 @@ const App = () => {
 						<Route exact path="/checkout" component={Checkout} />
 						<Route exact path="/orders" component={Orders} />
 						<Route exact path="/products" component={Products} />
+						<Route exact path="/products/create" component={CreateProduct} />
 						<Route exact path="/categories" component={Categories} />
 						<Route exact path="/brands" component={Brands} />
 						<Route exact path="/subcategories" component={Subcategories} />
 						<Route exact path="/colors" component={Colors} />
 						<Route exact path="/sizes" component={Sizes} />
+						<Route exact path="/states" component={States} />
 						<Route exact path="/accounts" component={Accounts} />
+						<Route exact path="/paymethods" component={Paymethods} />
 						<Route path="*" component={NotFound} />
 					</Switch>
 				</Layout>

@@ -49,7 +49,7 @@ const Categories = () => {
         <div className="category-index">
             <Title title="Lista de categorias"></Title>
             <div className='add-category-container my-2 col-sm-10 center'>
-                <span className='col-sm-3 center'>
+                <span className='col-sm-10 center'>
                     <input type="text" placeholder="Nueva categoria" className="input" ref={nameInput} />
                 </span>
                 <span className='my-2 center'>

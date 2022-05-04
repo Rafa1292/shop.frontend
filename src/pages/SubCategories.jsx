@@ -60,10 +60,10 @@ const SubCategories = () => {
         <div className="subcategory-index">
             <Title title="Lista de subcategorias"></Title>
             <div className='add-subcategory-container my-2 col-sm-10 center'>
-                <span className='col-sm-2 center'>
+                <span className='col-10 center'>
                     <input type="text" placeholder="Nueva subcategoria" className="input" ref={nameInput} />
                 </span>
-                <span className='col-sm-3 my-1 center'>
+                <span className='col-sm-10 my-1 center'>
                     <select onChange={handleChange}>
                         <option value="0">Seleccione una categoria</option>
                         {
@@ -73,7 +73,7 @@ const SubCategories = () => {
                         }
                     </select>
                 </span>
-                <span className='my-2 col-md-2 center'>
+                <span className='my-2 col-md-10 center'>
                     <input type='button' className='btn mx-2' value='Agregar' onClick={handleClickPost} />
                 </span>
             </div>
