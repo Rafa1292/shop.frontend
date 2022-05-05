@@ -2,7 +2,7 @@ import React from 'react';
 import '@styles/Title.scss';
 
 const Title = ({ title, addRef }) => {
-    const btn = addRef ? <a className='btn' href={addRef} >Agregar</a> : '';
+    const btn = addRef ? <a className='btn my-2' href={addRef} >Agregar</a> : '';
     return (
         <div className='title-container'>
             <div className='col-10 center'>

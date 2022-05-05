@@ -93,6 +93,16 @@ input[type="checkbox"i] {
 	height: 20px;
 }
 
+.text-end{
+	text-align: end;
+}
+.text-center{
+	text-align: center;
+}
+.text-start{
+	text-align: start;
+}
+
 .col-1 {
 	width: 10%;
 }

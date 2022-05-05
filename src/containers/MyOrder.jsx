@@ -9,6 +9,7 @@ const MyOrder = () => {
 
 	const sumTotal = () => {
 		const reducer = (accumalator, currentValue) => accumalator + currentValue.price;
+		console.log(state.cart);
 		const sum = state.cart.reduce(reducer, 0);
 		return sum;
 	}
@@ -28,7 +29,7 @@ const MyOrder = () => {
 				<p>
 					<span>Total</span>
 				</p>
-				<p>¢40,000</p>
+				<p>{sumTotal()}</p>
 			</div>
 			<button className="primary-button">
 				Solicitar

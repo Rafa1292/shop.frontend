@@ -13,14 +13,16 @@ const ProductItem = ({ product }) => {
 	return (
 		<div className="ProductItem">
 			<img src="https://cdn.lorem.space/images/shoes/.cache/640x480/luis-felipe-lins-J2-wAQDckus-unsplash.jpg" alt={product.title} />
-			<div className="product-info">
+
+			<div className="product-info d-flex">
 				<div>
-					<p>{formatMoney(40000)}</p>
-					<p>Nike 165</p>
+					<p className=''>{formatMoney(product.price)}</p>
+					<p>{product.name}</p>
 				</div>
 				<figure onClick={() => handleClick(product)} >
 					<img src={addToCartImage} alt="" />
 				</figure>
+			<p className='col-10 text-start m-0'>{product.brand.name}</p>
 			</div>
 		</div>
 	);

@@ -1,32 +1,57 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '@styles/Products.scss';
 import Title from '@components/Title';
+import { useGetList } from '../hooks/useAPI';
+import {formatMoney} from '@helpers/formatHelper';
 
 const Products = () => {
+    let [products, setProducts] = useState([]);
+    const [colors, setColors] = useState([]);
+    useEffect(async () => {
+        await loadColors();
+        await loadProducts();
+    }, []);
+    const loadProducts = async () => {
+        const response = await useGetList('products');
+        setProducts(response.data);
+    };
+    const loadColors = async () => {
+        const response = await useGetList('colors');
+        setColors(response.data);
+    };
 
+    const getColor = (id)=>{
+        const color = colors.find( color =>{
+            return color.id === id;
+        });
+        return color.name;
+    }
     return (
         <div className='product-index'>
             <Title title="Lista de productos" addRef="products/create"></Title>
             <div className="product-index-container">
-                <div className="product-index-item">
-                    <span className='col-1 center'>
-                        <img className='product-index-item-img' src='https://cdn.lorem.space/images/shoes/.cache/640x480/luis-felipe-lins-J2-wAQDckus-unsplash.jpg'></img>
-                    </span>
-                    <span className='col-1 center'>Nike 16</span>
-                    <span className='col-1 center'>¢40,000</span>
-                    <span className='col-2 center'>Tennis Hombre</span>
-                    <span className='item-colors-container col-1 center'>
-                        <div className='item-colors' style={{background: 'orange'}}></div>
-                        <div className='item-colors' style={{background: 'white'}}></div>
-                    </span>
-                    <span className='center col-2'>
-                        <input type="checkbox" id='isValid' />
-                        <label className='mx-2' htmlFor='isValid'>Está activo?</label>
-                    </span>
-                    <span className='col-2 center'>
-                        <input className='btn success' type="button" value='Editar' />
-                    </span>
-                </div>
+                {products.map(product => (
+                    <div className="product-index-item center" key={product.id}>
+                        <span className='col-sm-1 center'>
+                            <img className='product-index-item-img' src={product.image}></img>
+                        </span>
+                        <span className='col-sm-1 m-1 center'>{product.brand.name}</span>
+                        <span className='col-sm-1 m-1 center'>{product.name}</span>
+                        <span className='col-sm-1 m-1 center'>{formatMoney(product.price)}</span>
+                        <span className='col-sm-2 m-1 center'>{product.subcategory.category.name} {product.subcategory.name}</span>
+                        <span className='center col-sm-2 m-1'>
+                            <input type="checkbox" id='isValid' />
+                            <label className='mx-2' htmlFor='isValid'>Está activo?</label>
+                        </span>
+                        <span className='item-colors-container col-sm-1 m-1 center'>
+                            <div className='item-colors' style={{ background: getColor(product.primaryColorId) }}></div>
+                            <div className='item-colors' style={{ background: getColor(product.secondaryColorId) }}></div>
+                        </span>
+                        <span className='col-sm-2 center'>
+                            <input className='btn success' type="button" value='Editar' />
+                        </span>
+                    </div>
+                ))}
             </div>
         </div>
     );
