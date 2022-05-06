@@ -60,6 +60,9 @@ const Header = () => {
 					<li>
 						<a href="/states">Estados</a>
 					</li>
+					<li>
+						<a href="/customers">Clientes</a>
+					</li>
 				</ul>
 			</div>
 			<div className="navbar-right">

@@ -20,6 +20,7 @@ import Sizes from '@pages/Sizes';
 import States from '@pages/States';
 import Accounts from '@pages/Accounts';
 import Paymethods from '@pages/Paymethods';
+import Customers from '@pages/Customers';
 import NotFound from '@pages/NotFound';
 import AppContext from '../context/AppContext';
 import useInitialState from '../hooks/useInitialState';
@@ -52,6 +53,7 @@ const App = () => {
 						<Route exact path="/states" component={States} />
 						<Route exact path="/accounts" component={Accounts} />
 						<Route exact path="/paymethods" component={Paymethods} />
+						<Route exact path="/customers" component={Customers} />
 						<Route path="*" component={NotFound} />
 					</Switch>
 				</Layout>
