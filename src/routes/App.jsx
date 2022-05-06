@@ -43,6 +43,7 @@ const App = () => {
 						<Route exact path="/orders" component={Orders} />
 						<Route exact path="/products" component={Products} />
 						<Route exact path="/products/create" component={CreateProduct} />
+						<Route exact path="/products/update/:productId" component={CreateProduct} />
 						<Route exact path="/categories" component={Categories} />
 						<Route exact path="/brands" component={Brands} />
 						<Route exact path="/subcategories" component={Subcategories} />
