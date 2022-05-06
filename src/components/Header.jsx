@@ -11,19 +11,31 @@ const Header = () => {
 	const [toggle, setToggle] = useState(false);
 	const [toggleOrders, setToggleOrders] = useState(false);
 	const { state } = useContext(AppContext);
-
+	const [openMenu, setOpenMenu] = useState(false);
+	const [openMenuClass, setOpenMenuClass] = useState('');
 	const handleToggle = () => {
 		setToggle(!toggle);
 	}
 
+	const HandleMenu = (state) => {
+		console.log(state);
+		setOpenMenu(state);
+		if(state){
+			setOpenMenuClass('open-menu');
+		}
+		else{
+			setOpenMenuClass('');
+		}
+	}
+
 	return (
 		<nav>
-			<img src={menu} alt="menu" className="menu" />
+			<img src={menu} alt="menu" className="menu" onClick={()=> HandleMenu(!openMenu)}/>
 			<div className="navbar-left">
 				<a href='/'>
 					<img src={logo} alt="logo" className="nav-logo" />
 				</a>
-				<ul>
+				<ul className={openMenuClass}>
 					<li>
 						<a href="/categories">Categorias</a>
 					</li>

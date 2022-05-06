@@ -75,12 +75,29 @@ nav {
 	justify-content: center;
 	align-items: center;
 }
+.open-menu{
+	left: 0 !important;
+}
 @media (max-width: 768px) {
 	.menu {
 		display: block;
 	}
 	.navbar-left ul {
-		display: none;
+		box-shadow: 4px 1px 10px 1px rgb(0 0 0 / 30%);
+		position: absolute;
+		display: block;
+		width: 140px;
+		margin: 0 !important;
+		transition: all ease-out 700ms;
+		left: -185px;
+		padding: 2vw;
+		height: 100vh;
+		top: 100px;
+		z-index: 0;
+		background: white;
+		li{
+			margin: 1rem 0;
+		}
 	}
 	.navbar-email {
 		display: none;

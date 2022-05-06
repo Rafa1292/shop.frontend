@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Title from '@components/Title';
 import { useGetList, usePost, usePatch, useGet } from '../hooks/useAPI';
 import { useHistory } from "react-router-dom"
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from '../firebase'
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import img from '../assets/icons/img.png'
+import Title from '@components/Title';
 import loadingGif from '../assets/icons/loading.gif'
 import '@styles/CreateProduct.scss';
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 const CreateProduct = () => {
     const { productId } = useParams();
@@ -35,7 +35,6 @@ const CreateProduct = () => {
         if (productId > 0) {
             loadProduct(productId);
         }
-        console.log(categoryId);
         setLoading(false);
     }, []);
 
@@ -200,7 +199,7 @@ const CreateProduct = () => {
                         <div className="col-sm-5 d-flex center">
                             <div className='col-10 p-2 center flex-wrap'>
                                 <label htmlFor='productName' className='col-8'>Nombre</label>
-                                <input type='text' id='productName' ref={productName} defaultValue={productName} placeholder='Nike x345' className='input col-8' />
+                                <input type='text' id='productName' ref={productName} placeholder='Nike x345' className='input col-8' />
                             </div>
                             <div className='col-10 p-2 center flex-wrap'>
                                 <label htmlFor='productDescription' className='col-8'>Descripcion</label>
