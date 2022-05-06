@@ -12,7 +12,7 @@ const ProductItem = ({ product }) => {
 
 	return (
 		<div className="ProductItem">
-			<img src="https://cdn.lorem.space/images/shoes/.cache/640x480/luis-felipe-lins-J2-wAQDckus-unsplash.jpg" alt={product.title} />
+			<img src={product.image} alt={product.title} />
 
 			<div className="product-info d-flex">
 				<div>

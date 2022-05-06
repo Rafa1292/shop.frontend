@@ -3,7 +3,7 @@ import Header from '@components/Header';
 
 const Layout = ({ children }) => {
 	return (
-		<div className="Layout">
+		<div className="Layout center">
 			<Header />
 			{children}
 		</div>

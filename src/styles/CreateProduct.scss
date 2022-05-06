@@ -1,0 +1,10 @@
+@import 'vars';
+
+
+.img-load-container{
+    border: 3px dashed rgba(0,0,0,.2);
+    margin: 10px;
+    label{
+        color: var(--gray);
+    }
+}
