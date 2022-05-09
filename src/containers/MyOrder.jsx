@@ -2,39 +2,41 @@ import React, { useContext } from 'react';
 import OrderItem from '@components/OrderItem';
 import AppContext from '../context/AppContext';
 import '@styles/MyOrder.scss';
-import arrow from '@icons/flechita.svg';
+import { formatMoney } from '@helpers/formatHelper'
 
-const MyOrder = () => {
+const MyOrder = (props) => {
 	const { state } = useContext(AppContext);
 
 	const sumTotal = () => {
-		const reducer = (accumalator, currentValue) => accumalator + currentValue.price;
-		console.log(state.cart);
-		const sum = state.cart.reduce(reducer, 0);
+		const reducer = (accumalator, currentValue) => accumalator + (currentValue.unitPrice * currentValue.quantity);
+		const sum = state.items.reduce(reducer, 0);
 		return sum;
 	}
 
+	const sendOrder = () => {
+
+	}
+
 	return (
-		<aside className="MyOrder">
-			<div className="title-container">
-				<img src={arrow} alt="arrow" />
-				<p className="title-order">Carrito actual</p>
-			</div>
+		<>
+			<p className="title-order col-10 center" style={{ height: '20px' }}>Orden actual</p>
 			<div className="my-order-content">
-				{state.cart.map(product => (
-					<OrderItem product={product} key={`orderItem-${product.id}`} />
+				{state.items.map(item => (
+					<OrderItem item={item} key={`orderItem-${item.productId}`} />
 				))}
 			</div>
-			<div className="order">
-				<p>
-					<span>Total</span>
-				</p>
-				<p>{sumTotal()}</p>
+			<div className="resume">
+				<div className="col-10 flex-wrap totalCart my-2 py-2">
+					<p>
+						<span>Total</span>
+					</p>
+					<p>{formatMoney(sumTotal())}</p>
+				</div>
+				<button className="btn col-10 p-2">
+					Realizar pedido
+				</button>
 			</div>
-			<button className="primary-button">
-				Solicitar
-			</button>
-		</aside>
+		</>
 	);
 }
 

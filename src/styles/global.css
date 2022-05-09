@@ -1,14 +1,22 @@
 body {
 	padding-top: 100px;
-	;
+	max-height: 100vh;
+	overflow: hidden;
 	margin: 0;
 	font-family: 'Quicksand', sans-serif;
 }
+p{margin: 0;}
+
 
 a {
 	text-decoration: none;
 }
-
+.z-1{
+	z-index: 1;
+}
+.z-10{
+	z-index: 10;
+}
 .btn {
 	padding: 8px 10px;
 	border-radius: 5px;
@@ -18,7 +26,12 @@ a {
 	background-color: black;
 	transition: all ease 500ms;
 }
-
+.absolute{
+	position: absolute;
+}
+.justify-end{
+	justify-content: end;
+}
 .secondary {
 	color: white;
 	background-color: var(--very-light-pink);
@@ -93,6 +106,13 @@ a {
 .py-2 {
 	padding: 1rem 0;
 }
+.px-1{
+	padding: 0 0.5rem;
+}
+.px-2{
+	padding: 0 1rem;
+}
+
 select{
 	width: -webkit-fill-available;
 	padding: 10px;

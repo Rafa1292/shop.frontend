@@ -48,7 +48,7 @@ const Products = () => {
                             <div className='item-colors' style={{ background: getColor(product.secondaryColorId) }}></div>
                         </span>
                         <span className='col-sm-2 center'>
-                            <input className='btn success' type="button" value='Editar' />
+                            <a className='btn success' type="button" href={`/products/update/${product.id}`}>Editar</a>
                         </span>
                     </div>
                 ))}

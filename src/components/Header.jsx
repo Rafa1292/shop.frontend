@@ -6,10 +6,11 @@ import menu from '@icons/icon_menu.svg';
 import logo from '@logos/desatados.png';
 import AppContext from '../context/AppContext';
 import shoppingCart from '@icons/icon_shopping_cart.svg';
+import { Link } from "react-router-dom";
 
 const Header = () => {
-	const [toggle, setToggle] = useState(false);
-	const [toggleOrders, setToggleOrders] = useState(false);
+	const [openStyle, setOpenStyle] = useState(false);
+	const [openStyleClass, setOpenStyleClass] = useState({});
 	const { state } = useContext(AppContext);
 	const [openMenu, setOpenMenu] = useState(false);
 	const [openMenuClass, setOpenMenuClass] = useState('');
@@ -18,50 +19,63 @@ const Header = () => {
 	}
 
 	const HandleMenu = (state) => {
-		console.log(state);
 		setOpenMenu(state);
-		if(state){
+		if (state) {
 			setOpenMenuClass('open-menu');
 		}
-		else{
+		else {
 			setOpenMenuClass('');
 		}
 	}
 
+	const HandleCart = (state) => {
+		setOpenStyle(state);
+		if (state) {
+			setOpenStyleClass({ right: 0 });
+			console.log(openStyleClass)
+			console.log(state)
+		}
+		else {
+			setOpenStyleClass({});
+			console.log(openStyleClass)
+
+		}
+	}
+
 	return (
-		<nav>
-			<img src={menu} alt="menu" className="menu" onClick={()=> HandleMenu(!openMenu)}/>
+		<nav className='z-10'>
+			<img src={menu} alt="menu" className="menu" onClick={() => HandleMenu(!openMenu)} />
 			<div className="navbar-left">
-				<a href='/'>
+				<Link to='/'>
 					<img src={logo} alt="logo" className="nav-logo" />
-				</a>
+				</Link>
 				<ul className={openMenuClass}>
 					<li>
-						<a href="/categories">Categorias</a>
+						<Link to="/categories">Categorias</Link>
 					</li>
 					<li>
-						<a href="/subCategories">Subcategorias</a>
+						<Link to="/subCategories">Subcategorias</Link>
 					</li>
 					<li>
-						<a href="/brands">Marcas</a>
+						<Link to="/brands">Marcas</Link>
 					</li>
 					<li>
-						<a href="/colors">Colores</a>
+						<Link to="/colors">Colores</Link>
 					</li>
 					<li>
-						<a href="/products">Productos</a>
+						<Link to="/products">Productos</Link>
 					</li>
 					<li>
-						<a href="/sizes">Tamaños</a>
+						<Link to="/sizes">Tamaños</Link>
 					</li>
 					<li>
-						<a href="/accounts">Cuentas</a>
+						<Link to="/accounts">Cuentas</Link>
 					</li>
 					<li>
-						<a href="/states">Estados</a>
+						<Link to="/states">Estados</Link>
 					</li>
 					<li>
-						<a href="/customers">Clientes</a>
+						<Link to="/customers">Clientes</Link>
 					</li>
 				</ul>
 			</div>
@@ -72,15 +86,16 @@ const Header = () => {
 					</li>
 					<li
 						className="navbar-shopping-cart"
-						onClick={() => setToggleOrders(!toggleOrders)}
+						onClick={() => HandleCart(!openStyle)}
 					>
 						<img src={shoppingCart} alt="shopping cart" />
-						{state.cart.length > 0 ? <div>{state.cart.length}</div> : null}
+						{state.items.length > 0 ? <div>{state.items.length}</div> : null}
 					</li>
 				</ul>
 			</div>
-			{toggle && <Menu />}
-			{toggleOrders && <MyOrder />}
+			<div className="MyOrder" style={openStyleClass}>
+				<MyOrder  />
+			</div>
 		</nav>
 	);
 }

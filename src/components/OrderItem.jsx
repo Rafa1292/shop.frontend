@@ -4,21 +4,21 @@ import '@styles/OrderItem.scss';
 import close from '@icons/icon_close.png'
 import { formatMoney } from '@helpers/formatHelper'
 
-const OrderItem = ({ product }) => {
+const OrderItem = ({ item }) => {
 	const { removeFromCart } = useContext(AppContext);
 
-	const handleRemove = product => {
-		removeFromCart(product);
+	const handleRemove = item => {
+		removeFromCart(item);
 	}
 
 	return (
 		<div className="OrderItem">
 			<figure>
-				<img src={product.image}/>
+				<img src={item.product.image}/>
 			</figure>
-			<p>{product.name}</p>
-			<p className=''>{formatMoney(product.price)}</p>
-			<img src={close} alt="close" onClick={() => handleRemove(product)} />
+			<strong className='center'>{item.quantity}</strong>
+			<p className=''>{formatMoney(item.unitPrice)}</p>
+			<img src={close} alt="close" onClick={() => handleRemove(item)} />
 		</div>
 	);
 }

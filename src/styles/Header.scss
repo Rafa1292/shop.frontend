@@ -26,6 +26,7 @@ nav {
 	display: flex;
 	align-items: center;
 	height: 60px;
+	z-index: 20;
 }
 .navbar-left {
 	display: flex;
@@ -93,7 +94,6 @@ nav {
 		padding: 2vw;
 		height: 100vh;
 		top: 100px;
-		z-index: 0;
 		background: white;
 		li{
 			margin: 1rem 0;

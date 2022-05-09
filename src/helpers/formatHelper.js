@@ -1,5 +1,16 @@
 export function formatMoney(amount) {
+    const amountString = amount.toString();
+    const length = amountString.length - 1;
+    let newAmount = '';
+    let counter = 0;
 
-    var rta = `¢${amount.toString().slice(0, 2)},${amount.toString().slice(2, 5)}`;
-    return rta;
+    for (let index = length; index >= 0; index--) {
+        if((counter)%3 == 0 && counter > 0){
+            newAmount += ',';
+        }
+        newAmount += amountString[index];
+        counter++;
+    }
+    newAmount += '¢';
+    return newAmount.split('').reverse().join('');
 }

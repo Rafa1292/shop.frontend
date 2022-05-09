@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import '@styles/ProductItem.scss';
 import AppContext from '../context/AppContext';
-import addToCartImage from '@icons/bt_add_to_cart.svg';
-import {formatMoney} from '@helpers/formatHelper'
+import addToCartImage from '@icons/addCartVector.png';
+import { formatMoney } from '@helpers/formatHelper'
+
 const ProductItem = ({ product }) => {
 	const { addToCart } = useContext(AppContext);
 
@@ -12,17 +13,23 @@ const ProductItem = ({ product }) => {
 
 	return (
 		<div className="ProductItem">
-			<img src={product.image} alt={product.title} />
+			<img className='product-item-img' src={product.image} alt={product.title} />
 
-			<div className="product-info d-flex">
-				<div>
-					<p className=''>{formatMoney(product.price)}</p>
-					<p>{product.name}</p>
+			<div className="product-info d-flex px-2">
+				<span className='p-0 col-10'>
+						{product.name}
+				</span>
+				<div className=' flex-wrap col-10 justify-end flex-wrap'>
+					<figure className='absolute' onClick={() => handleClick(product)} >
+						<img src={addToCartImage} alt="" />
+					</figure>
+							<em className='col-10 my-1' style={{fontWeight: 200}}>
+								{product.brand.name}
+							</em>
+						<div className='col-10'>
+							{formatMoney(product.price)}
+						</div>
 				</div>
-				<figure onClick={() => handleClick(product)} >
-					<img src={addToCartImage} alt="" />
-				</figure>
-			<p className='col-10 text-start m-0'>{product.brand.name}</p>
 			</div>
 		</div>
 	);
