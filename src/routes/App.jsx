@@ -21,6 +21,7 @@ import States from '@pages/States';
 import Accounts from '@pages/Accounts';
 import Paymethods from '@pages/Paymethods';
 import Customers from '@pages/Customers';
+import CustomerOrders from '@pages/CustomerOrders';
 import NotFound from '@pages/NotFound';
 import AppContext from '../context/AppContext';
 import useInitialState from '../hooks/useInitialState';
@@ -36,6 +37,7 @@ const App = () => {
 						<Route exact path="/" component={Home} />
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/password-recovery" component={PasswordRecovery} />
+						<Route exact path="/orders/customer/:customerId" component={CustomerOrders} />
 						<Route exact path="/send-email" component={SendEmail} />
 						<Route exact path="/new-password" component={NewPassword} />
 						<Route exact path="/account" component={MyAccount} />

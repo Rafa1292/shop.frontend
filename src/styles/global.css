@@ -6,8 +6,17 @@ body {
 	font-family: 'Quicksand', sans-serif;
 }
 p{margin: 0;}
-
-
+.color-secondary{
+color: rgba(0,0,0,.5);
+}
+.hover{
+	cursor: pointer;
+	transition: all ease 500ms;
+	transform: scale(1);
+}
+.hover:hover{
+	transform: scale(1.1);
+}
 a {
 	text-decoration: none;
 }
@@ -16,6 +25,12 @@ a {
 }
 .z-10{
 	z-index: 10;
+}
+.success-text{
+	color: rgba(10, 159, 20, .7)
+}
+.content-center{
+	align-content: center;
 }
 .btn {
 	padding: 8px 10px;
@@ -103,6 +118,9 @@ a {
 	display: none;
 }
 
+.py-1 {
+	padding: 0.5rem 0;
+}
 .py-2 {
 	padding: 1rem 0;
 }

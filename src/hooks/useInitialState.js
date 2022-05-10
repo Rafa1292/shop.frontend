@@ -3,7 +3,7 @@ import { useState } from "react";
 const initialState = {
 	customerId: 5,
 	credit: false,
-	soldBy: 1,
+	soldBy: "1",
 	expiringDate: "2020/05/05",
 	close: false,
 	items: [],
@@ -23,20 +23,16 @@ const useInitialState = () => {
 		}
 		else{
 			const newItem = {
-				"orderId": 0,
 				"productId": payload.id,
 				"quantity": 1,
 				"unitPrice": payload.price,
 				"product": payload
 			};
-			console.log(newItem)
 			setState({
 				...state,
 				items: [...state.items, newItem]
 			});
 		}
-
-		console.log(state);
 	};
 
 	const isProductInCart = (productId) => {
@@ -57,10 +53,15 @@ const useInitialState = () => {
 		});
 	}
 
+	const emptyCart = () =>{
+		setState(initialState);
+	}
+
 	return {
 		state,
 		addToCart,
-		removeFromCart
+		removeFromCart,
+		emptyCart
 	}
 }
 

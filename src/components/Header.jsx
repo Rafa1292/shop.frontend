@@ -1,12 +1,12 @@
 import React, { useState, useContext } from 'react';
 import '@styles/Header.scss';
-import Menu from '@components/Menu';
 import MyOrder from '../containers/MyOrder';
 import menu from '@icons/icon_menu.svg';
 import logo from '@logos/desatados.png';
 import AppContext from '../context/AppContext';
 import shoppingCart from '@icons/icon_shopping_cart.svg';
 import { Link } from "react-router-dom";
+import close from '@icons/close.png'
 
 const Header = () => {
 	const [openStyle, setOpenStyle] = useState(false);
@@ -32,13 +32,9 @@ const Header = () => {
 		setOpenStyle(state);
 		if (state) {
 			setOpenStyleClass({ right: 0 });
-			console.log(openStyleClass)
-			console.log(state)
 		}
 		else {
 			setOpenStyleClass({});
-			console.log(openStyleClass)
-
 		}
 	}
 
@@ -77,6 +73,9 @@ const Header = () => {
 					<li>
 						<Link to="/customers">Clientes</Link>
 					</li>
+					<li>
+						<Link to="/orders/customer/5">Mis ordenes</Link>
+					</li>
 				</ul>
 			</div>
 			<div className="navbar-right">
@@ -94,6 +93,7 @@ const Header = () => {
 				</ul>
 			</div>
 			<div className="MyOrder" style={openStyleClass}>
+				<img height={30} className="z-10" style={{opacity: 0.6, position: "absolute"}} src={close} onClick={() => HandleCart(!openStyle)}/>
 				<MyOrder  />
 			</div>
 		</nav>
