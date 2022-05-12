@@ -26,6 +26,10 @@ a {
 .z-10{
 	z-index: 10;
 }
+.layout{
+	height: calc(100vh - 100px);
+	overflow: scroll;
+}
 .success-text{
 	color: rgba(10, 159, 20, .7)
 }
@@ -88,7 +92,7 @@ a {
 	margin-top: 0;
 }
 .my-1{
-	margin: 0.5rem 0;
+	margin: 0.5rem 0 !important;
 }
 .mb-2{
 	margin-bottom: 1rem;
@@ -105,7 +109,7 @@ a {
 	margin: 1.5rem 0;
 }
 .p-1{
-	padding: 0.5rem;
+	padding: 0.5rem !important;
 }
 .p-2{
 	padding: 1rem;
@@ -117,7 +121,12 @@ a {
 .d-none{
 	display: none;
 }
-
+.start{
+	justify-content: left;
+}
+.end{
+	justify-content: right;
+}
 .py-1 {
 	padding: 0.5rem 0;
 }
@@ -286,8 +295,11 @@ input[type="checkbox"i] {
 .d-flex{
 	display: flex;
 	flex-wrap: wrap;
+	box-sizing: border-box;
 }
-
+.bold{
+	font-weight: bold;
+}
 .input {
 	background-color: rgba(0, 0, 0, .1);
 	text-align: center;

@@ -20,19 +20,18 @@ const CustomerOrders = () => {
         <>
             <h2 className='col-10 center'>Ordenes</h2>
             <div className="col-md-8">
-
-            <div style={{ borderBottom: '1px solid rgba(0,0,0,.1)' }} className='col-10 flex-wrap spaceAround py-1'>
-                <span className='col-2 center'>Inicial</span>
-                <span className='col-2 center'>Prima</span>
-                <span className='col-2 center'>Abono</span>
-                <span className='col-2 center'>Estado</span>
-                <span className='col-2 center'>
-                </span>
-            </div>
-            {orders.map(order => (
-                <Order key={order.id} order={order} />
+                <div style={{ borderBottom: '1px solid rgba(0,0,0,.1)' }} className='col-10 flex-wrap spaceAround py-1'>
+                    <span className='col-2 center'>Inicial</span>
+                    <span className='col-2 center'>Prima</span>
+                    <span className='col-2 center'>Abono</span>
+                    <span className='col-2 center'>Estado</span>
+                    <span className='col-2 center'>
+                    </span>
+                </div>
+                {orders.map(order => (
+                    <Order key={order.id} order={order} />
                 ))
-            }
+                }
             </div>
         </>
     );

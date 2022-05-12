@@ -20,8 +20,10 @@ import Sizes from '@pages/Sizes';
 import States from '@pages/States';
 import Accounts from '@pages/Accounts';
 import Paymethods from '@pages/Paymethods';
+import CreatePayment from '@pages/CreatePayment';
 import Customers from '@pages/Customers';
 import CustomerOrders from '@pages/CustomerOrders';
+import Order from '@pages/Order';
 import NotFound from '@pages/NotFound';
 import AppContext from '../context/AppContext';
 import useInitialState from '../hooks/useInitialState';
@@ -38,6 +40,7 @@ const App = () => {
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/password-recovery" component={PasswordRecovery} />
 						<Route exact path="/orders/customer/:customerId" component={CustomerOrders} />
+						<Route exact path="/orders/:orderId" component={Order} />
 						<Route exact path="/send-email" component={SendEmail} />
 						<Route exact path="/new-password" component={NewPassword} />
 						<Route exact path="/account" component={MyAccount} />
@@ -55,6 +58,7 @@ const App = () => {
 						<Route exact path="/states" component={States} />
 						<Route exact path="/accounts" component={Accounts} />
 						<Route exact path="/paymethods" component={Paymethods} />
+						<Route exact path="/payment/create" component={CreatePayment} />
 						<Route exact path="/customers" component={Customers} />
 						<Route path="*" component={NotFound} />
 					</Switch>
