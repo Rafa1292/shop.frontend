@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const initialState = {
-	customerId: 5,
+	customerId: 6,
 	credit: false,
 	soldBy: "1",
 	expiringDate: "2020/05/05",

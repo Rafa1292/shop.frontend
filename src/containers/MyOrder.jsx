@@ -8,7 +8,7 @@ import check from '@icons/check.png'
 
 const MyOrder = (props) => {
 	const { state, emptyCart } = useContext(AppContext);
-	const [orderComplete, setOrderComplete] = useState(true);
+	const [orderComplete, setOrderComplete] = useState(false);
 
 	const sumTotal = () => {
 		const reducer = (accumalator, currentValue) => accumalator + (currentValue.unitPrice * currentValue.quantity);
@@ -20,6 +20,7 @@ const MyOrder = (props) => {
 		let newCart = JSON.parse(JSON.stringify(state))
 		newCart.items.forEach(item => { delete item.product; });
 		const response = await usePost('orders', newCart);
+		console.log(response)
 		if (response.status == 201) {
 			setOrderComplete(true);
 			emptyCart();

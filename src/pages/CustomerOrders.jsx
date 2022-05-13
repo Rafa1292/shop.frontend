@@ -29,7 +29,7 @@ const CustomerOrders = () => {
                     </span>
                 </div>
                 {orders.map(order => (
-                    <Order key={order.id} order={order} />
+                    <Order key={order.id} goTo={true} order={order} />
                 ))
                 }
             </div>

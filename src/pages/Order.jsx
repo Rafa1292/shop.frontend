@@ -75,12 +75,11 @@ const Order = () => {
                     <span className='col-5 d-flex px-2 end'>Abono:</span>
                     <span className='col-5 d-flex start'>{sumTotal(paymentReducer, order.payments)}</span>
                     <span className='col-10 d-flex p-2 bold center'>Abonos</span>
-
+                    <span className='col-3 d-flex p-1 center secondary'>Fecha</span>
+                    <span className='col-3 d-flex p-1 center secondary'>Monto</span>
+                    <span style={{textAlign: 'center'}} className='secondary col-4 d-flex p-1 center'>forma de pago</span>
                     {order.payments.map(payment => (
                         <div className='col-10 flex-wrap mb-2' key={payment.id}>
-                            <span className='col-3 d-flex p-1 center secondary'>Fecha</span>
-                            <span className='col-3 d-flex p-1 center secondary'>Monto</span>
-                            <span style={{textAlign: 'center'}} className='secondary col-4 d-flex p-1 center'>forma de pago</span>
                             <span className='col-3 d-flex px-2 center'>{new Date(payment.createdAt).toLocaleString()}</span>
                             <span className='col-3 d-flex px-2 center'>{payment.paymentAccountHistory.amount}</span>
                             <span className='col-4 d-flex center'>{`${payment.paymentAccountHistory.accountHistory.paymethod.name} ${getAccountName(payment.paymentAccountHistory.accountHistory.paymethod.account)}`}</span>
