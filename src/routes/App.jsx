@@ -28,6 +28,7 @@ import NotFound from '@pages/NotFound';
 import AppContext from '../context/AppContext';
 import useInitialState from '../hooks/useInitialState';
 import '@styles/global.css';
+import { useEffect } from 'react/cjs/react.development';
 
 const App = () => {
 	const initialState = useInitialState();

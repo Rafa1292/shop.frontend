@@ -19,8 +19,13 @@ const useDelete = async (route) => {
 }
 
 const useGet = async (route) => {
-    const object = await useCustom(route, 'get', {});
-    return object;
+    try {
+        const object = await useCustom(route, 'get', {});
+        return object;
+        
+    } catch (error) {
+        
+    }
 };
 
 const usePatch = async (route, data) => {
@@ -29,13 +34,23 @@ const usePatch = async (route, data) => {
 }
 
 const useCustom = async (route, method, data) => {
-    const response = await axios({
-        method: method,
-        url: `${api}${route}`,
-        data: data
-    });
+    try {
+        const token = localStorage.getItem('token');
+        const response = await axios({
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            method: method,
+            url: `${api}${route}`,
+            data: data,
 
-    return response;
+        });
+
+        return response;
+
+    } catch (error) {
+
+    }
 }
 
 export { useGetList, usePost, useDelete, useGet, useCustom, usePatch };

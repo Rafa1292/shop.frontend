@@ -17,6 +17,7 @@ nav {
 }
 .nav-logo {
 	width: 100px;
+	opacity: 0.80;
 }
 .navbar-left ul,
 .navbar-right ul {
@@ -89,6 +90,14 @@ nav {
     justify-content: center;
     display: flex;
     font-weight: 800;
+}
+
+.hamb-menu-close{
+	transition: all ease 700ms;
+    transform: rotate(0);
+}
+.hamb-menu-open{
+	transform: rotate(90deg) !important;
 }
 @media (max-width: 768px) {
 	.menu {
