@@ -27,8 +27,13 @@ const CreatePayment = () => {
     };
 
     const loadCustomer = async (id) => {
-        const response = await useGetList(`customers/withOrders/${id}`);
-        setCustomer(response.data);
+        try {
+            const response = await useGetList(`customers/withOrders/${id}`);
+            setCustomer(response.data);
+            
+        } catch (error) {
+            
+        }
     };
 
     const loadPaymethods = async (id) => {
@@ -37,7 +42,12 @@ const CreatePayment = () => {
     };
 
     const selectCustomer = (e) => {
-        loadCustomer(e.target.value);
+        try {
+            loadCustomer(e.target.value);
+            
+        } catch (error) {
+            
+        }
     }
 
     const sendPay = async () => {

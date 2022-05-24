@@ -19,6 +19,7 @@ import Subcategories from '@pages/Subcategories';
 import Sizes from '@pages/Sizes';
 import States from '@pages/States';
 import Accounts from '@pages/Accounts';
+import AccountDetails from '@pages/AccountDetails';
 import Paymethods from '@pages/Paymethods';
 import CreatePayment from '@pages/CreatePayment';
 import Customers from '@pages/Customers';
@@ -28,7 +29,6 @@ import NotFound from '@pages/NotFound';
 import AppContext from '../context/AppContext';
 import useInitialState from '../hooks/useInitialState';
 import '@styles/global.css';
-import { useEffect } from 'react/cjs/react.development';
 
 const App = () => {
 	const initialState = useInitialState();
@@ -58,6 +58,7 @@ const App = () => {
 						<Route exact path="/sizes" component={Sizes} />
 						<Route exact path="/states" component={States} />
 						<Route exact path="/accounts" component={Accounts} />
+						<Route exact path="/accounts/:accountId" component={AccountDetails} />
 						<Route exact path="/paymethods" component={Paymethods} />
 						<Route exact path="/payment/create" component={CreatePayment} />
 						<Route exact path="/customers" component={Customers} />

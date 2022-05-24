@@ -49,7 +49,8 @@ const useCustom = async (route, method, data) => {
         return response;
 
     } catch (error) {
-
+        console.log(`error`)
+        console.log(error)
     }
 }
 

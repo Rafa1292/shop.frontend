@@ -2,6 +2,7 @@ import Title from '@components/Title';
 import '@styles/Accounts.scss';
 import { useGetList, usePost, useDelete, usePatch } from '../hooks/useAPI';
 import React, { useRef, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 
 const Accounts = () => {
@@ -46,7 +47,7 @@ const Accounts = () => {
     };
 
     return (
-        <div className="account-index">
+        <div className="account-index col-10">
             <Title title="Lista de cuentas"></Title>
             <div className='add-account-container my-2 col-sm-10 center'>
                 <span className='col-10 center'>
@@ -79,6 +80,9 @@ const Accounts = () => {
                                 <span className='center'>
                                     <input className='btn mx-2' type="button" value='Editar' onClick={() => setEditId(account.id)} />
                                 </span>
+                                <Link className='center' to={`/accounts/${account.id}`}>
+                                    <input className='btn mx-2 success' type="button" value='Detalles' />
+                                </Link>
                             </>
                         }
 

@@ -52,6 +52,12 @@ a {
 .justify-end{
 	justify-content: end;
 }
+.justify-between{
+	justify-content: space-between;
+}
+.justify-around{
+	justify-content: space-around;
+}
 .secondary {
 	color: white;
 	background-color: var(--very-light-pink);
@@ -145,6 +151,8 @@ a {
 .px-2{
 	padding: 0 1rem;
 }
+
+
 
 select{
 	width: -webkit-fill-available;
