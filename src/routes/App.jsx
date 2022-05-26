@@ -25,6 +25,8 @@ import CreatePayment from '@pages/CreatePayment';
 import Customers from '@pages/Customers';
 import CustomerOrders from '@pages/CustomerOrders';
 import Order from '@pages/Order';
+import Investments from '@pages/Investments';
+import CreateInvestment from '@pages/CreateInvestment';
 import NotFound from '@pages/NotFound';
 import AppContext from '../context/AppContext';
 import useInitialState from '../hooks/useInitialState';
@@ -62,6 +64,8 @@ const App = () => {
 						<Route exact path="/paymethods" component={Paymethods} />
 						<Route exact path="/payment/create" component={CreatePayment} />
 						<Route exact path="/customers" component={Customers} />
+						<Route exact path="/investments" component={Investments} />
+						<Route exact path="/investments/create" component={CreateInvestment} />
 						<Route path="*" component={NotFound} />
 					</Switch>
 				</Layout>

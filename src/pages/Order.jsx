@@ -14,7 +14,7 @@ const Order = () => {
         expiringDate: '',
         items: []
     });
-    const itemReducer = (accumulator, curr) => accumulator + (curr.unitPrice * curr.quantity);
+    const itemReducer = (accumulator, curr) => accumulator + (curr.productMove.cost * curr.productMove.quantity);
     const paymentReducer = (accumulator, curr) => accumulator + curr.paymentAccountHistory.amount;
 
     const loadOrder = async () => {

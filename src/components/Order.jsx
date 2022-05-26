@@ -5,7 +5,7 @@ import { useState } from 'react/cjs/react.development';
 
 const Order = ({order, goTo}) => {
 const [orderWidth, setOrderWith] = useState({width: '100%'});
-const itemReducer = (accumulator, curr) => accumulator + (curr.unitPrice * curr.quantity);
+const itemReducer = (accumulator, curr) => accumulator + (curr.productMove.cost * curr.productMove.quantity);
 const paymentReducer = (accumulator, curr) => accumulator + curr.paymentAccountHistory.amount;
 
 	useEffect(async () => {

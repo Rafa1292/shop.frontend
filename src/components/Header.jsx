@@ -95,6 +95,9 @@ const Header = () => {
 								<Link to="/payment/create">Agregar abono</Link>
 							</li>
 							<li onClick={() => HandleMenu(false)}>
+								<Link to="/investments">Inversiones</Link>
+							</li>
+							<li onClick={() => HandleMenu(false)}>
 								<Link to="/categories">Categorias</Link>
 							</li>
 							<li onClick={() => HandleMenu(false)}>

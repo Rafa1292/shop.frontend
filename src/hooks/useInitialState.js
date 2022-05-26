@@ -2,11 +2,12 @@ import { useState } from "react";
 import { useGet } from '../hooks/useAPI';
 
 const initialState = {
-	customerId: 0,
 	credit: true,
-	soldBy: "1",
+	customerId: 0,
 	expiringDate: "2020/05/05",
+	soldBy: "1",
 	close: false,
+	stateId: 1,
 	items: [],
 	auth: {
 		role: 'customer',
@@ -28,10 +29,14 @@ const useInitialState = () => {
 		}
 		else {
 			const newItem = {
-				"productId": payload.id,
-				"quantity": 1,
-				"unitPrice": payload.price,
-				"product": payload
+				product: payload,
+				productMove: {
+					quantity: 1,
+					productId: payload.id,
+					sizeId: 1,
+					exit: true,
+					cost: payload.price
+				}
 			};
 			setState({
 				...state,
@@ -91,7 +96,7 @@ const useInitialState = () => {
 		}
 	}
 
-	const resetAuthState = ()=>{
+	const resetAuthState = () => {
 		setState(initialState);
 	}
 

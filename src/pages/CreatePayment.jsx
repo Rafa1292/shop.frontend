@@ -29,6 +29,7 @@ const CreatePayment = () => {
     const loadCustomer = async (id) => {
         try {
             const response = await useGetList(`customers/withOrders/${id}`);
+            console.log(response.data)
             setCustomer(response.data);
             
         } catch (error) {
@@ -53,17 +54,18 @@ const CreatePayment = () => {
     const sendPay = async () => {
         const payment = {
             orderId: order.id,
-            PaymentAccountHistory: {
-                amount: amount.current.value,
+            paymentAccountHistory: {
+                amount: parseInt(amount.current.value),
                 accountHistory: {
-                    paymethodId: paymethodId,
-                    amount: amount.current.value,
+                    paymethodId: parseInt(paymethodId),
+                    amount: parseInt(amount.current.value),
                     debit: false
                 }
             }
         };
-
+        console.log(payment)
         const response = await usePost('payments', payment);
+        console.log(response)
         if(response.status === 201){
             history.push(`/orders/${order.id}`);
         }
@@ -118,7 +120,7 @@ const CreatePayment = () => {
                             <span className='col-2' style={{ borderBottom: '1px solid rgba(0,0,0,.1)' }}></span>
                             <div className='col-10 center flex-wrap'>
                                 {order.items.map(item => (
-                                    <OrderItem item={item} key={`orderItem-${item.productId}`} />
+                                    <OrderItem item={item} key={`orderItem-${item.id}`} />
                                 ))}
                             </div>
                         </div>

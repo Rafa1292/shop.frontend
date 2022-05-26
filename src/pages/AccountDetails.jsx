@@ -84,7 +84,7 @@ const AccountDetails = () => {
             <Title title="Detalle de  cuenta"></Title>
             <h2 className='col-10 center generic-title p-0'>{account.name}</h2>
             <div className="col-10 justify-around p-2 d-flex">
-                <button className='btn col-4' onClick={() => handleCost()}>Retiro</button>
+                <button className='btn col-4 black-outline' onClick={() => handleCost()}>Retiro</button>
                 <button className='btn col-4 success-outline' onClick={() => handleEntry()}>Ingreso</button>
             </div>
             <div className="col-10 center d-flex">

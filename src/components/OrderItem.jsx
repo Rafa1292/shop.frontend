@@ -14,10 +14,10 @@ const OrderItem = ({ item }) => {
 	return (
 		<div className="OrderItem">
 			<figure>
-				<img src={item.product.image}/>
+				<img src={item.productMove.product.image}/>
 			</figure>
-			<strong className='center'>{item.quantity}</strong>
-			<p className=''>{formatMoney(item.unitPrice)}</p>
+			<strong className='center'>{item.productMove.quantity}</strong>
+			<p className=''>{formatMoney(item.productMove.cost)}</p>
 			<img src={close} alt="close" onClick={() => handleRemove(item)} />
 		</div>
 	);
