@@ -42,6 +42,7 @@ const useInitialState = () => {
 				...state,
 				items: [...state.items, newItem]
 			});
+			console.log(newItem)
 		}
 	};
 

@@ -22,7 +22,7 @@ const Investments = () => {
         <div className="col-10 center">
             <Title title="Inversiones" />
             <div className="col-10 justify-around p-2 d-flex">
-                <Link  className='btn col-8 success-outline center' to='investments/create' >Agregar</Link>
+                <Link className='btn col-8 success-outline center' to='investments/create' >Agregar</Link>
             </div>
             {investments.map(investment => (
                 <div style={{ borderBottom: '1px solid rgba(0,0,0,.1)' }}
@@ -34,10 +34,7 @@ const Investments = () => {
                         {formatMoney(investment.details.reduce(detailReducer, 0))}
                     </div>
                     <div className="col-3">
-                        {(investment.histories.reduce(historyReducer, 0) -
-                            formatMoney(investment.details.reduce(detailReducer, 0))) != 0 &&
-                            <button className='btn col-8 black-outline'>Detalles</button>
-                        }
+                        <Link to={`investments/${investment.id}`} className='btn col-8 black-outline'>Detalles</Link>
                     </div>
                 </div>
             ))}

@@ -34,6 +34,9 @@ a {
 .success-text{
 	color: rgba(10, 159, 20, .7)
 }
+.border-bottom{
+	border-bottom: 1px solid rgba(0,0,0,.08);
+}
 .content-center{
 	align-content: center;
 }

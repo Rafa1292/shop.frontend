@@ -18,7 +18,7 @@ const MyOrder = (props) => {
 	};
 
 	const sumTotal = () => {
-		const reducer = (accumalator, currentValue) => accumalator + (currentValue.productMove.unitPrice * currentValue.productMove.quantity);
+		const reducer = (accumalator, currentValue) => accumalator + (currentValue.productMove.cost * currentValue.productMove.quantity);
 		const sum = state.items.reduce(reducer, 0);
 		return sum;
 	}

@@ -1,0 +1,13 @@
+@import 'vars';
+
+
+.showOption{
+    transition: all ease-out 500ms;
+    overflow: scroll;
+    height: 280px;
+}
+
+.hideOption{
+    height: 0 !important;
+    padding: 0 !important;
+}
