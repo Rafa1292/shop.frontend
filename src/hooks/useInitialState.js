@@ -22,20 +22,20 @@ const useInitialState = () => {
 	const addToCart = (payload) => {
 		if (isProductInCart(payload.id)) {
 			state.items.forEach(item => {
-				if (item.productId == payload.id) {
-					item.quantity++;
+				if (item.productMove.productId == payload.id) {
+					item.productMove.quantity++;
 				}
 			});
 		}
 		else {
 			const newItem = {
-				product: payload,
 				productMove: {
 					quantity: 1,
 					productId: payload.id,
 					sizeId: 1,
 					exit: true,
-					cost: payload.price
+					cost: payload.price,
+					product: payload,
 				}
 			};
 			setState({
@@ -49,7 +49,7 @@ const useInitialState = () => {
 	const isProductInCart = (productId) => {
 		let isInCart = false;
 		state.items.forEach(item => {
-			if (item.productId == productId) {
+			if (item.productMove.productId == productId) {
 				isInCart = true;
 			}
 		});

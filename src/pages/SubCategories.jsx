@@ -61,9 +61,9 @@ const SubCategories = () => {
             <Title title="Lista de subcategorias"></Title>
             <div className='add-subcategory-container my-2 col-sm-10 center'>
                 <span className='col-10 center'>
-                    <input type="text" placeholder="Nueva subcategoria" className="input" ref={nameInput} />
+                    <input type="text" placeholder="Nueva subcategoria" className="col-8 input" ref={nameInput} />
                 </span>
-                <span className='col-sm-10 my-1 center'>
+                <span className='col-8 my-1 center'>
                     <select onChange={handleChange}>
                         <option value="0">Seleccione una categoria</option>
                         {

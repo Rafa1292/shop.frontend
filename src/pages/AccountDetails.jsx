@@ -20,12 +20,15 @@ const AccountDetails = () => {
 
     const loadAccount = async () => {
         const response = await useGet(`accounts/${accountId}`);
+        console.log(response)
         let tempAccountHistories = [];
         response.data.paymethods.map(paymethod => {
             tempAccountHistories = tempAccountHistories.concat(paymethod.histories)
         })
         setAccountHistories(tempAccountHistories.sort((a, b) => b.id - a.id));
-        setLastHistory(tempAccountHistories[0]);
+        if (tempAccountHistories[0]) {
+            setLastHistory(tempAccountHistories[0]);            
+        }
         setAccount(response.data);
     };
 

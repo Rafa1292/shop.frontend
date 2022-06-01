@@ -116,7 +116,7 @@ const CreateInvestment = () => {
                     {productMoves.map(productMove => (
                         <div className="col-10 m-0 center" key={`${productMove.productId}${Math.random(1, 1000)}`}>
                             <span className='col-2 center'>
-                                <img src={getProductImage(productMove.productId)} height="80" />
+                                <img src={getProductImage(productMove.productId)} width="60" height="80" />
                             </span>
                             <span className='col-1 content-center center'>{productMove.quantity}</span>
                             <span className='col-1 content-center center'>{getSizeName(productMove.sizeId)}</span>

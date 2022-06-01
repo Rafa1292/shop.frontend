@@ -14,7 +14,7 @@ const OrderItem = ({ item }) => {
 	return (
 		<div className="OrderItem">
 			<figure>
-				<img src={item.product.image}/>
+				<img src={item.productMove.product.image}/>
 			</figure>
 			<strong className='center'>{item.productMove.quantity}</strong>
 			<p className=''>{formatMoney(item.productMove.cost)}</p>

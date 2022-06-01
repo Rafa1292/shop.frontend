@@ -112,8 +112,8 @@ nav {
 		transition: all ease-out 700ms;
 		left: -185px;
 		padding: 2vw;
-		height: 100vh;
-		top: 100px;
+		height: calc(100vh - 100px);
+		top: 95px;
 		background: white;
 		li{
 			margin: 1rem 0;

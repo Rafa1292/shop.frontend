@@ -54,10 +54,10 @@ const Paymethods = () => {
             <Title title="Lista de metodos de pago"></Title>
             <div className='add-paymethod-container my-2 col-sm-10 center'>
                 <span className='col-10 center'>
-                    <input type="text" placeholder="Nuevo metodo" className="input" ref={nameInput} />
+                    <input type="text" placeholder="Nuevo metodo" className="col-8 input" ref={nameInput} />
                 </span>
                 <span className='col-sm-10 my-1 center'>
-                    <select onChange={handleChange}>
+                    <select className='col-8' onChange={handleChange}>
                         <option value="0">Seleccione una cuenta</option>
                         {
                             accounts.map(account => (
@@ -104,9 +104,9 @@ const Paymethods = () => {
                                 <span className='center'>
                                     <input className='btn mx-2' type="button" value='Editar' onClick={() => setEditId(paymethod.id)} />
                                 </span>
-                                <span className=' center'>
+                                {/* <span className=' center'>
                                     <input className='btn danger' type="button" value='Eliminar' onClick={() => handleClickDelete(paymethod.id)} />
-                                </span>
+                                </span> */}
                             </>
                         }
 

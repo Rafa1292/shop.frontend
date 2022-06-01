@@ -15,6 +15,8 @@ const CreatePayment = () => {
     const [paymethodId, setPaymethodId] = useState(0);
     const amount = useRef(0);
     const history = useHistory();
+    const reducer = (accumalator, currentValue) => accumalator + (currentValue.productMove.cost * currentValue.productMove.quantity);
+    const historyReducer = (accumalator, currentValue) => accumalator + (currentValue.paymentAccountHistory.amount);
 
     useEffect(async () => {
         await loadCustomers();
@@ -29,11 +31,10 @@ const CreatePayment = () => {
     const loadCustomer = async (id) => {
         try {
             const response = await useGetList(`customers/withOrders/${id}`);
-            console.log(response.data)
             setCustomer(response.data);
-            
+
         } catch (error) {
-            
+
         }
     };
 
@@ -45,29 +46,34 @@ const CreatePayment = () => {
     const selectCustomer = (e) => {
         try {
             loadCustomer(e.target.value);
-            
+
         } catch (error) {
-            
+
         }
     }
 
     const sendPay = async () => {
-        const payment = {
-            orderId: order.id,
-            paymentAccountHistory: {
-                amount: parseInt(amount.current.value),
-                accountHistory: {
-                    paymethodId: parseInt(paymethodId),
+        console.log(order)
+        const payments = order.payments.reduce(historyReducer, 0);
+        const due = order.items.reduce(reducer, 0);
+        const diference = due - payments;
+
+        if (amount.current.value <= diference) {
+            const payment = {
+                orderId: order.id,
+                paymentAccountHistory: {
                     amount: parseInt(amount.current.value),
-                    debit: false
+                    accountHistory: {
+                        paymethodId: parseInt(paymethodId),
+                        amount: parseInt(amount.current.value),
+                        debit: false
+                    }
                 }
+            };
+            const response = await usePost('payments', payment);
+            if (response.status === 201) {
+                history.push(`/orders/${order.id}`);
             }
-        };
-        console.log(payment)
-        const response = await usePost('payments', payment);
-        console.log(response)
-        if(response.status === 201){
-            history.push(`/orders/${order.id}`);
         }
     }
 
@@ -88,7 +94,7 @@ const CreatePayment = () => {
                     <input type='number' ref={amount} id='amount' placeholder='Monto' className='input col-10' />
                 </span>
                 <span className='col-10 p-1 center'>
-                    <select className='input p-2'  onChange={(event) => setPaymethodId(event.target.value)}>
+                    <select className='input p-2' onChange={(event) => setPaymethodId(event.target.value)}>
                         <option value="0">Seleccione una forma de pago</option>
                         {
                             paymethods.map(paymethod => (
@@ -98,9 +104,9 @@ const CreatePayment = () => {
                     </select>
                 </span>
                 {order &&
-                <div className="col-10 py-2 flex-wrap center">
-                    <button onClick={sendPay} className='btn'>Abonar</button>
-                </div>
+                    <div className="col-10 py-2 flex-wrap center">
+                        <button onClick={sendPay} className='btn'>Abonar</button>
+                    </div>
                 }
                 <div className="col-md-8">
                     {customer.id &&
@@ -110,7 +116,7 @@ const CreatePayment = () => {
                             <span className='col-2 items-center center'>Abono</span>
                             <span className='col-2 items-center center'>Estado</span>
                             <span className='col-2 center'>
-                                <button onClick={()=> setOrder(null)} style={{fontSize: '10px', padding: '8px'}} className='btn'>volver</button>
+                                <button onClick={() => setOrder(null)} style={{ fontSize: '10px', padding: '8px' }} className='btn'>volver</button>
                             </span>
                         </div>
                     }

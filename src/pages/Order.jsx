@@ -19,6 +19,7 @@ const Order = () => {
 
     const loadOrder = async () => {
         const response = await useGet(`orders/${orderId}`);
+        console.log(response)
         await setOrder(response.data);
     };
 

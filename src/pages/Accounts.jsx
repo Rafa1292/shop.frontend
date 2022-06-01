@@ -1,14 +1,15 @@
 import Title from '@components/Title';
 import '@styles/Accounts.scss';
-import { useGetList, usePost, useDelete, usePatch } from '../hooks/useAPI';
-import React, { useRef, useState, useEffect } from "react";
+import { useGetList, usePost, usePatch } from '../hooks/useAPI';
+import AppContext from '../context/AppContext';
+import React, { useRef, useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 
 
 const Accounts = () => {
     let [accounts, setAccounts] = useState([]);
     const [editId, setEditId] = useState(0);
-
+    const { state } = useContext(AppContext);
     let nameInput = useRef();
     let nameEditInput = useRef();
 
@@ -17,17 +18,15 @@ const Accounts = () => {
     }, []);
 
     const handleClickPost = async () => {
-        const response = await usePost('accounts', { name: nameInput.current.value });
-        if (response.status == "201") {
-            loadAccounts();
-            nameInput.current.value = null;
-        }
-    };
-
-    const handleClickDelete = async (id) => {
-        const response = await useDelete(`accounts/${id}`);
-        if (response.status == "201") {
-            loadAccounts();
+        if (state.auth.sub != 0) {
+            const response = await usePost('accounts', {
+                 name: nameInput.current.value,
+                 userId: state.auth.sub
+                 });
+            if (response.status == "201") {
+                loadAccounts();
+                nameInput.current.value = null;
+            }
         }
     };
 

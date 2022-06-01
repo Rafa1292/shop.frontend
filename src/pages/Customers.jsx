@@ -8,6 +8,7 @@ const SubCategories = () => {
     let [categoryId, setCategoryId] = useState(0);
     const [editId, setEditId] = useState(0);
     let nameInput = useRef();
+    let mailInput = useRef();
     let nameEditInput = useRef();
     let phone = useRef();
     let maxOrders = useRef();
@@ -24,11 +25,17 @@ const SubCategories = () => {
         const response = await usePost('customers', {
             name: nameInput.current.value,
             phone: phone.current.value,
-            maxOrders: maxOrders.current.value
+            maxOrders: maxOrders.current.value,
+            user: {
+                email: mailInput.current.value,
+                password: "contraseña",
+                role: "customer"
+            }
         });
         if (response.status == "201") {
             await loadCustomers();
             nameInput.current.value = null;
+            mailInput.current.value = null;
             phone.current.value = null;
             maxOrders.current.value = null;
         }
@@ -62,6 +69,9 @@ const SubCategories = () => {
             <div className='add-subcategory-container my-2 col-sm-10 center'>
                 <span className='col-10 center my-1'>
                     <input type="text" placeholder="Nuevo cliente" className="input" ref={nameInput} />
+                </span>
+                <span className='col-10 center my-1'>
+                    <input type="text" placeholder="Correo" className="input" ref={mailInput} />
                 </span>
                 <span className='col-10 center my-1'>
                     <input type='number' id='phone' ref={phone} placeholder='89745213' className='input' />

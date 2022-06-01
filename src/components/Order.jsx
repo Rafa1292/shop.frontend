@@ -28,7 +28,7 @@ const paymentReducer = (accumulator, curr) => accumulator + curr.paymentAccountH
 		<div className="Order flex-wrap" style={orderWidth}>
 			<div style={{borderBottom : '1px solid rgba(0,0,0,.1)'}} className='col-10 flex-wrap spaceAround py-1'>
 				<span className='col-2 center'>{sumTotal(itemReducer, order.items)}</span>
-				<span className='col-2 center'>-</span>
+				<span className='col-2 center'>{order.firstPay}</span>
 				<span className='col-2 center'>{sumTotal(paymentReducer, order.payments)}</span>
 				<span className='col-2 center'>Al dia</span>
 				{goTo &&
