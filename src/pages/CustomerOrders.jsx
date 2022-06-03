@@ -9,7 +9,6 @@ const CustomerOrders = () => {
 
     const loadOrders = async () => {
         const response = await useGetList(`orders/customer/${customerId}`);
-        console.log(response)
         setOrders(response.data);
     };
 

@@ -140,6 +140,9 @@ const Header = () => {
 							<li onClick={() => HandleMenu(false)}>
 								<Link to={`/orders/customer/${state.auth.sub}`}>Mis ordenes</Link>
 							</li>
+							<li onClick={() => HandleMenu(false)}>
+								<Link to={`/orders`}>Ordenes</Link>
+							</li>
 						</>}
 					<li className='secondary center' >
 					</li>

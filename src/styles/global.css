@@ -53,6 +53,7 @@ a {
 	position: absolute;
 }
 .justify-end{
+	display: flex;
 	justify-content: end;
 }
 .justify-between{
@@ -90,6 +91,7 @@ a {
 	flex-wrap: wrap;
 	display: flex;
 	justify-content: center;
+	box-sizing: border-box;
 }
 .fit-content{
 	height: fit-content;
@@ -101,6 +103,7 @@ a {
 .flex-wrap{
 	display: flex;
 	flex-wrap: wrap;
+	box-sizing: border-box;
 }
 .m-0{
 	margin: 0;
