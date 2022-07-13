@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import OrderItem from '@components/OrderItem';
 import AppContext from '../context/AppContext';
 import '@styles/MyOrder.scss';
@@ -8,7 +8,7 @@ import check from '@icons/check.png'
 import { useGetList } from '../hooks/useAPI';
 
 const MyOrder = (props) => {
-	const { state, emptyCart, setCustomerId } = useContext(AppContext);
+	const { state, emptyCart, setCustomerId, setFirstPay } = useContext(AppContext);
 	const [orderComplete, setOrderComplete] = useState(false);
 	const [customers, setCustomers] = useState([]);
 
@@ -27,7 +27,6 @@ const MyOrder = (props) => {
 		let newCart = JSON.parse(JSON.stringify(state))
 		newCart.items.forEach(item => { delete item.product; });
 		delete newCart.auth;
-		console.log(newCart)
 		const response = await usePost('orders', newCart);
 		if (response.status == 201) {
 			setOrderComplete(true);
@@ -36,18 +35,36 @@ const MyOrder = (props) => {
 		}
 	}
 
-	const setCustomer = async (id) => {
-		await setCustomerId(id);
+	const setCustomer = async (name) => {
+		const customer = customers.find(x => x.name == name);
+
+		if(customer)
+		await setCustomerId(customer.id);
 	}
 
 	useEffect(async () => {
 		await loadCustomers();
 	}, []);
 
+	const firstPayHandler = (e) => {
+		setFirstPay(e.target.value);
+	}
+
 	return (
 		<>
 			<p className="title-order col-10 center z-1" style={{ position: "absolute", height: '20px', paddingTop: "10px" }}>Orden actual</p>
 			<div className="my-order-content">
+				{!orderComplete &&
+				<>
+				<span className='col-10 p-1 center'>
+					<input onKeyUp={(e) => firstPayHandler(e)} className='input col-8' placeholder='Prima' />
+					<small style={{ color: 'rgba(0,0,0,.5)' }} className='col-10 center '>
+						{
+							state.firstPay > 0 &&
+							formatMoney(state.firstPay)
+						}
+					</small>
+				</span>
 				{state.auth.role === 'admin' &&
 					<>
 						<span className='col-10 p-1 center'>
@@ -55,10 +72,14 @@ const MyOrder = (props) => {
 						</span>
 						<datalist id="customers">
 							{customers.map(customer => (
-								<option className='col-10' value={customer.id} key={customer.id}>{customer.name}</option>
+								<option className='col-10' value={customer.name} key={customer.id}>
+									{customer.name}
+									</option>
 							))}
 						</datalist>
 					</>
+				}
+				</>
 				}
 				{orderComplete
 					&&

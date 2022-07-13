@@ -9,7 +9,8 @@ const CustomerOrders = () => {
 
     const loadOrders = async () => {
         const response = await useGetList(`orders/customer/${customerId}`);
-        setOrders(response.data);
+        var tempOrders = response.data.sort((a, b) => b.id - a.id);
+        setOrders(tempOrders);
     };
 
     useEffect(async () => {

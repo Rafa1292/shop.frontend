@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const Investments = () => {
     const [investments, setInvestments] = useState([]);
-    const detailReducer = (accumulator, currentValue) => accumulator + currentValue.productMove.cost;
+    const detailReducer = (accumulator, currentValue) => accumulator + (currentValue.productMove.cost * currentValue.productMove.quantity);
     const historyReducer = (accumulator, currentValue) => accumulator + currentValue.amount;
     const loadInvestments = async () => {
         const response = await useGetList('investments');
@@ -27,11 +27,24 @@ const Investments = () => {
             {investments.map(investment => (
                 <div style={{ borderBottom: '1px solid rgba(0,0,0,.1)' }}
                     className="col-10 py-2 center" key={investment.id}>
-                    <div className="col-3">
-                        {new Date(investment.createdAt).toLocaleDateString()}
+                    <div className="col-2 center">
+                        <small>
+                            {new Date(investment.createdAt).toLocaleDateString()}
+                        </small>
                     </div>
-                    <div className="col-3">
-                        {formatMoney(investment.details.reduce(detailReducer, 0))}
+                    <div className="col-3 center">
+                        <strong>
+                            <small>
+                                {formatMoney(investment.details.reduce(detailReducer, 0))}
+                            </small>
+                        </strong>
+                    </div>
+                    <div className="col-2 center">
+                        <strong>
+                            <small>
+                                {formatMoney(investment.histories.reduce(historyReducer, 0) - investment.details.reduce(detailReducer, 0))}
+                            </small>
+                        </strong>
                     </div>
                     <div className="col-3">
                         <Link to={`investments/${investment.id}`} className='btn col-8 black-outline'>Detalles</Link>

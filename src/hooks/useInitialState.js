@@ -9,6 +9,8 @@ const initialState = {
 	close: false,
 	stateId: 1,
 	items: [],
+	delivered: false,
+	firstPay: 0,
 	auth: {
 		role: 'customer',
 		sub: 0,
@@ -42,7 +44,6 @@ const useInitialState = () => {
 				...state,
 				items: [...state.items, newItem]
 			});
-			console.log(newItem)
 		}
 	};
 
@@ -71,9 +72,18 @@ const useInitialState = () => {
 		});
 	}
 
+	const setFirstPay = (firstPay) => {
+		setState({
+			...state,
+			firstPay: firstPay
+		});
+	}
+
 	const emptyCart = () => {
 		setState({
 			...state,
+			firstPay: 0,
+			customerId: 0,
 			items: []
 		});
 	}
@@ -108,7 +118,8 @@ const useInitialState = () => {
 		emptyCart,
 		setCustomerId,
 		setRole,
-		resetAuthState
+		resetAuthState,
+		setFirstPay
 	}
 }
 

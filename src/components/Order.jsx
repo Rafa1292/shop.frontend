@@ -1,18 +1,26 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import '@styles/Order.scss';
 import { Link } from "react-router-dom";
 import { useState } from 'react/cjs/react.development';
+import { formatMoney } from '@helpers/formatHelper'
 
-const Order = ({order, goTo}) => {
-const [orderWidth, setOrderWith] = useState({width: '100%'});
-const itemReducer = (accumulator, curr) => accumulator + (curr.productMove.cost * curr.productMove.quantity);
-const paymentReducer = (accumulator, curr) => accumulator + curr.paymentAccountHistory.amount;
+const Order = ({ order, goTo }) => {
+	const [orderWidth, setOrderWith] = useState({ width: '100%' });
+	const itemReducer = (accumulator, curr) => accumulator + (curr.productMove.cost * curr.productMove.quantity);
+	const paymentReducer = (accumulator, curr) => accumulator + curr.paymentAccountHistory.amount;
+	const [initialAmount, setInitialAmount] = useState(0);
+	const [payAmount, setPayAmount] = useState(0);
+	const [firstPay, setFirstPay] = useState(0);
 
 	useEffect(async () => {
 		if (!goTo) {
-			setOrderWith({width: '80%'})
+			setOrderWith({ width: '80%' })
 		}
-    }, []);
+		setInitialAmount(sumTotal(itemReducer, order.items));
+		setPayAmount(sumTotal(paymentReducer, order.payments));
+		setFirstPay(order.firstPay ? order.firstPay : 0);
+	}, []);
+
 	const sumTotal = (reducer, arr) => {
 		try {
 			if (arr != undefined) {
@@ -20,23 +28,52 @@ const paymentReducer = (accumulator, curr) => accumulator + curr.paymentAccountH
 				return sum;
 			}
 		} catch (error) {
-			
+
 		}
 
-    }
+	}
+
+	const getState = () => {
+		const diference = initialAmount - payAmount;
+
+		if (diference == 0) {
+			return "Finalizado";
+		}
+		else {
+			const months = getElapsedMonths();
+			const totalDue = initialAmount - firstPay;
+			if ((months * 0.25 * totalDue) > payAmount)
+				return "Atrasado";
+		}
+		return "Al dia";
+	}
+
+	const getElapsedMonths = ()=> {
+		const to = new Date(Date.now());
+		const from = new Date(order.createdAt);
+		var months = to.getMonth() - from.getMonth() + (12 * (to.getFullYear() 
+		- from.getFullYear())); 
+		
+		if(to.getDate() < from.getDate())
+		months--; 
+
+		return months;
+
+	}
+
 	return (
 		<div className="Order flex-wrap" style={orderWidth}>
-			<div style={{borderBottom : '1px solid rgba(0,0,0,.1)'}} className='col-10 flex-wrap spaceAround py-1'>
-				<span className='col-2 center'>{sumTotal(itemReducer, order.items)}</span>
-				<span className='col-2 center'>{order.firstPay}</span>
-				<span className='col-2 center'>{sumTotal(paymentReducer, order.payments)}</span>
-				<span className='col-2 center'>Al dia</span>
+			<div style={{ borderBottom: '1px solid rgba(0,0,0,.1)' }} className='col-10 flex-wrap spaceAround py-1'>
+				<span className='col-2 center'>{formatMoney(initialAmount)}</span>
+				<span className='col-2 center'>{formatMoney(firstPay)}</span>
+				<span className='col-2 center'>{formatMoney(payAmount)}</span>
+				<span className='col-2 center'>{getState()}</span>
 				{goTo &&
-				<span className='col-2 center'>
-					<Link to={`/orders/${order.id}`}>
-					<button className='btn'>Ver</button>
-					</Link>
-				</span>
+					<span className='col-2 center'>
+						<Link to={`/orders/${order.id}`}>
+							<button className='btn'>Ver</button>
+						</Link>
+					</span>
 				}
 			</div>
 		</div>

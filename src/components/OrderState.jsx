@@ -13,7 +13,16 @@ const OrderState = ({ order, states = [], refresh }) => {
     };
 
     const changeState = async () => {
-        const response = await usePatch(`orders/${order.id}`, {stateId: stateId})
+        let data = { stateId: stateId };
+        const state = states.find(state => state.name.toLowerCase() === 'entregado');
+
+        if (state.id == stateId) {
+            data = {
+                ...data,
+                delivered: true
+            }
+        }
+        const response = await usePatch(`orders/${order.id}`, data)
         if (response.status == 200) {
             refresh();
             setStateId(0)
@@ -69,8 +78,8 @@ const OrderState = ({ order, states = [], refresh }) => {
                 Productos
                 <img src={upArrow} height="20" style={{ transition: 'all ease 500ms', transform: showItems ? '' : 'rotate(180deg)', opacity: '0.3' }} />
             </div>
-            <div style={{alignContent:'baseline'}} className={`d-flex col-10 content-center flex-wrap showOption py-2 ${showItems ? '' : 'hideOption'}`}>
-            {order.items.map(item => (
+            <div style={{ alignContent: 'baseline' }} className={`d-flex col-10 content-center flex-wrap showOption py-2 ${showItems ? '' : 'hideOption'}`}>
+                {order.items.map(item => (
                     <div style={{ borderBottom: '1px solid rgba(0,0,0,.1)' }} className="col-10 m-0 p-0 center" key={`${item.productMove.productId}${Math.random(1, 1000)}`}>
                         <span className='col-2 center'>
                             <img src={item.productMove.product.image} height="80" />

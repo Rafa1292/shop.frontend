@@ -79,7 +79,7 @@ const Header = () => {
 				<Link to='/'>
 					<img src={logo} alt="logo" className="nav-logo" />
 				</Link>
-				<ul className={openMenuClass} style={{ overflowY: 'scroll' }}>
+				<ul className={openMenuClass} >
 					<li onClick={() => HandleMenu(false)}>
 						{state.auth.user &&
 							<div className='col-10 flex-wrap center'>

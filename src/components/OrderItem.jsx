@@ -12,13 +12,15 @@ const OrderItem = ({ item }) => {
 	}
 
 	return (
-		<div className="OrderItem">
-			<figure>
+		<div className="OrderItem items-center d-flex">
+			<div className="col-2 center">
+			<img src={close} alt="close" height={15} width={15} onClick={() => handleRemove(item)} />
+			</div>
+			<figure className='col-3 center'>
 				<img src={item.productMove.product.image}/>
 			</figure>
-			<strong className='center'>{item.productMove.quantity}</strong>
-			<p className=''>{formatMoney(item.productMove.cost)}</p>
-			<img src={close} alt="close" onClick={() => handleRemove(item)} />
+			<strong className='center col-2'>{item.productMove.quantity}</strong>
+			<strong className='col-3'>{formatMoney(item.productMove.cost)}</strong>
 		</div>
 	);
 }

@@ -24,6 +24,7 @@ const InvestmentDetail = () => {
 
     const getInvestment = async () => {
         const response = await useGet(`investments/${investmentId}`);
+        console.log(response);
         setInvestment(response.data)
     }
 
@@ -131,7 +132,7 @@ const InvestmentDetail = () => {
             </div>
             <div className={`col-10 content-center flex-wrap showOption py-2 ${showResume ? '' : 'hideOption'}`}>
                 <div className="col-7 px-1 justify-end d-flex">Monto cancelado:</div>
-                <div className="col-3 px-1 justify-start d-flex">0</div>
+                <div className="col-3 px-1 justify-start d-flex">{formatMoney(investment.histories.reduce(historyReducer, 0))}</div>
                 <div className="col-7 p-1 justify-end d-flex">Monto total:</div>
                 <div className="col-3 p-1  justify-start d-flex">{formatMoney(investment.details.reduce(reducer, 0))}</div>
                 <div className="col-7 px-1 justify-end d-flex">Cantidad articulos:</div>

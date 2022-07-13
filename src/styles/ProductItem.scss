@@ -2,11 +2,11 @@
 
 .ProductItem {
 	margin: 0.5rem;
-	width: 300px;
+	width: 240px;
 }
 .product-item-img {
-	width: 300px;
-	height: 375px;
+	width: 240px;
+	height: 280px;
 	object-fit: cover;
 }
 .product-info {
@@ -28,3 +28,35 @@
 	width: 55px;
 }
 
+@media (max-width: 700px) {
+	.ProductItem {
+		width: 400px;
+	}
+	.product-item-img {
+		width: 400px;
+		height: 375px;
+		object-fit: cover;
+	}
+}
+
+@media (max-width: 400px) {
+	.ProductItem {
+		width: 300px;
+	}
+	.product-item-img {
+		width: 300px;
+		height: 375px;
+		object-fit: cover;
+	}
+}
+
+@media (max-width: 380px) {
+	.ProductItem {
+		width: 340px;
+	}
+	.product-item-img {
+		width: 340px;
+		height: 375px;
+		object-fit: cover;
+	}
+}

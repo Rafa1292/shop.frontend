@@ -1,11 +1,14 @@
 import React from 'react';
-import { useState, useEffect, useRef } from 'react/cjs/react.development';
+import { useState, useEffect, useContext, useRef } from 'react/cjs/react.development';
 import { useGetList, usePost } from '../hooks/useAPI';
 import Order from '@components/Order'
 import OrderItem from '@components/OrderItem';
 import { useHistory } from "react-router-dom"
+import AppContext from '../context/AppContext';
 
 const CreatePayment = () => {
+    const { state } = useContext(AppContext);
+
     const [customer, setCustomer] = useState({
         orders: []
     });
@@ -40,12 +43,15 @@ const CreatePayment = () => {
 
     const loadPaymethods = async (id) => {
         const response = await useGetList(`paymethods`);
-        setPaymethods(response.data);
+        const tempPaymethods = response.data.filter(x => x.account.userId == state.auth.sub)
+        setPaymethods(tempPaymethods);
     };
 
     const selectCustomer = (e) => {
         try {
-            loadCustomer(e.target.value);
+            const customer = customers.find(x => x.name == e.target.value);
+            if(customer)
+            loadCustomer(customer.id);
 
         } catch (error) {
 
@@ -87,7 +93,8 @@ const CreatePayment = () => {
                 </span>
                 <datalist id="customers">
                     {customers.map(customer => (
-                        <option className='col-10' value={customer.id} key={customer.id}>{customer.name}</option>
+                        <option className='col-10' value={customer.id} 
+                        key={customer.id}>{customer.name}</option>
                     ))}
                 </datalist>
                 <span className='col-10 p-1 center'>

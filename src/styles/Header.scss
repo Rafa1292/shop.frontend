@@ -4,7 +4,7 @@ nav {
 	background-color: white;
 	position: fixed;
 	top: 0;
-	width: 96vw;
+	width: 99vw;
 	box-shadow: 0px 0px 25px -10px;
 	display: flex;
 	justify-content: space-between;
@@ -104,6 +104,7 @@ nav {
 		display: block;
 	}
 	.navbar-left ul {
+		overflow-y: scroll;
 		box-shadow: 4px 1px 10px 1px rgb(0 0 0 / 30%);
 		position: absolute;
 		display: block;
