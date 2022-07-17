@@ -18,7 +18,8 @@ const InvestmentItem = ({ product, allSizes, removeProductMove, addProductMove, 
                 productId: product.id,
                 sizeId: sizeId,
                 exit: false,
-                cost: cost.current.value
+                cost: cost.current.value,
+                delivered: true
             };
             addProductMove(productMove)
             setSizes(sizes.filter(size => size.id != sizeId))

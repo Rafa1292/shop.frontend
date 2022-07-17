@@ -13,6 +13,7 @@ const ProductList = () => {
 	}, []);
 	const loadProducts = async () => {
 		const response = await useGetList('products');
+		if(response?.data)
 		setProducts(response.data);
 	};
 

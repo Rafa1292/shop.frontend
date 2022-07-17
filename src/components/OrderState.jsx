@@ -27,6 +27,11 @@ const OrderState = ({ order, states = [], refresh }) => {
             refresh();
             setStateId(0)
         }
+        console.log(response)
+        if (response.status == 206) {
+            alert(response.data)
+            await refresh();
+        }
     }
 
     return (

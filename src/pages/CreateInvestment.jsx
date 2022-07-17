@@ -74,9 +74,7 @@ const CreateInvestment = () => {
 
         const response = await usePost('investments', newInvestment);
         if(response.status == 201){
-            console.log(response.data)
             history.push(`/investments/${response.data.id}`)
-            //redireccionar a detalle
         }
     }
 

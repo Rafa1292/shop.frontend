@@ -20,7 +20,7 @@ const OrderItem = ({ item }) => {
 				<img src={item.productMove.product.image}/>
 			</figure>
 			<strong className='center col-2'>{item.productMove.quantity}</strong>
-			<strong className='col-3'>{formatMoney(item.productMove.cost)}</strong>
+			<strong className='col-3'>{formatMoney(item.price * item.productMove.quantity)}</strong>
 		</div>
 	);
 }

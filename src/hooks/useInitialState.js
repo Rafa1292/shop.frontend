@@ -36,9 +36,11 @@ const useInitialState = () => {
 					productId: payload.id,
 					sizeId: 1,
 					exit: true,
-					cost: payload.price,
+					cost: 0,
 					product: payload,
-				}
+					confirmed: false
+				},
+				price: payload.price
 			};
 			setState({
 				...state,

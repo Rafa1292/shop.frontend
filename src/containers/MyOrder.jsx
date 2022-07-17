@@ -14,11 +14,12 @@ const MyOrder = (props) => {
 
 	const loadCustomers = async () => {
 		const response = await useGetList('customers');
+		if(response?.data)
 		setCustomers(response.data);
 	};
 
 	const sumTotal = () => {
-		const reducer = (accumalator, currentValue) => accumalator + (currentValue.productMove.cost * currentValue.productMove.quantity);
+		const reducer = (accumalator, currentValue) => accumalator + (currentValue.price * currentValue.productMove.quantity);
 		const sum = state.items.reduce(reducer, 0);
 		return sum;
 	}
@@ -93,7 +94,7 @@ const MyOrder = (props) => {
 					||
 					<>
 						{state.items.map(item => (
-							<OrderItem item={item} key={`orderItem-${item.productId}`} />
+							<OrderItem item={item} key={`orderItem-${item.productMove.productId}`} />
 						))}
 					</>
 				}

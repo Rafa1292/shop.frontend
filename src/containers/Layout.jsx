@@ -12,8 +12,8 @@ const Layout = ({ children }) => {
 			const token = localStorage.getItem('token');
 			if (token) {
 				await setRole();
-				setLoader(false);
 			}
+			setLoader(false);
 			
 		} catch (error) {
 			setLoader(false);			

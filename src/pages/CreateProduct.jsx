@@ -81,14 +81,14 @@ const CreateProduct = () => {
 
     const getProduct = () => {
         return {
-            "name": productName.current.value,
-            "description": productDescription.current.value,
-            "price": productPrice.current.value,
-            "subcategoryId": subcategoryId,
             "brandId": brandId,
+            "description": productDescription.current.value,
+            "image": imageUrl,
+            "name": productName.current.value,
+            "price": productPrice.current.value,
             "primaryColorId": primaryColorId,
             "secondaryColorId": secondaryColorId,
-            "image": imageUrl
+            "subcategoryId": subcategoryId,
         }
     }
 
@@ -117,6 +117,7 @@ const CreateProduct = () => {
 
     const submit = async () => {
         const product = getProduct();
+        console.log(product)
         let response;
         if (productId > 0) {
             response = await usePatch(`products/${productId}`, product);
