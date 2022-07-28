@@ -1,10 +1,10 @@
 import axios from 'axios';
+import swal from 'sweetalert';
 
 const api = `http://localhost:3000/api/v1/`;
 
 const useGetList = async (route) => {
     const list = await useCustom(route, 'get', {});
-
     return list;
 };
 
@@ -45,10 +45,15 @@ const useCustom = async (route, method, data) => {
             data: data,
 
         });
+        if(response?.data.error){
+            swal('Error',  response.data.message, 'warning')
+        }
 
-        return response;
+        return response.data;
 
     } catch (error) {
+        swal('Error', 'Lo sentimos algo ha salido mal', 'warning')
+
     }
 }
 

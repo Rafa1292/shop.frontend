@@ -17,9 +17,7 @@ const Header = () => {
 	const [openMenu, setOpenMenu] = useState(false);
 	const [openMenuClass, setOpenMenuClass] = useState('');
 	const [openHambMenuClass, setOpenHambMenuClass] = useState('');
-	const handleToggle = () => {
-		setToggle(!toggle);
-	}
+
 
 	const HandleMenu = (state) => {
 		setOpenMenu(state);
@@ -68,6 +66,7 @@ const Header = () => {
 		}
 
 	}
+	
 	useEffect(async () => {
 		await getUser();
 	}, []);
@@ -91,9 +90,9 @@ const Header = () => {
 										{state.auth.user.substring(0, state.auth.user.indexOf('@'))}
 									</em>
 								</small>
-								<small style={{color: 'darkblue'}} onClick={() => Logout()} className='p-1 hover'>
+								<small style={{ color: 'darkblue' }} onClick={() => Logout()} className='p-1 hover'>
 									Salir
-									</small>
+								</small>
 							</div>
 							||
 							<Link to="/login">Login</Link>
@@ -101,58 +100,67 @@ const Header = () => {
 					</li>
 					{state.auth.role == 'admin' &&
 						<>
-							<li onClick={() => HandleMenu(false)}>
-								<Link to="/states">Estados</Link>
-							</li>
-							<li onClick={() => HandleMenu(false)}>
-								<Link to="/categories">Categorias</Link>
-							</li>
-							<li onClick={() => HandleMenu(false)}>
-								<Link to="/subCategories">Subcategorias</Link>
-							</li>
-							<li onClick={() => HandleMenu(false)}>
-								<Link to="/sizes">Tamaños</Link>
-							</li>
-							<li onClick={() => HandleMenu(false)}>
-								<Link to="/brands">Marcas</Link>
-							</li>
-							<li onClick={() => HandleMenu(false)}>
-								<Link to="/colors">Colores</Link>
-							</li>
-							<li onClick={() => HandleMenu(false)}>
-								<Link to="/products">Productos</Link>
-							</li>
-							<li onClick={() => HandleMenu(false)}>
-								<Link to="/accounts">Cuentas</Link>
-							</li>
-							<li onClick={() => HandleMenu(false)}>
-								<Link className='d-flex' to="/paymethods">Metodos de pago</Link>
-							</li>
+
+							<div className='dropdown'>
+								Mantenimiento
+								<div className="center col-12 dropdown-content">
+									<li onClick={() => HandleMenu(false)}>
+										<Link to="/categories">Categorias</Link>
+									</li>
+									<li onClick={() => HandleMenu(false)}>
+										<Link to="/subCategories">Subcategorias</Link>
+									</li>
+									<li onClick={() => HandleMenu(false)}>
+										<Link to="/states">Estados</Link>
+									</li>
+
+									<li onClick={() => HandleMenu(false)}>
+										<Link to="/sizes">Tamaños</Link>
+									</li>
+									<li onClick={() => HandleMenu(false)}>
+										<Link to="/brands">Marcas</Link>
+									</li>
+									<li onClick={() => HandleMenu(false)}>
+										<Link to="/colors">Colores</Link>
+									</li>
+									<li onClick={() => HandleMenu(false)}>
+										<Link to="/products">Productos</Link>
+									</li>
+								</div>
+							</div>
+							<div className='dropdown'>
+								Cuentas
+								<div className="center col-12 dropdown-content">
+									<li onClick={() => HandleMenu(false)}>
+										<Link to="/accounts">Cuentas</Link>
+									</li>
+									<li onClick={() => HandleMenu(false)}>
+										<Link className='d-flex' to="/paymethods">Metodos de pago</Link>
+									</li>
+									<li onClick={() => HandleMenu(false)}>
+										<Link to="/payment/create">Agregar abono</Link>
+									</li>
+								</div>
+							</div>
 							<li onClick={() => HandleMenu(false)}>
 								<Link to="/investments">Inversiones</Link>
-							</li>
-							<li onClick={() => HandleMenu(false)}>
-								<Link to="/payment/create">Agregar abono</Link>
 							</li>
 							<li onClick={() => HandleMenu(false)}>
 								<Link to="/customers">Clientes</Link>
 							</li>
 							<li onClick={() => HandleMenu(false)}>
-								<Link to={`/orders/customer/${state.auth.sub}`}>Mis ordenes</Link>
-							</li>
-							<li onClick={() => HandleMenu(false)}>
 								<Link to={`/orders`}>Ordenes</Link>
 							</li>
 						</>}
-					<li className='secondary center' >
-					</li>
+					{state.auth.user &&
+						<li onClick={() => HandleMenu(false)}>
+							<Link to={`/orders/customer/${state.auth.sub}`}>Mis ordenes</Link>
+						</li>
+					}
 				</ul>
 			</div>
 			<div className="navbar-right">
 				<ul>
-					<li className="navbar-email" onClick={handleToggle}>
-						Hola Rafa!
-					</li>
 					<li
 						className="navbar-shopping-cart"
 						onClick={() => HandleCart(!openStyle)}

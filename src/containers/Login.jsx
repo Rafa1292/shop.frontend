@@ -15,9 +15,9 @@ const Login = () => {
             password: password.current.value
         };
         const response = await usePost('auth/login', user);
-        if (response.status == 200) {
+        if (!response.error) {
             localStorage.removeItem('token');
-            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('token', response.content);
             await setRole();
             history.push('/');
         }

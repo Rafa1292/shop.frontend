@@ -17,7 +17,7 @@ const Categories = () => {
 
     const handleClickPost = async () => {
         const response = await usePost('categories', { name: nameInput.current.value, image: "http://image.com" });
-        if (response.status == "201") {
+        if (!response.error) {
             loadCategories();
             nameInput.current.value = null;
         }
@@ -25,20 +25,23 @@ const Categories = () => {
 
     const handleClickDelete = async (id) => {
         const response = await useDelete(`categories/${id}`);
-        if (response.status == "201") {
+        if (!response.error) {
             loadCategories();
         }
     };
 
     const loadCategories = async () => {
         const response = await useGetList('categories');
-        setCategories(response.data);
+
+        if (!response.error) {
+            setCategories(response.content);            
+        }
     };
 
     const handleClickPatch = async (id) => {
         const response = await usePatch(`categories/${id}`, { name: nameEditInput.current.value });
 
-        if (response.status == "200") {
+        if (!response.error) {
             loadCategories();
             nameInput.current.value = null;
             setEditId(0);
@@ -46,7 +49,7 @@ const Categories = () => {
     };
 
     return (
-        <div className="category-index">
+        <div className="category-index col-md-4">
             <Title title="Lista de categorias"></Title>
             <div className='add-category-container my-2 col-sm-10 center'>
                 <span className='col-sm-10 center'>
@@ -76,10 +79,10 @@ const Categories = () => {
                             ||
                             <>
                                 <span className='col-3 center'>{category.name}</span>
-                                <span className='center'>
+                                <span className='center col-3'>
                                     <input className='btn mx-2' type="button" value='Editar' onClick={() => setEditId(category.id)} />
                                 </span>
-                                <span className=' center'>
+                                <span className=' center col-3'>
                                     <input className='btn danger' type="button" value='Eliminar' onClick={() => handleClickDelete(category.id)} />
                                 </span>
                             </>

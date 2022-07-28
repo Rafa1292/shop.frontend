@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useGet } from '../hooks/useAPI';
 
 const initialState = {
-	credit: true,
+	credit: false,
 	customerId: 0,
-	expiringDate: "2020/05/05",
+	expiringDate: new Date(new Date().setMonth(new Date().getMonth()+4)),
 	soldBy: "1",
 	close: false,
 	stateId: 1,
@@ -74,6 +74,13 @@ const useInitialState = () => {
 		});
 	}
 
+	const setCredit = (credit) => {
+		setState({
+			...state,
+			credit: credit
+		});
+	}
+
 	const setFirstPay = (firstPay) => {
 		setState({
 			...state,
@@ -93,14 +100,14 @@ const useInitialState = () => {
 	const setRole = async () => {
 		try {
 			const response = await useGet('users/get-role', {});
-			if (response.status == "200") {
+			if (!response.error) {
 				setState({
 					...state,
-					customerId: response.data.customerId,
+					customerId: response.content.customerId,
 					auth: {
-						user: response.data.user,
-						role: response.data.role,
-						sub: response.data.sub
+						user: response.content.user,
+						role: response.content.role,
+						sub: response.content.sub
 					}
 				})
 			}
@@ -121,7 +128,8 @@ const useInitialState = () => {
 		setCustomerId,
 		setRole,
 		resetAuthState,
-		setFirstPay
+		setFirstPay,
+		setCredit
 	}
 }
 

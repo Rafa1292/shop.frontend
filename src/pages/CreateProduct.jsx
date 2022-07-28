@@ -40,31 +40,47 @@ const CreateProduct = () => {
 
     const loadBrands = async () => {
         const response = await useGetList('brands');
-        setBrands(response.data);
+
+        if (!response.error) {
+            setBrands(response.content);            
+        }
     }
+
     const loadColors = async () => {
         const response = await useGetList('colors');
-        setColors(response.data);
+
+        if (!response.error) {
+            setColors(response.content);
+            
+        }
     }
+
     const loadCategories = async () => {
         const response = await useGetList('categories');
-        setCategories(response.data);
+
+        if (!response.error) {
+            setCategories(response.content);            
+        }
     }
+
     const loadProduct = async (id) => {
         const response = await useGet(`products/${id}`);
-        const { brandId, description, image, name, price, primaryColorId, secondaryColorId, subcategoryId, subcategory } = response.data;
-        setBrandId(brandId);
-        productDescription.current.value = description;
-        setImageUrl(image);
-        productName.current.value = name;
-        productPrice.current.value = price;
-        setPrimaryColorId(primaryColorId);
-        setSecondaryColorId(secondaryColorId);
-        setCategoryId(subcategory.categoryId);
-        setAvailableSubcategories(subcategory.categoryId);
-        setSubcategoryId(subcategoryId);
-        console.log(subcategory.categoryId);
+
+        if (!response.error) {            
+            const { brandId, description, image, name, price, primaryColorId, secondaryColorId, subcategoryId, subcategory } = response.content;
+            setBrandId(brandId);
+            productDescription.current.value = description;
+            setImageUrl(image);
+            productName.current.value = name;
+            productPrice.current.value = price;
+            setPrimaryColorId(primaryColorId);
+            setSecondaryColorId(secondaryColorId);
+            setCategoryId(subcategory.categoryId);
+            setAvailableSubcategories(subcategory.categoryId);
+            setSubcategoryId(subcategoryId);
+        }
     }
+
     const handleCategoryChange = async (event) => {
         await setCategoryId({ value: event.target.value });
         const temCategoryId = event.target.value;
@@ -81,14 +97,14 @@ const CreateProduct = () => {
 
     const getProduct = () => {
         return {
-            "brandId": brandId,
-            "description": productDescription.current.value,
-            "image": imageUrl,
-            "name": productName.current.value,
-            "price": productPrice.current.value,
-            "primaryColorId": primaryColorId,
-            "secondaryColorId": secondaryColorId,
-            "subcategoryId": subcategoryId,
+            brandId: brandId,
+            description: productDescription.current.value,
+            image: imageUrl,
+            name: productName.current.value,
+            price: productPrice.current.value,
+            primaryColorId: primaryColorId,
+            secondaryColorId: secondaryColorId,
+            subcategoryId: subcategoryId,
         }
     }
 
@@ -117,8 +133,8 @@ const CreateProduct = () => {
 
     const submit = async () => {
         const product = getProduct();
-        console.log(product)
         let response;
+
         if (productId > 0) {
             response = await usePatch(`products/${productId}`, product);
         }
@@ -126,7 +142,7 @@ const CreateProduct = () => {
             response = await usePost('products', product);
         }
 
-        if (response.status = '201') {
+        if (!response.error) {
             history.push("/products");
         }
     }

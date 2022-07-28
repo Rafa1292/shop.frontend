@@ -16,11 +16,16 @@ const SubCategories = () => {
 
     const loadCustomers = async () => {
         const response = await useGetList('customers');
-        setCustomers(response.data);
+
+        if (!response.error) {
+            setCustomers(response.content);            
+        }
     };
+
     useEffect(async () => {
         await loadCustomers();
     }, []);
+
     const handleClickPost = async () => {
         const response = await usePost('customers', {
             name: nameInput.current.value,
@@ -32,7 +37,8 @@ const SubCategories = () => {
                 role: "customer"
             }
         });
-        if (response.status == "201") {
+
+        if (!response.error) {
             await loadCustomers();
             nameInput.current.value = null;
             mailInput.current.value = null;
@@ -40,12 +46,15 @@ const SubCategories = () => {
             maxOrders.current.value = null;
         }
     };
+
     const handleClickDelete = async (id) => {
         const response = await useDelete(`customers/${id}`);
-        if (response.status == "201") {
+
+        if (!response.error) {
             await loadCustomers();
         }
     };
+
     const handleClickPatch = async (id) => {
         let options = {
             name: nameEditInput.current.value,
@@ -54,7 +63,7 @@ const SubCategories = () => {
         };
         options = categoryId > 0 ? { ...options, categoryId: categoryId } : options;
         const response = await usePatch(`customers/${id}`, options);
-        if (response.status == "200") {
+        if (!response.error) {
             await loadCustomers();
             nameInput.current.value = null;
             phone.current.value = null;

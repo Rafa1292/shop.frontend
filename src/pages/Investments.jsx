@@ -9,9 +9,13 @@ const Investments = () => {
     const [investments, setInvestments] = useState([]);
     const detailReducer = (accumulator, currentValue) => accumulator + (currentValue.productMove.cost * currentValue.productMove.quantity);
     const historyReducer = (accumulator, currentValue) => accumulator + currentValue.amount;
+
     const loadInvestments = async () => {
         const response = await useGetList('investments');
-        setInvestments(response.data)
+
+        if (!response.error) {
+            setInvestments(response.content);
+        }
     }
 
     useEffect(async () => {

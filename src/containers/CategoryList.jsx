@@ -9,15 +9,15 @@ const CategoryList = (categoriesParam) => {
 
     const handleClickDelete = async (id) => {
         const response = await useDelete(`categories/${id}`);
-        if (response.status == "201") {
+        if (!response.error) {
             loadCategories();
         }
     };
 
     const handleClickPatch = async (id) => {
         const response = await usePatch(`categories/${id}`, { name: nameEditInput.current.value });
-        console.log(response);
-        if (response.status == "200") {
+        
+        if (!response.error) {
             loadCategories();
             nameInput.current.value = null;
             setEditId(0);

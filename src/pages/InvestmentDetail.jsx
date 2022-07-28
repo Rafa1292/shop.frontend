@@ -5,6 +5,7 @@ import { useGet, useGetList, usePost } from '../hooks/useAPI';
 import { formatMoney } from '@helpers/formatHelper'
 import '@styles/InvestmentDetail.scss';
 import upArrow from '@icons/upArrow.png'
+import swal from 'sweetalert';
 
 const InvestmentDetail = () => {
     const [showDetails, setShowDetails] = useState(false)
@@ -24,23 +25,34 @@ const InvestmentDetail = () => {
 
     const getInvestment = async () => {
         const response = await useGet(`investments/${investmentId}`);
-        console.log(response);
-        setInvestment(response.data)
+
+        if (!response.error) {
+            setInvestment(response.content);
+        }
     }
 
     const loadPaymethods = async (id) => {
         const response = await useGetList(`paymethods`);
-        setPaymethods(response.data);
+
+        if (!response.error) {
+            setPaymethods(response.content);            
+        }
     };
 
     const loadProducts = async () => {
         const response = await useGetList('products');
-        setProducts(response.data);
+
+        if (!response.error) {
+            setProducts(response.content);            
+        }
     }
 
     const loadSizes = async () => {
         const response = await useGetList('sizes');
-        setSizes(response.data);
+
+        if (!response.error) {
+            setSizes(response.data);            
+        }
     }
 
     const getPaymethodName = (id) => {
@@ -55,7 +67,7 @@ const InvestmentDetail = () => {
 
     const sendPay = async () => {
         if ((getDue() - amount.current.value) < 0) {
-            console.log('monto invalido')
+            swal('Error',  'monto invalido', 'warning')
         }
         else {
             const investmentAccountHistory = {
@@ -69,7 +81,7 @@ const InvestmentDetail = () => {
             };
             const response = await usePost('investmentAccountHistories', investmentAccountHistory);
 
-            if (response.status == 201) {
+            if (!response.error) {
                 amount.current.value = 0;
                 setPaymethodId(0);
                 await getInvestment();

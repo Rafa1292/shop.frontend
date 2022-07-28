@@ -6,7 +6,7 @@ import { formatMoney } from '@helpers/formatHelper'
 
 const Order = ({ order, goTo }) => {
 	const [orderWidth, setOrderWith] = useState({ width: '100%' });
-	const itemReducer = (accumulator, curr) => accumulator + (curr.productMove.cost * curr.productMove.quantity);
+	const itemReducer = (accumulator, curr) => accumulator + (curr.price * curr.productMove.quantity);
 	const paymentReducer = (accumulator, curr) => accumulator + curr.paymentAccountHistory.amount;
 	const [initialAmount, setInitialAmount] = useState(0);
 	const [payAmount, setPayAmount] = useState(0);

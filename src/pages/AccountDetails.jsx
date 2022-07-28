@@ -20,16 +20,19 @@ const AccountDetails = () => {
 
     const loadAccount = async () => {
         const response = await useGet(`accounts/${accountId}`);
-        console.log(response)
         let tempAccountHistories = [];
-        response.data.paymethods.map(paymethod => {
-            tempAccountHistories = tempAccountHistories.concat(paymethod.histories)
-        })
-        setAccountHistories(tempAccountHistories.sort((a, b) => b.id - a.id));
-        if (tempAccountHistories[0]) {
-            setLastHistory(tempAccountHistories[0]);            
+
+        if (!response.error) {
+            response.content.paymethods.map(paymethod => {
+                tempAccountHistories = tempAccountHistories.concat(paymethod.histories)
+            })
+            setAccountHistories(tempAccountHistories.sort((a, b) => b.id - a.id));
+            if (tempAccountHistories[0]) {
+                setLastHistory(tempAccountHistories[0]);            
+            }
+            setAccount(response.content);
+            
         }
-        setAccount(response.data);
     };
 
     const sendEntry = async () => {
@@ -41,7 +44,7 @@ const AccountDetails = () => {
             }
         });
 
-        if(response.status === 201){
+        if(!response.error){
             resetForm();
             await loadAccount();
         }
@@ -57,7 +60,7 @@ const AccountDetails = () => {
             }
         });
 
-        if(response.status === 201){
+        if(!response.error){
             resetForm();
             await loadAccount();
         }

@@ -8,14 +8,13 @@ import check from '@icons/check.png'
 import { useGetList } from '../hooks/useAPI';
 
 const MyOrder = (props) => {
-	const { state, emptyCart, setCustomerId, setFirstPay } = useContext(AppContext);
+	const {setCredit, state, emptyCart, setCustomerId, setFirstPay } = useContext(AppContext);
 	const [orderComplete, setOrderComplete] = useState(false);
 	const [customers, setCustomers] = useState([]);
-
 	const loadCustomers = async () => {
 		const response = await useGetList('customers');
-		if(response?.data)
-		setCustomers(response.data);
+		if (!response?.error)
+			setCustomers(response.content);
 	};
 
 	const sumTotal = () => {
@@ -28,8 +27,10 @@ const MyOrder = (props) => {
 		let newCart = JSON.parse(JSON.stringify(state))
 		newCart.items.forEach(item => { delete item.product; });
 		delete newCart.auth;
+		console.log('response')
 		const response = await usePost('orders', newCart);
-		if (response.status == 201) {
+		console.log(response)
+		if (!response?.error) {
 			setOrderComplete(true);
 			emptyCart();
 			await setTimeout(() => setOrderComplete(false), 2000)
@@ -39,8 +40,8 @@ const MyOrder = (props) => {
 	const setCustomer = async (name) => {
 		const customer = customers.find(x => x.name == name);
 
-		if(customer)
-		await setCustomerId(customer.id);
+		if (customer)
+			await setCustomerId(customer.id);
 	}
 
 	useEffect(async () => {
@@ -56,31 +57,37 @@ const MyOrder = (props) => {
 			<p className="title-order col-10 center z-1" style={{ position: "absolute", height: '20px', paddingTop: "10px" }}>Orden actual</p>
 			<div className="my-order-content">
 				{!orderComplete &&
-				<>
-				<span className='col-10 p-1 center'>
-					<input onKeyUp={(e) => firstPayHandler(e)} className='input col-8' placeholder='Prima' />
-					<small style={{ color: 'rgba(0,0,0,.5)' }} className='col-10 center '>
-						{
-							state.firstPay > 0 &&
-							formatMoney(state.firstPay)
-						}
-					</small>
-				</span>
-				{state.auth.role === 'admin' &&
 					<>
-						<span className='col-10 p-1 center'>
-							<input onChange={e => setCustomer(e.target.value)} defaultValue="" list="customers" className='input col-8' placeholder='Cliente' />
-						</span>
-						<datalist id="customers">
-							{customers.map(customer => (
-								<option className='col-10' value={customer.name} key={customer.id}>
-									{customer.name}
-									</option>
-							))}
-						</datalist>
+						<strong className='col-10 items-center my-2 center'>
+							<input onChange={()=> setCredit(!state.credit)} type={'checkbox'} />
+							<label>Crédito</label>
+						</strong>
+						{state.credit &&
+							<span className='col-10 p-1 center'>
+								<input onKeyUp={(e) => firstPayHandler(e)} className='input col-8' placeholder='Prima' />
+								<small style={{ color: 'rgba(0,0,0,.5)' }} className='col-10 center '>
+									{
+										state.firstPay > 0 &&
+										formatMoney(state.firstPay)
+									}
+								</small>
+							</span>
+						}
+						{state.auth.role === 'admin' &&
+							<>
+								<span className='col-10 p-1 center'>
+									<input onChange={e => setCustomer(e.target.value)} defaultValue="" list="customers" className='input col-8' placeholder='Cliente' />
+								</span>
+								<datalist id="customers">
+									{customers.map(customer => (
+										<option className='col-10' value={customer.name} key={customer.id}>
+											{customer.name}
+										</option>
+									))}
+								</datalist>
+							</>
+						}
 					</>
-				}
-				</>
 				}
 				{orderComplete
 					&&

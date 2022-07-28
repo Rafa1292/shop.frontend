@@ -21,8 +21,7 @@ const Brands = () => {
 
     const handleClickPost = async () => {
         const response = await usePost('brands', { name: nameInput.current.value, image: imageUrl });
-        console.log(response)
-        if (response?.status == "201") {
+        if (!response.error) {
             loadBrands();
             nameInput.current.value = null;
             setImageUrl("");
@@ -31,20 +30,23 @@ const Brands = () => {
 
     const handleClickDelete = async (id) => {
         const response = await useDelete(`brands/${id}`);
-        if (response.status == "201") {
+        if (!response.error) {
             loadBrands();
         }
     };
 
     const loadBrands = async () => {
         const response = await useGetList('brands');
-        setBrands(response.data);
+
+        if (!response.error) {            
+            setBrands(response.content);
+        }
     };
 
     const handleClickPatch = async (id) => {
         const response = await usePatch(`brands/${id}`, { name: nameEditInput.current.value });
 
-        if (response.status == "200") {
+        if (!response.error) {
             loadBrands();
             nameInput.current.value = null;
             setEditId(0);

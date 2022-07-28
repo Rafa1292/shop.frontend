@@ -17,7 +17,7 @@ const Sizes = () => {
 
     const handleClickPost = async () => {
         const response = await usePost('sizes', { name: nameInput.current.value});
-        if (response.status == "201") {
+        if (!response.error) {
             loadSizes();
             nameInput.current.value = null;
         }
@@ -25,20 +25,23 @@ const Sizes = () => {
 
     const handleClickDelete = async (id) => {
         const response = await useDelete(`sizes/${id}`);
-        if (response.status == "201") {
+        if (!response.error) {
             loadSizes();
         }
     };
 
     const loadSizes = async () => {
         const response = await useGetList('sizes');
-        setSizes(response.data);
+
+        if (!response.error) {
+            setSizes(response.content);            
+        }
     };
 
     const handleClickPatch = async (id) => {
         const response = await usePatch(`sizes/${id}`, { name: nameEditInput.current.value });
 
-        if (response.status == "200") {
+        if (!response.error) {
             loadSizes();
             nameInput.current.value = null;
             setEditId(0);
@@ -46,7 +49,7 @@ const Sizes = () => {
     };
 
     return (
-        <div className="size-index">
+        <div className="size-index col-md-4">
             <Title title="Lista de tamaños"></Title>
             <div className='add-size-container my-2 col-sm-10 center'>
                 <span className='col-10 center'>

@@ -13,24 +13,34 @@ const Paymethods = () => {
 
     const loadPaymethods = async () => {
         const response = await useGetList('paymethods');
-        setPaymethods(response.data);
+
+        if (!response.error) {
+            setPaymethods(response.content);            
+        }
     };
+
     const loadAccounts = async () => {
         const response = await useGetList('accounts');
-        setAccounts(response.data);
+
+        if (!response.error) {
+            setAccounts(response.content);            
+        }
     };
+
     useEffect(async () => {
         await loadPaymethods();
         await loadAccounts();
     }, []);
+
     const handleClickPost = async () => {
         const response = await usePost('paymethods', { name: nameInput.current.value, accountId: accountId.value, });
-        if (response.status == "201") {
+        if (!response.error) {
             setAccountId(0);
             loadPaymethods();
             nameInput.current.value = null;
         }
     };
+    
     const handleClickPatch = async (id) => {
         let options = { 
             name: nameEditInput.current.value, 
@@ -39,13 +49,14 @@ const Paymethods = () => {
         options = accountId > 0 ? {...options, accountId : accountId} : options;
         const response = await usePatch(`paymethods/${id}`, options);
 
-        if (response.status == "200") {
+        if (!response.error) {
             loadPaymethods();
             nameInput.current.value = null;
             setAccountId(0);
             setEditId(0);
         }
     };
+
     const handleChange = (event) => {
         setAccountId({ value: event.target.value });
     };
@@ -100,9 +111,9 @@ const Paymethods = () => {
                             ||
                             <>
                                 <h3 className='col-sm-3 center m-0'>{paymethod.account.name}</h3>
-                                <h4 className='col-sm-3 mt-0 mb-2 center'>{paymethod.name}</h4>
-                                <span className='center'>
-                                    <input className='btn mx-2' type="button" value='Editar' onClick={() => setEditId(paymethod.id)} />
+                                <h4 className='col-sm-3 center m-0'>{paymethod.name}</h4>
+                                <span className='center my-2'>
+                                    <input className='btn' type="button" value='Editar' onClick={() => setEditId(paymethod.id)} />
                                 </span>
                                 {/* <span className=' center'>
                                     <input className='btn danger' type="button" value='Eliminar' onClick={() => handleClickDelete(paymethod.id)} />

@@ -163,6 +163,28 @@ a {
 	padding: 0 1rem;
 }
 
+.dropdown{
+	font-weight: 600;
+	position: relative;
+	padding: 5px;
+	color: var(--gray);
+}
+
+.dropdown-content{
+	z-index: 2;
+	display: none;
+	font-size: 14px;
+	position: absolute;
+	background-color: white;
+	padding: 1rem;
+	left: 0;
+	border: 1px solid var(--very-light-pink);
+	border-radius: 10px;
+}
+
+.dropdown:hover .dropdown-content{
+	display: block;
+}
 
 
 select{
@@ -175,6 +197,10 @@ select{
 }
 label{
 	color:rgba(0, 0, 0, .7);
+}
+
+.swal-text{
+	text-align: center !important;
 }
 input[type="checkbox"i] {
 	background-color: initial;
@@ -344,6 +370,11 @@ input[type="checkbox"i] {
 	justify-content: space-around;
 }
 
+@media (max-width: 800px) {
+	.dropdown-content{
+		right: -100px;
+	}
+}
 @media (max-width: 770px) {
 	.col-md-1 {
 		width: 100%;

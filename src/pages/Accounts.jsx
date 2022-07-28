@@ -23,7 +23,7 @@ const Accounts = () => {
                  name: nameInput.current.value,
                  userId: state.auth.sub
                  });
-            if (response.status == "201") {
+            if (!response.error) {
                 loadAccounts();
                 nameInput.current.value = null;
             }
@@ -32,13 +32,16 @@ const Accounts = () => {
 
     const loadAccounts = async () => {
         const response = await useGetList('accounts');
-        setAccounts(response.data);
+
+        if (!response.error) {
+            setAccounts(response.content);            
+        }
     };
 
     const handleClickPatch = async (id) => {
         const response = await usePatch(`accounts/${id}`, { name: nameEditInput.current.value });
 
-        if (response.status == "200") {
+        if (!response.error) {
             loadAccounts();
             nameInput.current.value = null;
             setEditId(0);

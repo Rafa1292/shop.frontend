@@ -23,15 +23,11 @@ const OrderState = ({ order, states = [], refresh }) => {
             }
         }
         const response = await usePatch(`orders/${order.id}`, data)
-        if (response.status == 200) {
-            refresh();
+        if (!response.error) {
             setStateId(0)
         }
-        console.log(response)
-        if (response.status == 206) {
-            alert(response.data)
-            await refresh();
-        }
+        
+        await refresh();
     }
 
     return (

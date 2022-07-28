@@ -17,7 +17,7 @@ const States = () => {
 
     const handleClickPost = async () => {
         const response = await usePost('states', { name: nameInput.current.value });
-        if (response.status == "201") {
+        if (!response.error) {
             loadStates();
             nameInput.current.value = null;
         }
@@ -25,13 +25,16 @@ const States = () => {
 
     const loadStates = async () => {
         const response = await useGetList('states');
-        setStates(response.data);
+
+        if (!response.error) {
+            setStates(response.content);            
+        }
     };
 
     const handleClickPatch = async (id) => {
         const response = await usePatch(`states/${id}`, { name: nameEditInput.current.value });
 
-        if (response.status == "200") {
+        if (!response.error) {
             loadStates();
             nameInput.current.value = null;
             setEditId(0);

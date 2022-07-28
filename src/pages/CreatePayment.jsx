@@ -28,30 +28,34 @@ const CreatePayment = () => {
 
     const loadCustomers = async () => {
         const response = await useGetList('customers');
-        setCustomers(response.data);
+
+        if (!response.error) {
+            setCustomers(response.content);
+        }
     };
 
     const loadCustomer = async (id) => {
-        try {
-            const response = await useGetList(`customers/withOrders/${id}`);
-            setCustomer(response.data);
+        const response = await useGetList(`customers/withOrders/${id}`);
 
-        } catch (error) {
-
+        if (!response.error) {
+            setCustomer(response.content);
         }
     };
 
     const loadPaymethods = async (id) => {
         const response = await useGetList(`paymethods`);
-        const tempPaymethods = response.data.filter(x => x.account.userId == state.auth.sub)
-        setPaymethods(tempPaymethods);
+
+        if (!response.error) {
+            const tempPaymethods = response.content.filter(x => x.account.userId == state.auth.sub)
+            setPaymethods(tempPaymethods);            
+        }
     };
 
     const selectCustomer = (e) => {
         try {
             const customer = customers.find(x => x.name == e.target.value);
-            if(customer)
-            loadCustomer(customer.id);
+            if (customer)
+                loadCustomer(customer.id);
 
         } catch (error) {
 
@@ -59,7 +63,6 @@ const CreatePayment = () => {
     }
 
     const sendPay = async () => {
-        console.log(order)
         const payments = order.payments.reduce(historyReducer, 0);
         const due = order.items.reduce(reducer, 0);
         const diference = due - payments;
@@ -77,7 +80,8 @@ const CreatePayment = () => {
                 }
             };
             const response = await usePost('payments', payment);
-            if (response.status === 201) {
+
+            if (!response.error) {
                 history.push(`/orders/${order.id}`);
             }
         }
@@ -93,8 +97,8 @@ const CreatePayment = () => {
                 </span>
                 <datalist id="customers">
                     {customers.map(customer => (
-                        <option className='col-10' value={customer.id} 
-                        key={customer.id}>{customer.name}</option>
+                        <option className='col-10' value={customer.id}
+                            key={customer.id}>{customer.name}</option>
                     ))}
                 </datalist>
                 <span className='col-10 p-1 center'>

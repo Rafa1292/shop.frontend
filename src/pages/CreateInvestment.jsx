@@ -19,12 +19,18 @@ const CreateInvestment = () => {
 
     const loadProducts = async () => {
         const response = await useGetList('products');
-        setProducts(response.data);
+
+        if (!response.error) {
+            setProducts(response.content);            
+        }
     }
 
     const loadSizes = async () => {
         const response = await useGetList('sizes');
-        setSizes(response.data);
+
+        if (!response.error) {
+            setSizes(response.content);            
+        }
     }
 
     const addProductMove = (productMove) => {
@@ -67,14 +73,15 @@ const CreateInvestment = () => {
                 productMove: pm
             }
         });
+
         const newInvestment = {
             investBy: 1,
             details: details
         }
 
         const response = await usePost('investments', newInvestment);
-        if(response.status == 201){
-            history.push(`/investments/${response.data.id}`)
+        if(!response.error){
+            history.push(`/investments/${response.content.id}`)
         }
     }
 

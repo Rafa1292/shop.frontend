@@ -17,7 +17,7 @@ const Colors = () => {
 
     const handleClickPost = async () => {
         const response = await usePost('colors', { name: nameInput.current.value});
-        if (response.status == "201") {
+        if (!response.error) {
             loadColors();
             nameInput.current.value = null;
         }
@@ -25,20 +25,23 @@ const Colors = () => {
 
     const handleClickDelete = async (id) => {
         const response = await useDelete(`colors/${id}`);
-        if (response.status == "201") {
+        if (!response.error) {
             loadColors();
         }
     };
 
     const loadColors = async () => {
         const response = await useGetList('colors');
-        setColors(response.data);
+
+        if (!response.error) {
+            setColors(response.content);            
+        }
     };
 
     const handleClickPatch = async (id) => {
         const response = await usePatch(`colors/${id}`, { name: nameEditInput.current.value });
 
-        if (response.status == "200") {
+        if (!response.error) {
             loadColors();
             nameInput.current.value = null;
             setEditId(0);
@@ -46,7 +49,7 @@ const Colors = () => {
     };
 
     return (
-        <div className="color-index">
+        <div className="color-index col-md-4">
             <Title title="Lista de colores"></Title>
             <div className='add-color-container my-2 col-sm-10 center'>
                 <span className='col-10 center'>

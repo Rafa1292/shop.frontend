@@ -12,16 +12,22 @@ const Orders = () => {
 	const loadOrders = async () => {
 		setLoader(true);
 		const response = await useGetList('orders');
-		const orderStates = response.data.sort(function (a, b) {
-			return b.id - a.id
-		});
-		setOrders(orderStates);
-		setLoader(false);
+
+		if (!response.error) {			
+			const orderStates = response.content.sort(function (a, b) {
+				return b.id - a.id
+			});
+			setOrders(orderStates);
+			setLoader(false);
+		}
 	};
 
 	const loadStates = async () => {
 		const response = await useGetList('states');
-		setStates(response.data);
+
+		if (!response.error) {
+			setStates(response.content);			
+		}
 	};
 
 	const refresh = async () => {

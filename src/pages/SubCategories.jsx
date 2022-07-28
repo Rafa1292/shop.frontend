@@ -13,32 +13,42 @@ const SubCategories = () => {
 
     const loadSubcategories = async () => {
         const response = await useGetList('subcategories');
-        setSubcategories(response.data);
+        if (!response.error) {
+            setSubcategories(response.content);            
+        }
     };
+
     const loadCategories = async () => {
         const response = await useGetList('categories');
-        setCategories(response.data);
+
+        if (!response.error) {
+            setCategories(response.content);
+            
+        }
     };
+
     useEffect(async () => {
         await loadSubcategories();
         await loadCategories();
     }, []);
+
     const handleClickPost = async () => {
         const response = await usePost('subcategories', { name: nameInput.current.value, categoryId: categoryId.value, });
-        if (response.status == "201") {
+        if (!response.error) {
             setCategoryId(0);
             loadSubcategories();
             nameInput.current.value = null;
         }
     };
+
     const handleClickDelete = async (id) => {
         const response = await useDelete(`subcategories/${id}`);
-        if (response.status == "201") {
+        if (!response.error) {
             loadSubcategories();
         }
     };
+
     const handleClickPatch = async (id) => {
-        console.log({ name: nameEditInput.current.value, categoryId: categoryId, });
         let options = { 
             name: nameEditInput.current.value, 
             categoryId: categoryId.value,
@@ -46,18 +56,19 @@ const SubCategories = () => {
         options = categoryId > 0 ? {...options, categoryId : categoryId} : options;
         const response = await usePatch(`subcategories/${id}`, options);
 
-        if (response.status == "200") {
+        if (!response.error) {
             loadSubcategories();
             nameInput.current.value = null;
             setCategoryId(0);
             setEditId(0);
         }
     };
+    
     const handleChange = (event) => {
         setCategoryId({ value: event.target.value });
     };
     return (
-        <div className="subcategory-index">
+        <div className="subcategory-index col-md-4">
             <Title title="Lista de subcategorias"></Title>
             <div className='add-subcategory-container my-2 col-sm-10 center'>
                 <span className='col-10 center'>
@@ -78,7 +89,7 @@ const SubCategories = () => {
                 </span>
             </div>
             <div className="subcategory-index-container">
-                {subcategories.map(subcategory => (
+                {subcategories?.map(subcategory => (
                     <div className="subcategory-index-item col-sm-6 center" key={subcategory.id}>
                         {
                             editId == subcategory.id
