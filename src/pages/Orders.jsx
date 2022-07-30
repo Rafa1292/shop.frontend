@@ -26,7 +26,7 @@ const Orders = () => {
 		const response = await useGetList('states');
 
 		if (!response.error) {
-			setStates(response.content);			
+			setStates(response.content.filter(x => x.name.toLowerCase() != "finalizado"));			
 		}
 	};
 
@@ -44,7 +44,7 @@ const Orders = () => {
 			{loader &&
 				<Loader />
 				||
-				<div className="Orders-container" >
+				<div className="Orders-container col-10 center" >
 					{orders.map(order => (
 						<OrderState states={states} key={order.id} refresh={refresh} order={order} />
 					))}

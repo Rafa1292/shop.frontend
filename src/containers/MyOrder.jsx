@@ -6,9 +6,10 @@ import { formatMoney } from '@helpers/formatHelper'
 import { usePost } from '../hooks/useAPI';
 import check from '@icons/check.png'
 import { useGetList } from '../hooks/useAPI';
+import swal from 'sweetalert';
 
 const MyOrder = (props) => {
-	const {setCredit, state, emptyCart, setCustomerId, setFirstPay } = useContext(AppContext);
+	const { setCredit, state, changeSeeMode, emptyCart, setCustomerId, setFirstPay } = useContext(AppContext);
 	const [orderComplete, setOrderComplete] = useState(false);
 	const [customers, setCustomers] = useState([]);
 	const loadCustomers = async () => {
@@ -16,6 +17,7 @@ const MyOrder = (props) => {
 		if (!response?.error)
 			setCustomers(response.content);
 	};
+	const HandleCart = {props};
 
 	const sumTotal = () => {
 		const reducer = (accumalator, currentValue) => accumalator + (currentValue.price * currentValue.productMove.quantity);
@@ -27,13 +29,31 @@ const MyOrder = (props) => {
 		let newCart = JSON.parse(JSON.stringify(state))
 		newCart.items.forEach(item => { delete item.product; });
 		delete newCart.auth;
-		console.log('response')
-		const response = await usePost('orders', newCart);
-		console.log(response)
-		if (!response?.error) {
-			setOrderComplete(true);
-			emptyCart();
-			await setTimeout(() => setOrderComplete(false), 2000)
+		if (await validateNewCart(newCart)) {
+			const response = await usePost('orders', newCart);
+			if (!response?.error) {
+				setOrderComplete(true);
+				emptyCart();
+				await setTimeout(() => setOrderComplete(false), 2000)
+			}
+		}
+	}
+
+	const validateNewCart = async (newCart) => {
+		if (!state.auth.phone > 0) {
+			await changeSeeMode();
+			props.HandleCart(false);
+			return false;
+		}
+		else {
+
+			for (const item of newCart.items) {
+				if (item.productMove.sizeId == 0) {
+					swal('Error', 'Debes seleccionar una talla', 'warning')
+					return false;
+				}
+			}
+			return true;
 		}
 	}
 
@@ -59,7 +79,7 @@ const MyOrder = (props) => {
 				{!orderComplete &&
 					<>
 						<strong className='col-10 items-center my-2 center'>
-							<input onChange={()=> setCredit(!state.credit)} type={'checkbox'} />
+							<input onChange={() => setCredit(!state.credit)} type={'checkbox'} />
 							<label>Crédito</label>
 						</strong>
 						{state.credit &&

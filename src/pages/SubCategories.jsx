@@ -118,7 +118,7 @@ const SubCategories = () => {
                             ||
                             <>
                                 <h3 className='col-sm-3 center m-0'>{subcategory.category.name}</h3>
-                                <h4 className='col-sm-3 mt-0 mb-2 center'>{subcategory.name}</h4>
+                                <h4 className='col-sm-3 m-0 center'>{subcategory.name}</h4>
                                 <span className='center'>
                                     <input className='btn mx-2' type="button" value='Editar' onClick={() => setEditId(subcategory.id)} />
                                 </span>

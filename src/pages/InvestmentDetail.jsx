@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useContext, useEffect, useState, useRef } from 'react'
 import Title from '@components/Title';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { useGet, useGetList, usePost } from '../hooks/useAPI';
@@ -6,6 +6,7 @@ import { formatMoney } from '@helpers/formatHelper'
 import '@styles/InvestmentDetail.scss';
 import upArrow from '@icons/upArrow.png'
 import swal from 'sweetalert';
+import AppContext from '../context/AppContext';
 
 const InvestmentDetail = () => {
     const [showDetails, setShowDetails] = useState(false)
@@ -18,6 +19,7 @@ const InvestmentDetail = () => {
     const [products, setProducts] = useState([]);
     const [paymethodId, setPaymethodId] = useState(0);
     const amount = useRef(0);
+    const { state } = useContext(AppContext);
 
     const reducer = (accumalator, currentValue) => accumalator + (currentValue.productMove.cost * currentValue.productMove.quantity);
     const historyReducer = (accumalator, currentValue) => accumalator + (currentValue.accountHistory.amount);
@@ -35,7 +37,8 @@ const InvestmentDetail = () => {
         const response = await useGetList(`paymethods`);
 
         if (!response.error) {
-            setPaymethods(response.content);            
+            const tempPaymethods = response.content.filter(x => x.account.userId == state.auth.sub)
+            setPaymethods(tempPaymethods);            
         }
     };
 
@@ -51,7 +54,7 @@ const InvestmentDetail = () => {
         const response = await useGetList('sizes');
 
         if (!response.error) {
-            setSizes(response.data);            
+            setSizes(response.content);            
         }
     }
 

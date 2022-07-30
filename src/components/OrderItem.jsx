@@ -25,7 +25,6 @@ const OrderItem = ({ item, showSizeInput = true }) => {
 	}, []);
 
 	const setSize = async (sizeId) => {
-		console.log(item)
 		item.productMove.sizeId = sizeId;
 	}
 

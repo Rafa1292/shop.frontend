@@ -61,7 +61,7 @@ const Sizes = () => {
             </div>
             <div className="size-index-container">
                 {sizes.map(size => (
-                    <div className="size-index-item col-sm-6 center" key={size.id}>
+                    <div className="size-index-item col-sm-6 flex-wrap center" key={size.id}>
                         {
                             editId == size.id
                             &&
@@ -79,10 +79,10 @@ const Sizes = () => {
                             ||
                             <>
                                 <span className='col-3 center'>{size.name}</span>
-                                <span className='center'>
-                                    <input className='btn mx-2' type="button" value='Editar' onClick={() => setEditId(size.id)} />
+                                <span className=' col-3 m-1 center'>
+                                    <input className='btn text-center center' type="button" value='Editar' onClick={() => setEditId(size.id)} />
                                 </span>
-                                <span className=' center'>
+                                <span className='col-3 center'>
                                     <input className='btn danger' type="button" value='Eliminar' onClick={() => handleClickDelete(size.id)} />
                                 </span>
                             </>

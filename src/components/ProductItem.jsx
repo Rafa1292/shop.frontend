@@ -17,18 +17,19 @@ const ProductItem = ({ product }) => {
 
 			<div className="product-info d-flex px-2">
 				<span className='p-0 col-10'>
-						{product.name}
+					{product.name}
 				</span>
 				<div className=' flex-wrap col-10 justify-end flex-wrap'>
 					<figure className='absolute' onClick={() => handleClick(product)} >
 						<img src={addToCartImage} alt="" />
 					</figure>
-							<em className='col-10 my-1' style={{fontWeight: 200}}>
-								{product.brand.name}
-							</em>
-						<div className='col-10'>
-							{formatMoney(product.price)}
-						</div>
+					<em className='col-10 my-1' style={{ fontWeight: 200 }}>
+					<img src={product.brand.image} height={20}/>
+						{product.brand.name}
+					</em>
+					<div className='col-10'>
+						{formatMoney(product.price)}
+					</div>
 				</div>
 			</div>
 		</div>

@@ -42,9 +42,8 @@ const CreatePayment = () => {
         }
     };
 
-    const loadPaymethods = async (id) => {
+    const loadPaymethods = async () => {
         const response = await useGetList(`paymethods`);
-
         if (!response.error) {
             const tempPaymethods = response.content.filter(x => x.account.userId == state.auth.sub)
             setPaymethods(tempPaymethods);            
@@ -135,9 +134,9 @@ const CreatePayment = () => {
                         <div className='col-12 start flex-wrap'>
                             <Order order={order} />
                             <span className='col-2' style={{ borderBottom: '1px solid rgba(0,0,0,.1)' }}></span>
-                            <div className='col-10 center flex-wrap'>
+                            <div className='col-10 center my-2 flex-wrap'>
                                 {order.items.map(item => (
-                                    <OrderItem item={item} key={`orderItem-${item.id}`} />
+                                    <OrderItem showSizeInput={false} item={item} key={`orderItem-${item.id}`} />
                                 ))}
                             </div>
                         </div>

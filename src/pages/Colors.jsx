@@ -59,7 +59,7 @@ const Colors = () => {
                     <input type='button' className='btn mx-2' value='Agregar' onClick={handleClickPost} />
                 </span>
             </div>
-            <div className="color-index-container">
+            <div className="color-index-container flex-wrap">
                 {colors.map(color => (
                     <div className="color-index-item col-sm-6 center" key={color.id}>
                         {
@@ -79,10 +79,10 @@ const Colors = () => {
                             ||
                             <>
                                 <span className='col-3 center'>{color.name}</span>
-                                <span className='center'>
+                                <span className='center col-3 m-1'>
                                     <input className='btn mx-2' type="button" value='Editar' onClick={() => setEditId(color.id)} />
                                 </span>
-                                <span className=' center'>
+                                <span className='col-3 center'>
                                     <input className='btn danger' type="button" value='Eliminar' onClick={() => handleClickDelete(color.id)} />
                                 </span>
                             </>

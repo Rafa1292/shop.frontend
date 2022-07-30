@@ -172,7 +172,7 @@ const Header = () => {
 			</div>
 			<div className="MyOrder" style={openStyleClass}>
 				<img height={30} className="z-10" style={{ opacity: 0.6, position: "absolute" }} src={close} onClick={() => HandleCart(!openStyle)} />
-				<MyOrder />
+				<MyOrder  HandleCart={HandleCart}/>
 			</div>
 		</nav>
 	);

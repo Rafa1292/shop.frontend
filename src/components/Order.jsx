@@ -11,6 +11,7 @@ const Order = ({ order, goTo }) => {
 	const [initialAmount, setInitialAmount] = useState(0);
 	const [payAmount, setPayAmount] = useState(0);
 	const [firstPay, setFirstPay] = useState(0);
+	const [loader, setLoader] = useState(true);
 
 	useEffect(async () => {
 		if (!goTo) {
@@ -19,6 +20,7 @@ const Order = ({ order, goTo }) => {
 		setInitialAmount(sumTotal(itemReducer, order.items));
 		setPayAmount(sumTotal(paymentReducer, order.payments));
 		setFirstPay(order.firstPay ? order.firstPay : 0);
+		setLoader(false);
 	}, []);
 
 	const sumTotal = (reducer, arr) => {
@@ -34,28 +36,25 @@ const Order = ({ order, goTo }) => {
 	}
 
 	const getState = () => {
-		const diference = initialAmount - payAmount;
+		const diference = initialAmount - payAmount - firstPay;
+		let currentState = 'Al dia';
+		const months = getElapsedMonths();
+		const totalDue = initialAmount - firstPay;
+		currentState = order.stateId == 1 ? "Rechazado" : currentState;
+		currentState = order.stateId == 0 ? "Finalizado" : currentState;
+		currentState = (months * 0.25 * totalDue) > payAmount ? "Atrasado" : currentState;
 
-		if (diference == 0) {
-			return "Finalizado";
-		}
-		else {
-			const months = getElapsedMonths();
-			const totalDue = initialAmount - firstPay;
-			if ((months * 0.25 * totalDue) > payAmount)
-				return "Atrasado";
-		}
-		return "Al dia";
+		return currentState;
 	}
 
-	const getElapsedMonths = ()=> {
+	const getElapsedMonths = () => {
 		const to = new Date(Date.now());
 		const from = new Date(order.createdAt);
-		var months = to.getMonth() - from.getMonth() + (12 * (to.getFullYear() 
-		- from.getFullYear())); 
-		
-		if(to.getDate() < from.getDate())
-		months--; 
+		var months = to.getMonth() - from.getMonth() + (12 * (to.getFullYear()
+			- from.getFullYear()));
+
+		if (to.getDate() < from.getDate())
+			months--;
 
 		return months;
 
@@ -63,19 +62,21 @@ const Order = ({ order, goTo }) => {
 
 	return (
 		<div className="Order flex-wrap" style={orderWidth}>
-			<div style={{ borderBottom: '1px solid rgba(0,0,0,.1)' }} className='col-10 flex-wrap spaceAround py-1'>
-				<span className='col-2 center'>{formatMoney(initialAmount)}</span>
-				<span className='col-2 center'>{formatMoney(firstPay)}</span>
-				<span className='col-2 center'>{formatMoney(payAmount)}</span>
-				<span className='col-2 center'>{getState()}</span>
-				{goTo &&
-					<span className='col-2 center'>
-						<Link to={`/orders/${order.id}`}>
-							<button className='btn'>Ver</button>
-						</Link>
-					</span>
-				}
-			</div>
+			{!loader &&
+				<div style={{ borderBottom: '1px solid rgba(0,0,0,.1)' }} className='col-10 flex-wrap spaceAround py-1'>
+					<span className='col-2 center'>{formatMoney(initialAmount)}</span>
+					<span className='col-2 center'>{formatMoney(firstPay)}</span>
+					<span className='col-2 center'>{formatMoney(payAmount)}</span>
+					<span className='col-2 center'>{getState()}</span>
+					{goTo &&
+						<span className='col-2 center'>
+							<Link to={`/orders/${order.id}`}>
+								<button className='btn'>Ver</button>
+							</Link>
+						</span>
+					}
+				</div>
+			}
 		</div>
 	);
 }
