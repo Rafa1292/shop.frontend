@@ -7,7 +7,6 @@ import {formatMoney} from '@helpers/formatHelper';
 const Products = () => {
     let [products, setProducts] = useState([]);
     const [colors, setColors] = useState([]);
-
     useEffect(async () => {
         await loadColors();
         await loadProducts();
@@ -15,9 +14,10 @@ const Products = () => {
 
     const loadProducts = async () => {
         const response = await useGetList('products');
-
         if (!response.error) {
-            setProducts(response.content);            
+            let productList = brandId == 0 ? response.content : response.content.filter(x => x.brandId != brandId);
+            console.log(productList)
+            setProducts(productList);            
         }
     };
     

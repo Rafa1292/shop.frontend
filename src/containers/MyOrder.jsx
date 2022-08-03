@@ -53,6 +53,7 @@ const MyOrder = (props) => {
 					return false;
 				}
 			}
+			
 			return true;
 		}
 	}
