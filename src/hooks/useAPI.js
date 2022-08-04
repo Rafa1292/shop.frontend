@@ -45,8 +45,8 @@ const useCustom = async (route, method, data) => {
             url: `${api}${route}`,
             data: data,
         });
-        if(response?.data.error){
-            swal('Error',  response.data.message, 'warning')
+        if(response?.data?.error){
+            swal('Error',  response?.data?.message, 'warning')
         }
 
         return response.data;

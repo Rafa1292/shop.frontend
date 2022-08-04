@@ -5,6 +5,7 @@ import Order from '@components/Order'
 import OrderItem from '@components/OrderItem';
 import { useHistory } from "react-router-dom"
 import AppContext from '../context/AppContext';
+import swal from 'sweetalert';
 
 const CreatePayment = () => {
     const { state } = useContext(AppContext);
@@ -18,7 +19,7 @@ const CreatePayment = () => {
     const [paymethodId, setPaymethodId] = useState(0);
     const amount = useRef(0);
     const history = useHistory();
-    const reducer = (accumalator, currentValue) => accumalator + (currentValue.productMove.cost * currentValue.productMove.quantity);
+    const reducer = (accumalator, currentValue) => accumalator + (currentValue.price * currentValue.productMove.quantity);
     const historyReducer = (accumalator, currentValue) => accumalator + (currentValue.paymentAccountHistory.amount);
 
     useEffect(async () => {
@@ -29,22 +30,22 @@ const CreatePayment = () => {
     const loadCustomers = async () => {
         const response = await useGetList('customers');
 
-        if (!response.error) {
+        if (!response?.error) {
             setCustomers(response.content);
         }
     };
 
     const loadCustomer = async (id) => {
         const response = await useGetList(`customers/withOrders/${id}`);
-
-        if (!response.error) {
+        console.log(response)
+        if (!response?.error) {
             setCustomer(response.content);
         }
     };
 
     const loadPaymethods = async () => {
         const response = await useGetList(`paymethods`);
-        if (!response.error) {
+        if (!response?.error) {
             const tempPaymethods = response.content.filter(x => x.account.userId == state.auth.sub)
             setPaymethods(tempPaymethods);            
         }
@@ -65,6 +66,7 @@ const CreatePayment = () => {
         const payments = order.payments.reduce(historyReducer, 0);
         const due = order.items.reduce(reducer, 0);
         const diference = due - payments;
+        console.log(diference)
 
         if (amount.current.value <= diference) {
             const payment = {
@@ -80,9 +82,12 @@ const CreatePayment = () => {
             };
             const response = await usePost('payments', payment);
 
-            if (!response.error) {
+            if (!response?.error) {
                 history.push(`/orders/${order.id}`);
             }
+        }
+        else{
+            swal('Error', 'Monto invalido', 'warning')
         }
     }
 

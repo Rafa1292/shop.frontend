@@ -3,7 +3,7 @@ import ProductItem from '@components/ProductItem';
 import '@styles/ProductList.scss';
 import { useGetList } from '../hooks/useAPI';
 import Loader from '@components/Loader';
-import check from '@icons/check.png'
+import checkGris from '@icons/checkGris.png'
 
 const ProductList = () => {
 	let [products, setProducts] = useState([]);
@@ -104,9 +104,9 @@ const ProductList = () => {
 				||
 				<>
 					<div className="col-10 my-2  flex-wrap">
-						<div className="col-md-5 my-2 center">
+						<div className="col-md-5 my-2 flex-wrap spaceAround">
 							{brands.map(brand => (
-								<span className="items-center center text-center" style={{width: '110px'}} key={brand.id}>
+								<span className="items-center justify-end my-1" style={{width: '130px'}} key={brand.id}>
 									<img height={20} src={brand.image} />
 									{brand.name}
 									<input type={'checkbox'} onChange={e => filterBrands(brand.id, e.target.checked)} />
@@ -124,11 +124,12 @@ const ProductList = () => {
 												background: color.name,
 												height: '30px',
 												width: '30px',
-												border: '1px solid rgba(0,0,0,.2)'
+												border: '1px solid rgba(0,0,0,.2)',
+												borderRadius: '50px'
 											}}>
 										{colorsId.indexOf(color.id) != -1
 											&&
-											<img src={check} height='30' width='30' style={{ opacity: '0.5' }} />
+											<img src={checkGris} height='30' width='30' style={{ opacity: '0.5' }} />
 										}
 									</div>
 								</span>

@@ -40,8 +40,9 @@ const Order = ({ order, goTo }) => {
 		let currentState = 'Al dia';
 		const months = getElapsedMonths();
 		const totalDue = initialAmount - firstPay;
+		currentState = diference == 0 ? "Finalizado" : currentState;
+		currentState = !order.credit && order.close ? "Finalizado" : currentState;
 		currentState = order.stateId == 1 ? "Rechazado" : currentState;
-		currentState = order.stateId == 0 ? "Finalizado" : currentState;
 		currentState = (months * 0.25 * totalDue) > payAmount ? "Atrasado" : currentState;
 
 		return currentState;

@@ -17,7 +17,7 @@ const MyOrder = (props) => {
 		if (!response?.error)
 			setCustomers(response.content);
 	};
-	const HandleCart = {props};
+	const HandleCart = { props };
 
 	const sumTotal = () => {
 		const reducer = (accumalator, currentValue) => accumalator + (currentValue.price * currentValue.productMove.quantity);
@@ -53,7 +53,15 @@ const MyOrder = (props) => {
 					return false;
 				}
 			}
-			
+			if (state.credit) {
+				const diference = parseInt(state.firstPay) > sumTotal();
+
+				if (diference) {
+					swal('Error', 'Monto de prima invalido', 'warning')
+					return false;
+				}
+			}
+
 			return true;
 		}
 	}

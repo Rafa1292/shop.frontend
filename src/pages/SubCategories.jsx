@@ -35,7 +35,7 @@ const SubCategories = () => {
     const handleClickPost = async () => {
         const response = await usePost('subcategories', { name: nameInput.current.value, categoryId: categoryId.value, });
         if (!response.error) {
-            setCategoryId(0);
+            await setCategoryId(0);
             loadSubcategories();
             nameInput.current.value = null;
         }

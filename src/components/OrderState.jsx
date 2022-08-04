@@ -2,32 +2,61 @@ import React, { useState } from 'react'
 import { formatMoney } from '@helpers/formatHelper'
 import upArrow from '@icons/upArrow.png'
 import { usePatch } from '../hooks/useAPI';
+import swal from 'sweetalert';
+import { usePost } from '../hooks/useAPI';
 
-const OrderState = ({ order, states = [], refresh }) => {
-    const itemReducer = (accumulator, curr) => accumulator + (curr.productMove.cost * curr.productMove.quantity);
+const OrderState = ({ order, states = [], refresh, paymethods = [] }) => {
+    const itemReducer = (accumulator, curr) => accumulator + (curr.price * curr.productMove.quantity);
     const [stateId, setStateId] = useState(0)
     const [showItems, setShowItems] = useState(false)
+    const [showPayMethod, setShowPayMethod] = useState(false)
+    const [paymethodId, setPaymethodId] = useState(0);
 
     const handleCategoryChange = async (event) => {
         await setStateId(event.target.value);
     };
 
-    const changeState = async () => {
-        let data = { stateId: stateId };
-        const state = states.find(state => state.name.toLowerCase() === 'entregado');
 
-        if (state.id == stateId) {
-            data = {
-                ...data,
-                delivered: true
+
+    const changeState = async () => {
+        const rejectState = states.find(state => state.name.toLowerCase() === 'rechazado');
+
+        if (paymethodId > 0 || order.credit || rejectState.id == stateId) {
+            let data = { stateId: stateId };
+            const state = states.find(state => state.name.toLowerCase() === 'entregado');
+            data = state.id == stateId ? { ...data, delivered: true } : data;
+            data = !order.credit ? { ...data, close: true } : data;
+            const addPay = await sendPay();
+            
+            if (addPay) {                
+                const response = await usePatch(`orders/${order.id}`, data)
+                
+                if (!response.error) {
+                    setStateId(0)
+                }                
+                await refresh();
             }
         }
-        const response = await usePatch(`orders/${order.id}`, data)
-        if (!response.error) {
-            setStateId(0)
+        else {
+            swal('Error', 'Debes seleccionar una forma de pago', 'warning')
         }
-        
-        await refresh();
+    }
+
+    const sendPay = async () => {
+        const payment = {
+            orderId: order.id,
+            paymentAccountHistory: {
+                amount: order.items.reduce(itemReducer, 0),
+                accountHistory: {
+                    paymethodId: parseInt(paymethodId),
+                    amount: order.items.reduce(itemReducer, 0),
+                    debit: false
+                }
+            }
+        };
+        const response = await usePost('payments', payment);
+
+        return !response.error;
     }
 
     return (
@@ -92,6 +121,27 @@ const OrderState = ({ order, states = [], refresh }) => {
                     </div>
                 ))}
             </div>
+            {
+                !order.credit &&
+                <>
+                    <div className=" justify-between col-10 border-bottom p-2 content-center d-flex" onClick={() => setShowPayMethod(!showPayMethod)}>
+                        Forma de pago
+                        <img src={upArrow} height="20" style={{ transition: 'all ease 500ms', transform: showPayMethod ? '' : 'rotate(180deg)', opacity: '0.3' }} />
+                    </div>
+                    <div style={{ alignContent: 'baseline' }} className={`d-flex col-10 content-center flex-wrap showOption py-2 ${showPayMethod ? '' : 'hideOption'}`}>
+                        <span className='col-10 p-1 center'>
+                            <select className='input p-2' onChange={(event) => setPaymethodId(event.target.value)}>
+                                <option value="0">Seleccione una forma de pago</option>
+                                {
+                                    paymethods.map(paymethod => (
+                                        <option key={paymethod.id} value={paymethod.id}>{paymethod.name}</option>
+                                    ))
+                                }
+                            </select>
+                        </span>
+                    </div>
+                </>
+            }
         </div>
     );
 }

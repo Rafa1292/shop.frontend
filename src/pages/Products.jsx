@@ -15,9 +15,7 @@ const Products = () => {
     const loadProducts = async () => {
         const response = await useGetList('products');
         if (!response.error) {
-            let productList = brandId == 0 ? response.content : response.content.filter(x => x.brandId != brandId);
-            console.log(productList)
-            setProducts(productList);            
+            setProducts(response.content);            
         }
     };
     

@@ -22,6 +22,7 @@ import Order from '@pages/Order';
 import Investments from '@pages/Investments';
 import CreateInvestment from '@pages/CreateInvestment';
 import InvestmentDetail from '@pages/InvestmentDetail';
+import Inventory from '@pages/Inventory';
 import NotFound from '@pages/NotFound';
 import AppContext from '../context/AppContext';
 import useInitialState from '../hooks/useInitialState';
@@ -54,6 +55,7 @@ const App = () => {
 						<Route exact path="/payment/create" component={CreatePayment} />
 						<Route exact path="/customers" component={Customers} />
 						<Route exact path="/investments" component={Investments} />
+						<Route exact path="/inventory" component={Inventory} />
 						<Route exact path="/investments/create" component={CreateInvestment} />
 						<Route exact path="/investments/:investmentId" component={InvestmentDetail} />
 						<Route path="*" component={NotFound} />

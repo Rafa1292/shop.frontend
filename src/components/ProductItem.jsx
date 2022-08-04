@@ -23,13 +23,13 @@ const ProductItem = ({ product }) => {
 					<figure className='absolute' onClick={() => handleClick(product)} >
 						<img src={addToCartImage} alt="" />
 					</figure>
-					<em className='col-10 my-1' style={{ fontWeight: 200 }}>
+					<em className='col-10 my-1 items-center' style={{ fontWeight: 200 }}>
 					<img src={product.brand.image} height={20}/>
 						{product.brand.name}
 					</em>
-					<div className='col-10'>
+					<strong className='col-10'>
 						{formatMoney(product.price)}
-					</div>
+					</strong>
 				</div>
 			</div>
 		</div>

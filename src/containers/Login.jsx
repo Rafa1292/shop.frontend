@@ -53,7 +53,7 @@ const Login = () => {
             </div>
             <small className='col-10 center p-1'>¿Olvidó su contraseña?</small>
 
-            <div className='col-10 p-0 ' style={{ marginTop: '2rem', borderTop: '1px solid rgba(0,0,0,.2)' }}>
+            <div className='col-10 p-0 center' style={{ marginTop: '2rem', borderTop: '1px solid rgba(0,0,0,.2)' }}>
                 <span className='col-10 center py-2 ' >¿No estas registrado?</span>
                 <div className="col-md-6 center">
                     <button type='button' className='col-8 btn ' placeholder='Iniciar sesion'>

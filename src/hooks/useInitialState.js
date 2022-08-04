@@ -8,7 +8,7 @@ const initialState = {
 	expiringDate: new Date(new Date().setMonth(new Date().getMonth() + 4)),
 	soldBy: "1",
 	close: false,
-	stateId: 3,
+	stateId: 2,
 	items: [],
 	delivered: false,
 	firstPay: 0,

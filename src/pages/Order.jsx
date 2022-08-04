@@ -77,10 +77,12 @@ const Order = () => {
             {order.credit &&
                 <>
                     <span className='col-10 d-flex p-2 bold center'>Credito</span>
-                    <span className='col-5 d-flex px-2 end'>Saldo:</span>
-                    <span className='col-5 d-flex start'>{formatMoney(sumTotal(itemReducer, order.items) - sumTotal(paymentReducer, order.payments))}</span>
+                    <span className='col-5 d-flex px-2 end'>Prima:</span>
+                    <span className='col-5 d-flex start'>{formatMoney(order.firstPay)}</span>
                     <span className='col-5 d-flex px-2 end'>Abono:</span>
                     <span className='col-5 d-flex start'>{formatMoney(sumTotal(paymentReducer, order.payments))}</span>
+                    <span className='col-5 d-flex px-2 end'>Saldo:</span>
+                    <span className='col-5 d-flex start'>{formatMoney(sumTotal(itemReducer, order.items) - sumTotal(paymentReducer, order.payments) - order.firstPay)}</span>
                     <span className='col-10 d-flex p-2 bold center'>Abonos</span>
                     <span className='col-3 d-flex p-1 center secondary'>Fecha</span>
                     <span className='col-3 d-flex p-1 center secondary'>Monto</span>
