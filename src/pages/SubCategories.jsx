@@ -1,7 +1,7 @@
 import { useGetList, usePost, useDelete, usePatch } from '../hooks/useAPI';
 import React, { useRef, useState, useEffect } from "react";
 import Title from '@components/Title';
-import '@styles/subcategories.scss';
+import '@styles/subcategories';
 
 const SubCategories = () => {
     let [subcategories, setSubcategories] = useState([]);
