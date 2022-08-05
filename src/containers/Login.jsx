@@ -1,6 +1,6 @@
 import React, { useRef, useContext } from 'react';
 import { usePost } from '../hooks/useAPI';
-import { useHistory } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import AppContext from '../context/AppContext';
 
 const Login = () => {
@@ -17,7 +17,7 @@ const Login = () => {
         const response = await usePost('auth/login', user);
         if (!response.error) {
             localStorage.removeItem('token');
-            localStorage.setItem('token', response.content);
+            localStorage.setItem('token', response.content.token);
             await setRole();
             history.push('/');
         }
@@ -51,14 +51,19 @@ const Login = () => {
                     Iniciar sesion
                 </button>
             </div>
-            <small className='col-10 center p-1'>¿Olvidó su contraseña?</small>
+            <Link className='col-10 center' to={'/password-recovery'}>
+                <small className='col-10 center p-1'>¿Olvidó su contraseña?</small>
+            </Link>
+
 
             <div className='col-10 p-0 center' style={{ marginTop: '2rem', borderTop: '1px solid rgba(0,0,0,.2)' }}>
                 <span className='col-10 center py-2 ' >¿No estas registrado?</span>
                 <div className="col-md-6 center">
-                    <button type='button' className='col-8 btn ' placeholder='Iniciar sesion'>
-                        Registrarse
-                    </button>
+                    <Link className='col-10 center' to={'/register'}>
+                        <button type='button' className='col-8 btn ' placeholder='Iniciar sesion'>
+                            Registrarse
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>

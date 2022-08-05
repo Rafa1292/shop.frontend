@@ -103,8 +103,8 @@ const ProductList = () => {
 				<Loader />
 				||
 				<>
-					<div className="col-10 my-2  flex-wrap">
-						<div className="col-md-5 my-2 flex-wrap spaceAround">
+					<div className="col-10 my-2 spaceAround flex-wrap">
+						<div className="col-md-4 my-2 flex-wrap spaceAround">
 							{brands.map(brand => (
 								<span className="items-center justify-end my-1" style={{width: '130px'}} key={brand.id}>
 									<img height={20} src={brand.image} />
@@ -113,7 +113,7 @@ const ProductList = () => {
 								</span>
 							))}
 						</div>
-						<div className="col-md-5 center my-2">
+						<div className="col-md-4 flex-wrap my-2">
 
 							{colors.map(color => (
 								<span className="col-1 m-1 items-center center text-center" key={color.id}>

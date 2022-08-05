@@ -10,18 +10,22 @@ import Categories from '@pages/Categories';
 import Brands from '@pages/Brands';
 import Colors from '@pages/Colors';
 import Subcategories from '@pages/Subcategories';
+import PasswordRecovery from '@pages/PasswordRecovery';
 import Sizes from '@pages/Sizes';
 import States from '@pages/States';
 import Accounts from '@pages/Accounts';
+import Register from '@pages/Register';
 import AccountDetails from '@pages/AccountDetails';
 import Paymethods from '@pages/Paymethods';
 import CreatePayment from '@pages/CreatePayment';
 import Customers from '@pages/Customers';
 import CustomerOrders from '@pages/CustomerOrders';
 import Order from '@pages/Order';
+import NewPassword from '@pages/NewPassword';
 import Investments from '@pages/Investments';
 import CreateInvestment from '@pages/CreateInvestment';
 import InvestmentDetail from '@pages/InvestmentDetail';
+import SendEmail from '@pages/SendEmail';
 import Inventory from '@pages/Inventory';
 import NotFound from '@pages/NotFound';
 import AppContext from '../context/AppContext';
@@ -37,10 +41,14 @@ const App = () => {
 					<Switch>
 						<Route exact path="/" component={Home} />
 						<Route exact path="/login" component={Login} />
+						<Route exact path="/register" component={Register} />
+						<Route exact path="/password-recovery" component={PasswordRecovery} />
+						<Route exact path="/new-password/:token" component={NewPassword} />
 						<Route exact path="/orders/customer/:customerId" component={CustomerOrders} />
 						<Route exact path="/orders/:orderId" component={Order} />
 						<Route exact path="/orders" component={Orders} />
 						<Route exact path="/products" component={Products} />
+						<Route exact path="/send-email" component={SendEmail} />
 						<Route exact path="/products/create" component={CreateProduct} />
 						<Route exact path="/products/update/:productId" component={CreateProduct} />
 						<Route exact path="/categories" component={Categories} />

@@ -42,13 +42,13 @@ const Layout = ({ children }) => {
 							)
 							:
 							(
-								<div className="col-10 center">
-									<h4>Antes de continuar...</h4>
-									<span className='col-8 center'>
+								<div className="col-10 center items-center content-center" style={{height: '80%'}}>
+									<h4 className='col-10 text-center '>Antes de continuar...</h4>
+									<span className='col-8 my-2 center'>
 										Puedes brindarnos tu numero de telefono?
 									</span>
 									<span className='col-10 my-2 center d-flex '>
-										<input type="number" placeholder="Telefono" className="input" ref={phone} />
+										<input type="number" placeholder="Telefono" className="input my-2" ref={phone} />
 										<span className='my-2 center col-10'>
 											<input type='button' className='btn success mx-2' value='Agregar' onClick={()=>addPhoneNumber()} />
 										</span>
@@ -59,7 +59,7 @@ const Layout = ({ children }) => {
 									<small className='col-8 text-center my-2 center'>
 										ó puedes continuar viendo...
 									</small>
-									<span className=' center'>
+									<span className='col-10 my-2 center'>
 										<input type='button' className='btn mx-2' value='Solo quiero ver' onClick={() => changeSeeMode()} />
 									</span>
 								</div>
