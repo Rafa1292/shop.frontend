@@ -9,7 +9,7 @@ import CreateProduct from '@pages/CreateProduct';
 import Categories from '@pages/Categories';
 import Brands from '@pages/Brands';
 import Colors from '@pages/Colors';
-import Subcategories from '@pages/Subcategories';
+import Subcategories from '@pages/SubCategories';
 import PasswordRecovery from '@pages/PasswordRecovery';
 import Sizes from '@pages/Sizes';
 import States from '@pages/States';
