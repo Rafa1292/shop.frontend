@@ -4,6 +4,8 @@
   "description": "react eshop",
   "main": "src/index.js",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve --open",
     "build": "webpack --mode production"
@@ -12,7 +14,7 @@
     "react",
     "javascript"
   ],
-  "author": "Oscar Barajas <oscar@platzi.com>",
+  "author": "rafa villalobos",
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.15.0",
@@ -23,6 +25,7 @@
     "babel-loader": "^8.2.2",
     "favicon": "^0.0.2",
     "firebase": "^9.7.0",
+    "gh-pages": "^4.0.0",
     "html-loader": "^2.1.2",
     "html-webpack-plugin": "^5.3.2",
     "i": "^0.3.7",
