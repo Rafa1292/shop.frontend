@@ -1,7 +1,7 @@
 import axios from 'axios';
 import swal from 'sweetalert';
 
-const api = `http://localhost:3000/api/v1/`;
+const api = `https://limitless-hamlet-11683.herokuapp.com/api/v1/`;
 
 const useGetList = async (name) => {
 
