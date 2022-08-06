@@ -39,7 +39,8 @@ const useCustom = async (route, method, data) => {
         const token = localStorage.getItem('token');
         const response = await axios({
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json'
             },
             method: method,
             url: `${api}${route}`,

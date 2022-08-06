@@ -24,11 +24,11 @@ const Login = () => {
     }
 
     const facebook = async () => {
-        window.open("http://localhost:3000/api/v1/auth/facebook", "_self");
+        window.open("https://limitless-hamlet-11683.herokuapp.com/api/v1/auth/facebook", "_self");
     }
 
     const google = async () => {
-        window.open("http://localhost:3000/api/v1/auth/google", "_self");
+        window.open("https://limitless-hamlet-11683.herokuapp.com/api/v1/auth/google", "_self");
     }
 
     return (
