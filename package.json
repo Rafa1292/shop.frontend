@@ -1,6 +1,7 @@
 {
   "name": "react-shop",
   "version": "1.0.0",
+  "homepage": "https://rafa1292.github.io/shop.frontend",
   "description": "react eshop",
   "main": "src/index.js",
   "scripts": {
