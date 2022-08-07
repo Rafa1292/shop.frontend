@@ -39,7 +39,6 @@ const App = () => {
 			<BrowserRouter>
 				<Layout>
 					<Switch>
-						<Route exact path="/:token?" component={Home} />
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/register" component={Register} />
 						<Route exact path="/password-recovery" component={PasswordRecovery} />
@@ -66,6 +65,7 @@ const App = () => {
 						<Route exact path="/inventory" component={Inventory} />
 						<Route exact path="/investments/create" component={CreateInvestment} />
 						<Route exact path="/investments/:investmentId" component={InvestmentDetail} />
+						<Route exact path="/:token?" component={Home} />
 						<Route path="*" component={NotFound} />
 					</Switch>
 				</Layout>
