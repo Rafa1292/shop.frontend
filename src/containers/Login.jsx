@@ -24,10 +24,12 @@ const Login = () => {
     }
 
     const facebook = async () => {
+        localStorage.removeItem('token');
         window.open("https://limitless-hamlet-11683.herokuapp.com/api/v1/auth/facebook", "_self");
     }
 
     const google = async () => {
+        localStorage.removeItem('token');
         window.open("https://limitless-hamlet-11683.herokuapp.com/api/v1/auth/google", "_self");
     }
 

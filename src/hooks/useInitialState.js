@@ -124,6 +124,7 @@ const useInitialState = () => {
 			}
 
 		} catch (error) {
+			localStorage.removeItem('token');
 		}
 	}
 

@@ -7,8 +7,10 @@ const Home = () => {
 	const { token } = useParams();
     const history = useHistory();
     const { setRole } = useContext(AppContext);
+	
 	useEffect(async () => {
 		if (token) {
+			console.log(token)
 			let tempToken = token;
 			do {
 				tempToken = tempToken.replace("-", ".");
