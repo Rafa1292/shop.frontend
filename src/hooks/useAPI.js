@@ -53,7 +53,7 @@ const useCustom = async (route, method, data) => {
         return response.data;
 
     } catch (error) {
-        swal('Error', 'Lo sentimos algo ha salido mal', 'warning')
+        swal('OOPS!', 'No hemos logrado contactar con nuestros servidores, intentalo de nuevo y verifica que estes conectado a internet...', 'info')
 
     }
 }
