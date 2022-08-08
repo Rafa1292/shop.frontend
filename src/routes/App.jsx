@@ -26,6 +26,7 @@ import Investments from '@pages/Investments';
 import CreateInvestment from '@pages/CreateInvestment';
 import InvestmentDetail from '@pages/InvestmentDetail';
 import SendEmail from '@pages/SendEmail';
+import PrivacyPolicy from '@pages/PrivacyPolicy';
 import Inventory from '@pages/Inventory';
 import NotFound from '@pages/NotFound';
 import AppContext from '../context/AppContext';
@@ -40,6 +41,7 @@ const App = () => {
 				<Layout>
 					<Switch>
 						<Route exact path="/login" component={Login} />
+						<Route exact path="/privacy-policy" component={PrivacyPolicy} />
 						<Route exact path="/register" component={Register} />
 						<Route exact path="/password-recovery" component={PasswordRecovery} />
 						<Route exact path="/new-password/:token" component={NewPassword} />

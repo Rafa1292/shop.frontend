@@ -1,9 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
 import '@styles/Header.scss';
 import MyOrder from '../containers/MyOrder';
-import logo from '@logos/desatados.png';
+import logo_desatados from '@icons/logo_desatados.png';
 import AppContext from '../context/AppContext';
 import shoppingCart from '@icons/icon_shopping_cart.svg';
+import userwhite from '@icons/userwhite.png';
 import { Link } from "react-router-dom";
 import close from '@icons/close.png';
 import dotMenu from '@icons/dotMenu.png';
@@ -43,7 +44,6 @@ const Header = () => {
 
 	const Logout = async () => {
 		localStorage.removeItem('token');
-		document.cookie = 'token=0';
 		HandleMenu(false);
 		resetAuthState();
 		history.push('/');
@@ -75,8 +75,8 @@ const Header = () => {
 		<nav className='z-10 items-center'>
 			<img src={dotMenu} height='44' alt="menu" className={`menu hamb-menu-close ${openHambMenuClass}`} onClick={() => HandleMenu(!openMenu)} />
 			<div className="navbar-left">
-				<Link to='/'>
-					<img src={logo} alt="logo" className="nav-logo" />
+				<Link style={{borderRadius: '90px', overflow: 'hidden', height: '100px', width: '100px', boxShadow: '0px 0px 25px -2px rgba(0,0,0,.2)'}} to='/'>
+					<img  src={logo_desatados} alt="logo" className="nav-logo" />
 				</Link>
 				<ul className={openMenuClass} >
 					<li onClick={() => HandleMenu(false)}>
@@ -95,7 +95,12 @@ const Header = () => {
 								</small>
 							</div>
 							||
-							<Link to="/login">Login</Link>
+							<Link style={{
+								display: 'flex',
+								alignItems: 'center'
+							}} to="/login">
+							<img height={38} className="mx-2" src={userwhite} />
+							</Link>
 						}
 					</li>
 					{state.auth.role == 'admin' &&

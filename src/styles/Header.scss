@@ -1,16 +1,14 @@
 @import 'vars';
 
 nav {
-	background-color: white;
+	background-color: transparent;
 	position: fixed;
-	top: 0;
+	bottom: 0;
 	width: 99vw;
-	box-shadow: 0px 0px 25px -10px;
 	display: flex;
 	justify-content: space-between;
 	padding: 1vh 2vw;
-	border-bottom: 1px solid var(--very-light-pink);
-	margin-bottom: 60px;
+	background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 40%, rgba(255,255,255,.5) 80%, rgba(255,255,255,0) 100%);
 }
 .menu {
 	display: none;

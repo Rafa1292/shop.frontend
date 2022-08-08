@@ -2,6 +2,8 @@ import React, { useRef, useContext } from 'react';
 import { usePost } from '../hooks/useAPI';
 import { Link, useHistory } from "react-router-dom"
 import AppContext from '../context/AppContext';
+import face from '@icons/face.png';
+import googleauth from '@icons/googleauth.png';
 
 const Login = () => {
     const email = useRef('');
@@ -24,22 +26,21 @@ const Login = () => {
     }
 
     const facebook = async () => {
-        localStorage.removeItem('token');
         window.open("https://limitless-hamlet-11683.herokuapp.com/api/v1/auth/facebook", "_self");
     }
 
     const google = async () => {
-        localStorage.removeItem('token');
         window.open("https://limitless-hamlet-11683.herokuapp.com/api/v1/auth/google", "_self");
     }
 
     return (
         <div className='col-sm-4 flex-wrap center content-center' style={{ height: 'calc(100vh - 100px)' }}>
-            <button onClick={facebook} type='button' className="col-8 btn flex-wrap center" style={{ padding: '0.75rem', background: '#3b5998', color: 'white', fontWeight: 'bold', borderRadius: '5px' }}>
-                Inicia sesion con facebook
+            
+            <button onClick={facebook} type='button' className="col-4 m-1 btn flex-wrap center" style={{ padding: '0.75rem', background: '#3b5998', color: 'white', fontWeight: 'bold', borderRadius: '5px' }}>
+               <img height={25} src={face} className=''/>
             </button>
-            <button onClick={google} type='button' className="col-8 flex-wrap btn center my-1" style={{ border: '1px solid lightgray', padding: '0.75rem', background: '#fff', color: 'black', fontWeight: 'bold', borderRadius: '5px' }}>
-                Inicia sesion con google
+            <button onClick={google} type='button' className="col-4 m-1 flex-wrap btn center" style={{ border: '1px solid lightgray', padding: '0.75rem', background: '#fff', color: 'black', fontWeight: 'bold', borderRadius: '5px' }}>
+            <img height={25} src={googleauth} className=''/>
             </button>
             <span className='col-10 center'>0</span>
             <div className="col-md-6 center my-1">

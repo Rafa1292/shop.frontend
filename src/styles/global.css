@@ -1,10 +1,37 @@
 body {
-	padding-top: 100px;
 	max-height: 100vh;
 	overflow: hidden;
 	margin: 0;
 	font-family: 'Quicksand', sans-serif;
 }
+
+.layout::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+    .layout::-webkit-scrollbar:vertical {
+        width: 5px;
+    }
+
+.layout::-webkit-scrollbar-button:increment, .contenedor::-webkit-scrollbar-button {
+    display: none;
+}
+
+.layout::-webkit-scrollbar:horizontal {
+    height: 5px;
+}
+
+.layout::-webkit-scrollbar-thumb {
+    background-color: #797979;
+    border-radius: 20px;
+    border: none;
+}
+
+.layout::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+
 p{margin: 0;}
 .color-secondary{
 color: rgba(0,0,0,.5);
@@ -27,7 +54,7 @@ a {
 	z-index: 10;
 }
 .layout{
-	height: calc(100vh - 100px);
+	height: 100vh;
 	overflow-y: scroll;
 	align-content: baseline;
 }
