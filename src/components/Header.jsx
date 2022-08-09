@@ -100,10 +100,10 @@ const Header = () => {
 				{state.items.length > 0 ? <div>{state.items.length}</div> : null}
 			</div>
 
-			<div className={`login ${openMenuClass}`}>
+			<div className={`flex-wrap login ${openMenuClass}`}>
 				{state.auth.user &&
 					<div className='col-10 flex-wrap center'>
-						<small className='center' style={{ textAlign: 'center' }}>
+						<small className='center col-10 flex-wrap' style={{ textAlign: 'center' }}>
 							<strong className="col-10 center">
 								Bienvenido
 							</strong>
@@ -120,7 +120,7 @@ const Header = () => {
 				}
 				{state.auth.role == 'admin' &&
 					<>
-						<div className='dropdown'>
+						<div className='col-10 flex-wrap center'>
 							Mantenimiento
 							<div className="center col-12 dropdown-content">
 								<ul  >
@@ -149,7 +149,7 @@ const Header = () => {
 								</ul>
 							</div>
 						</div>
-						<div className='dropdown'>
+						<div className='col-10 flex-wrap center'>
 							Cuentas
 							<div className="center col-12 dropdown-content">
 								<ul>
@@ -165,13 +165,13 @@ const Header = () => {
 								</ul>
 							</div>
 						</div>
-						<li onClick={() => HandleMenu(false)}>
+						<li className='col-10 center' onClick={() => HandleMenu(false)}>
 							<Link to="/investments">Inversiones</Link>
 						</li>
-						<li onClick={() => HandleMenu(false)}>
+						<li className='col-10 center' onClick={() => HandleMenu(false)}>
 							<Link to="/customers">Clientes</Link>
 						</li>
-						<li onClick={() => HandleMenu(false)}>
+						<li className='col-10 center' onClick={() => HandleMenu(false)}>
 							<Link to={`/orders`}>Ordenes</Link>
 						</li>
 					</>}
