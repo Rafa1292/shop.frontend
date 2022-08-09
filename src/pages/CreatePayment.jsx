@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState, useEffect, useContext, useRef } from 'react/cjs/react.development';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { useGetList, usePost } from '../hooks/useAPI';
 import Order from '@components/Order'
 import OrderItem from '@components/OrderItem';

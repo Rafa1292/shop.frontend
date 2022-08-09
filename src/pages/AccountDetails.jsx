@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useParams, useState, useEffect, useRef } from 'react';
 import Title from '@components/Title';
 import { useGet, usePost } from '../hooks/useAPI';
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { formatMoney } from '@helpers/formatHelper'
 
 const AccountDetails = () => {

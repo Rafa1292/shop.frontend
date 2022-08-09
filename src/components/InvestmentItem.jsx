@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState, useEffect, useRef } from 'react/cjs/react.development';
+import React, { useState, useEffect, useRef } from 'react';
 import trash from '../assets/icons/trash.png'
 import { formatMoney } from '@helpers/formatHelper'
 

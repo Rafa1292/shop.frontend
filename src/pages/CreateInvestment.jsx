@@ -1,7 +1,6 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Title from '@components/Title';
 import InvestmentItem from '@components/InvestmentItem';
-import { useState, useEffect } from 'react/cjs/react.development';
 import { useGetList, usePost } from '../hooks/useAPI';
 import Loader from '@components/Loader';
 import trash from '../assets/icons/trash.png'

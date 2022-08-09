@@ -4,7 +4,6 @@ import MyOrder from '../containers/MyOrder';
 import logo_desatados from '@icons/logo_desatados.png';
 import AppContext from '../context/AppContext';
 import shoppingCart from '@icons/icon_shopping_cart.svg';
-import userwhite from '@icons/userwhite.png';
 import { Link } from "react-router-dom";
 import close from '@icons/close.png';
 import dotMenu from '@icons/dotMenu.png';
@@ -120,7 +119,7 @@ const Header = () => {
 				}
 				{state.auth.role == 'admin' &&
 					<>
-						<div className='col-10 flex-wrap center'>
+						<div className='col-10 dropdown flex-wrap center'>
 							Mantenimiento
 							<div className="center col-12 dropdown-content">
 								<ul  >
@@ -149,7 +148,7 @@ const Header = () => {
 								</ul>
 							</div>
 						</div>
-						<div className='col-10 flex-wrap center'>
+						<div className='col-10 dropdown flex-wrap center'>
 							Cuentas
 							<div className="center col-12 dropdown-content">
 								<ul>

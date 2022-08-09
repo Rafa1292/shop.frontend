@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import '@styles/Order.scss';
 import { Link } from "react-router-dom";
-import { useState } from 'react/cjs/react.development';
 import { formatMoney } from '@helpers/formatHelper'
 
 const Order = ({ order, goTo }) => {
