@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import close from '@icons/close.png';
 import dotMenu from '@icons/dotMenu.png';
 import { useHistory } from "react-router-dom"
+import Login from '@containers/Login'
 
 const Header = () => {
 	const history = useHistory();
@@ -16,18 +17,18 @@ const Header = () => {
 	const [openStyleClass, setOpenStyleClass] = useState({});
 	const { state, resetAuthState } = useContext(AppContext);
 	const [openMenu, setOpenMenu] = useState(false);
-	const [openMenuClass, setOpenMenuClass] = useState('');
+	const [openMenuClass, setOpenMenuClass] = useState('close-login');
 	const [openHambMenuClass, setOpenHambMenuClass] = useState('');
 
 
 	const HandleMenu = (state) => {
 		setOpenMenu(state);
 		if (state) {
-			setOpenMenuClass('open-menu');
+			setOpenMenuClass('open-login');
 			setOpenHambMenuClass('hamb-menu-open');
 		}
 		else {
-			setOpenMenuClass('');
+			setOpenMenuClass('close-login');
 			setOpenHambMenuClass('');
 		}
 	}
@@ -66,19 +67,41 @@ const Header = () => {
 		}
 
 	}
-	
+
 	useEffect(async () => {
 		await getUser();
 	}, []);
 
 	return (
-		<nav className='z-10 items-center'>
+		<nav className='z-10 center items-center'>
+
+			<div className="dot-menu-container">
 			<img src={dotMenu} height='44' alt="menu" className={`menu hamb-menu-close ${openHambMenuClass}`} onClick={() => HandleMenu(!openMenu)} />
+			</div>
+
+			<Link className='center mx-2 items-center'
+				style={{
+					zIndex: '100',
+					background: 'white',
+					borderRadius: '90px',
+					overflow: 'hidden',
+					height: '100px',
+					width: '100px',
+					boxShadow: '0px 5px 6px -2px rgba(0,0,0,.4)'
+				}} to='/'>
+				<img src={logo_desatados} alt="logo" className="nav-logo" />
+			</Link>
+
+			<div
+				className="navbar-shopping-cart"
+				onClick={() => HandleCart(!openStyle)}
+			>
+				<img height={38} src={shoppingCart} alt="shopping cart" />
+				{state.items.length > 0 ? <div>{state.items.length}</div> : null}
+			</div>
+
 			<div className="navbar-left">
-				<Link style={{borderRadius: '90px', overflow: 'hidden', height: '100px', width: '100px', boxShadow: '0px 0px 25px -2px rgba(0,0,0,.2)'}} to='/'>
-					<img  src={logo_desatados} alt="logo" className="nav-logo" />
-				</Link>
-				<ul className={openMenuClass} >
+				<ul className={`login ${openMenuClass}`} >
 					<li onClick={() => HandleMenu(false)}>
 						{state.auth.user &&
 							<div className='col-10 flex-wrap center'>
@@ -95,17 +118,11 @@ const Header = () => {
 								</small>
 							</div>
 							||
-							<Link style={{
-								display: 'flex',
-								alignItems: 'center'
-							}} to="/login">
-							<img height={38} className="mx-2" src={userwhite} />
-							</Link>
+							<Login/>
 						}
 					</li>
 					{state.auth.role == 'admin' &&
 						<>
-
 							<div className='dropdown'>
 								Mantenimiento
 								<div className="center col-12 dropdown-content">
@@ -164,20 +181,10 @@ const Header = () => {
 					}
 				</ul>
 			</div>
-			<div className="navbar-right">
-				<ul>
-					<li
-						className="navbar-shopping-cart"
-						onClick={() => HandleCart(!openStyle)}
-					>
-						<img height={38} src={shoppingCart} alt="shopping cart" />
-						{state.items.length > 0 ? <div>{state.items.length}</div> : null}
-					</li>
-				</ul>
-			</div>
+
 			<div className="MyOrder" style={openStyleClass}>
 				<img height={30} className="z-10" style={{ opacity: 0.6, position: "absolute" }} src={close} onClick={() => HandleCart(!openStyle)} />
-				<MyOrder  HandleCart={HandleCart}/>
+				<MyOrder HandleCart={HandleCart} />
 			</div>
 		</nav>
 	);

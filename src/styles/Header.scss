@@ -8,57 +8,69 @@ nav {
 	display: flex;
 	justify-content: space-between;
 	padding: 1vh 2vw;
-	background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 40%, rgba(255,255,255,.5) 80%, rgba(255,255,255,0) 100%);
+	background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, .5) 90%, rgba(255, 255, 255, 0) 100%);
 }
+
 .menu {
 	display: none;
 }
+
 .nav-logo {
-	width: 100px;
+	width: 80px;
 	opacity: 0.80;
 }
-.navbar-left ul,
-.navbar-right ul {
-	list-style: none;
-	padding: 5px;
-	margin: 0;
-	display: flex;
-	align-items: center;
-	height: 60px;
-	z-index: 20;
-}
-.navbar-left {
-	display: flex;
-	align-items:center;
-}
+
+
 
 .navbar-right {
 	display: flex;
-	align-items:center;
+	align-items: center;
 }
-.navbar-left ul {
-	margin-left: 12px;
-}
+
 .navbar-left ul li a,
 .navbar-right ul li a {
 	text-decoration: none;
 	color: var(--gray);
 	padding: 8px;
 	border-radius: 8px;
-    font-weight: bold;
+	font-weight: bold;
 }
+
 .navbar-left ul li a:hover,
 .navbar-right ul li a:hover {
 	color: var(--green);
 }
+
 .navbar-email {
 	color: var(--gray);
 	font-size: var(--sm);
 	margin-right: 12px;
 }
-.navbar-shopping-cart {
-	position: relative;
+
+.dot-menu-container{
+    height: 70px;
+    position: relative;
+    box-shadow: 6px 0px 10px -2px rgb(0 0 0 / 20%);
+    border-radius: 40px;
+    width: 70px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    display: flex;
 }
+
+.navbar-shopping-cart {
+    height: 70px;
+    position: relative;
+    box-shadow: -6px 0px 10px -2px rgb(0 0 0 / 20%);
+    border-radius: 40px;
+    width: 70px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    display: flex;
+}
+
 .navbar-shopping-cart div {
 	width: 16px;
 	height: 16px;
@@ -73,49 +85,119 @@ nav {
 	justify-content: center;
 	align-items: center;
 }
-.open-menu{
+
+.open-menu {
 	left: 0 !important;
 }
-.close-menu-button{
+
+.close-menu-button {
 	position: absolute;
-    background: black;
-    color: white;
-    width: 26px;
-    height: 26px;
-    border-radius: 15px;
-    justify-content: center;
-    display: flex;
-    font-weight: 800;
+	background: black;
+	color: white;
+	width: 26px;
+	height: 26px;
+	border-radius: 15px;
+	justify-content: center;
+	display: flex;
+	font-weight: 800;
 }
 
-.hamb-menu-close{
-	transition: all ease 700ms;
-    transform: rotate(0);
+.hamb-menu-close {
+	transition: all ease 500ms;
+	transform: rotate(0);
+	z-index: 100;
 }
-.hamb-menu-open{
+
+.hamb-menu-open {
 	transform: rotate(90deg) !important;
 }
+
+.close-login {
+	animation: closelogin;
+	animation-duration: 500ms;
+	animation-fill-mode: forwards;
+}
+
+.open-login {
+	backdrop-filter: blur(4px);
+	animation: openlogin;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes openlogin {
+	0% {
+		width: 0;
+		bottom: 0;
+		left: -103vw;
+		height: 0;
+		border-top-right-radius: 400px;
+	}
+
+	80% {
+		bottom: 0;
+		left: 0;
+		width: 100vw;
+		height: calc(100vh - 40px);
+	}
+
+	100% {
+		width: 100vw;
+		height: calc(100vh - 40px);
+		bottom: 0;
+		left: 0;
+		border-top-right-radius: 0;
+
+	}
+}
+
+@keyframes closelogin {
+	0% {
+		width: 100vw;
+		height: calc(100vh - 40px);
+		bottom: 0;
+		left: 0;
+		border-top-right-radius: 0;
+	}
+
+	20% {
+		bottom: 0;
+		left: 0;
+		width: 100vw;
+		height: calc(100vh - 40px);
+	}
+
+	100% {
+		width: 0;
+		bottom: 0;
+		left: -103vw;
+		height: 0;
+		border-top-right-radius: 400px;
+
+	}
+
+}
+
+.login{
+	overflow-y: scroll;
+	position: absolute;
+	display: block;
+	padding: 2vw;
+	background-color: rgba(255, 255, 255, .8);
+	padding: 1rem;
+	box-sizing: border-box;
+	margin: 0 !important;
+}
+
+.menu {
+	display: block;
+}
+
 @media (max-width: 768px) {
-	.menu {
-		display: block;
-	}
-	.navbar-left ul {
-		overflow-y: scroll;
-		box-shadow: 4px 1px 10px 1px rgb(0 0 0 / 30%);
-		position: absolute;
-		display: block;
-		width: 140px;
-		margin: 0 !important;
-		transition: all ease-out 700ms;
-		left: -185px;
-		padding: 2vw;
-		height: calc(100vh - 100px);
-		top: 95px;
-		background: white;
-		li{
-			margin: 1rem 0;
-		}
-	}
+
+
+
+
 	.navbar-email {
 		display: none;
 	}

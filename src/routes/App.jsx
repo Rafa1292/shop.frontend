@@ -28,6 +28,7 @@ import InvestmentDetail from '@pages/InvestmentDetail';
 import SendEmail from '@pages/SendEmail';
 import PrivacyPolicy from '@pages/PrivacyPolicy';
 import Inventory from '@pages/Inventory';
+import DeleteMyData from '@pages/DeleteMyData';
 import NotFound from '@pages/NotFound';
 import AppContext from '../context/AppContext';
 import useInitialState from '../hooks/useInitialState';
@@ -42,6 +43,7 @@ const App = () => {
 					<Switch>
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/privacy-policy" component={PrivacyPolicy} />
+						<Route exact path="/delete-my-data" component={DeleteMyData} />
 						<Route exact path="/register" component={Register} />
 						<Route exact path="/password-recovery" component={PasswordRecovery} />
 						<Route exact path="/new-password/:token" component={NewPassword} />

@@ -53,7 +53,10 @@ const useCustom = async (route, method, data) => {
         return response.data;
 
     } catch (error) {
-        swal('OOPS!', 'No hemos logrado contactar con nuestros servidores, intentalo de nuevo y verifica que estes conectado a internet...', 'info')
+        if (!error.message.includes('401')) {
+            swal('OOPS!', 'No hemos logrado contactar con nuestros servidores, intentalo de nuevo y verifica que estes conectado a internet...', 'info')
+            
+        }
 
     }
 }

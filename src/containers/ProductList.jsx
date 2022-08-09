@@ -103,18 +103,19 @@ const ProductList = () => {
 				<Loader />
 				||
 				<>
-					<div className="col-10 my-2 spaceAround flex-wrap">
-						<div className="col-md-4 my-2 flex-wrap spaceAround">
-							{brands.map(brand => (
-								<span className="items-center justify-end my-1" style={{width: '130px'}} key={brand.id}>
-									<img height={20} src={brand.image} />
-									{brand.name}
-									<input type={'checkbox'} onChange={e => filterBrands(brand.id, e.target.checked)} />
-								</span>
-							))}
-						</div>
-						<div className="col-md-4 flex-wrap my-2">
+					<div className="col-10 items-center center text-center" style={{ zIndex: '100', fontSize: '12px', height: '40px', color: 'white', background: '#CA2218', position: 'fixed', top: '0' }}>
+						Credito a 4 meses!!!
+						<br />
+						<span className='col-10 center'>
+						Solicita informacion
+						<strong className='mx-1'>
+							aqui
+						</strong>
 
+						</span>
+					</div>
+					<div className="col-10 flex-wrap" style={{ marginTop: '40px' }}>
+						<div className="col-md-4 spaceAround flex-wrap my-2">
 							{colors.map(color => (
 								<span className="col-1 m-1 items-center center text-center" key={color.id}>
 									<div
@@ -132,6 +133,15 @@ const ProductList = () => {
 											<img src={checkGris} height='30' width='30' style={{ opacity: '0.5' }} />
 										}
 									</div>
+								</span>
+							))}
+						</div>
+						<div className="col-md-4 my-2 flex-wrap spaceAround">
+							{brands.map(brand => (
+								<span className="items-center justify-end my-1" style={{ width: '130px' }} key={brand.id}>
+									<img height={20} src={brand.image} />
+									{brand.name}
+									<input type={'checkbox'} onChange={e => filterBrands(brand.id, e.target.checked)} />
 								</span>
 							))}
 						</div>

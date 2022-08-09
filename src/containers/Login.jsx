@@ -34,8 +34,10 @@ const Login = () => {
     }
 
     return (
-        <div className='col-sm-4 flex-wrap center content-center' style={{ height: 'calc(100vh - 100px)' }}>
-            
+        <div className='col-sm-4 flex-wrap center content-center' style={{ overflowY: 'scroll', height: 'calc(100vh - 40px)', paddingBottom: '100px' }}>
+            <strong className='col-10 my-2'>
+                Inicia sesion con tus redes sociales
+            </strong>
             <button onClick={facebook} type='button' className="col-4 m-1 btn flex-wrap center" style={{ padding: '0.75rem', background: '#3b5998', color: 'white', fontWeight: 'bold', borderRadius: '5px' }}>
                <img height={25} src={face} className=''/>
             </button>
