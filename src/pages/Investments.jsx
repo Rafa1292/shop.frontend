@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useGetList } from '../hooks/useAPI';
-import { useState, useEffect } from 'react/cjs/react.development';
 import Title from '@components/Title';
 import { formatMoney } from '@helpers/formatHelper'
 import { Link } from "react-router-dom";

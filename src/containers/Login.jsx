@@ -13,7 +13,7 @@ const Login = () => {
 
     const handleLogin = async () => {
         const user = {
-            username: email.current.value,
+            username: email.current.value.toString(),
             password: password.current.value
         };
         const response = await usePost('auth/login', user);
