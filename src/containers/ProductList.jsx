@@ -103,7 +103,7 @@ const ProductList = () => {
 				<Loader />
 				||
 				<>
-					<div className="col-10 items-center center text-center" style={{ zIndex: '100', fontSize: '12px', height: '40px', color: 'white', background: '#CA2218', position: 'fixed', top: '0' }}>
+					<div className="col-10 items-center center text-center" style={{ zIndex: '5', fontSize: '12px', height: '40px', color: 'white', background: '#CA2218', position: 'fixed', top: '0' }}>
 						Credito a 4 meses!!!
 						<br />
 						<span className='col-10 center'>
