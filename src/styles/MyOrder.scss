@@ -1,22 +1,26 @@
 @import 'vars';
 
 .MyOrder {
-	transition: all ease 1s;
-	width: 361px;
-    height: calc(100vh - 100px);
-    padding: 10px 5px;
-    box-sizing: border-box;
-    position: absolute;
-    right: -100vw;
-    background-color: white;
-    top: 100px;
-    bottom: 0;
-    border-radius: 6px;
-    border: 1px solid var(--very-light-pink);
+    z-index: 1000;
+    align-items: flex-start;
+    flex-wrap: wrap;
+	overflow-y: scroll;
+	position: absolute;
+	display: flex;
+	padding: 2vw;
+	background-color: rgba(255, 255, 255, .8);
+	padding: 1rem;
+	box-sizing: border-box;
+	margin: 0 !important;
+	width: 0;
+	bottom: 0;
+	right: -103vw;
+	height: 0;
+	justify-content: center;
+    overflow-x: hidden;
 }
 .my-order-content{
-    padding-top: 40px;
-	height: calc(100vh - 280px);
+    height: calc(100vh - 380px);
     overflow-y: scroll;
     overflow-x: hidden;
 
@@ -48,6 +52,7 @@
 }
 
 .title-order {
+    z-index: 1;
 	font-size: var(--lg);
 	font-weight: bold;
 	color: var(--gray);
@@ -62,9 +67,62 @@
 	font-weight: 800;
 }
 
+.close-cart {
+	animation: closecart;
+	animation-duration: 500ms;
+	animation-fill-mode: forwards;
+}
 
-@media (max-width: 640px) {
-	.MyOrder {
-		width: 100vw;
+.open-cart {
+	backdrop-filter: blur(5px);
+	animation: opencart;
+	animation-duration: 800ms;
+	animation-fill-mode: forwards;
+}
+
+@keyframes opencart {
+	0% {
+		width: 0;
+		bottom: 0;
+		right: -103vw;
+		height: 0;
 	}
+
+	80% {
+		bottom: 0;
+		right: 0;
+		width: 100vw;
+		height: calc(100vh - 40px);
+	}
+
+	100% {
+		width: 100vw;
+		height: calc(100vh - 40px);
+		bottom: 0;
+		right: 0;
+	}
+}
+
+@keyframes closecart {
+	0% {
+		width: 100vw;
+		height: calc(100vh - 40px);
+		bottom: 0;
+		right: 0;
+	}
+
+	20% {
+		bottom: 0;
+		right: 0;
+		width: 100vw;
+		height: calc(100vh - 40px);
+	}
+
+	100% {
+		width: 0;
+		bottom: 0;
+		right: -103vw;
+		height: 0;
+	}
+
 }

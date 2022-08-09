@@ -83,8 +83,8 @@ const MyOrder = (props) => {
 
 	return (
 		<>
-			<p className="title-order col-10 center z-1" style={{ position: "absolute", height: '20px', paddingTop: "10px" }}>Orden actual</p>
-			<div className="my-order-content">
+			<div className="col-10 center flex-wrap">
+				<p className="title-order col-10 center z-1" >Orden actual</p>
 				{!orderComplete &&
 					<>
 						<strong className='col-10 items-center my-2 center'>
@@ -93,7 +93,7 @@ const MyOrder = (props) => {
 						</strong>
 						{state.credit &&
 							<span className='col-10 p-1 center'>
-								<input onKeyUp={(e) => firstPayHandler(e)} className='input col-8' placeholder='Prima' />
+								<input onKeyUp={(e) => firstPayHandler(e)} className='input col-md-6' placeholder='Prima' />
 								<small style={{ color: 'rgba(0,0,0,.5)' }} className='col-10 center '>
 									{
 										state.firstPay > 0 &&
@@ -105,7 +105,7 @@ const MyOrder = (props) => {
 						{state.auth.role === 'admin' &&
 							<>
 								<span className='col-10 p-1 center'>
-									<input onChange={e => setCustomer(e.target.value)} defaultValue="" list="customers" className='input col-8' placeholder='Cliente' />
+									<input onChange={e => setCustomer(e.target.value)} defaultValue="" list="customers" className='input col-md-6' placeholder='Cliente' />
 								</span>
 								<datalist id="customers">
 									{customers.map(customer => (
@@ -128,23 +128,23 @@ const MyOrder = (props) => {
 						<span className='col-10 center color-secondary hover'>Ver mis ordenes</span>
 					</div>
 					||
-					<>
+					<div className='col-10 my-order-content'>
 						{state.items.map(item => (
 							<OrderItem item={item} key={`orderItem-${item.productMove.productId}`} />
 						))}
-					</>
+					</div>
 				}
 			</div>
 			{!orderComplete
 				&&
-				<div className="resume">
-					<div className="col-10 flex-wrap totalCart my-1 py-2">
+				<div className="col-10 center fit-content" style={{bottom: '10px', position: 'absolute'}}>
+					<div className="col-md-6 flex-wrap totalCart my-1 py-2">
 						<p>
 							<span>Total</span>
 						</p>
 						<p>{formatMoney(sumTotal())}</p>
 					</div>
-					<button className="btn col-10 p-2" onClick={() => sendOrder()}>
+					<button className="btn col-md-6 p-2" onClick={() => sendOrder()}>
 						Realizar pedido
 					</button>
 				</div>

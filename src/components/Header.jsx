@@ -14,10 +14,10 @@ import Login from '@containers/Login'
 const Header = () => {
 	const history = useHistory();
 	const [openStyle, setOpenStyle] = useState(false);
-	const [openStyleClass, setOpenStyleClass] = useState({});
+	const [openCartClass, setOpenCartClass] = useState('');
 	const { state, resetAuthState } = useContext(AppContext);
 	const [openMenu, setOpenMenu] = useState(false);
-	const [openMenuClass, setOpenMenuClass] = useState('close-login');
+	const [openMenuClass, setOpenMenuClass] = useState('');
 	const [openHambMenuClass, setOpenHambMenuClass] = useState('');
 
 
@@ -36,10 +36,10 @@ const Header = () => {
 	const HandleCart = (state) => {
 		setOpenStyle(state);
 		if (state) {
-			setOpenStyleClass({ right: 0 });
+			setOpenCartClass('open-cart');
 		}
 		else {
-			setOpenStyleClass({});
+			setOpenCartClass('close-cart');
 		}
 	}
 
@@ -76,7 +76,7 @@ const Header = () => {
 		<nav className='z-10 center items-center'>
 
 			<div className="dot-menu-container">
-			<img src={dotMenu} height='44' alt="menu" className={`menu hamb-menu-close ${openHambMenuClass}`} onClick={() => HandleMenu(!openMenu)} />
+				<img src={dotMenu} height='44' alt="menu" className={`menu hamb-menu-close ${openHambMenuClass}`} onClick={() => HandleMenu(!openMenu)} />
 			</div>
 
 			<Link className='center mx-2 items-center'
@@ -100,32 +100,30 @@ const Header = () => {
 				{state.items.length > 0 ? <div>{state.items.length}</div> : null}
 			</div>
 
-			<div className="navbar-left">
-				<ul className={`login ${openMenuClass}`} >
-					<li onClick={() => HandleMenu(false)}>
-						{state.auth.user &&
-							<div className='col-10 flex-wrap center'>
-								<small className='center' style={{ textAlign: 'center' }}>
-									<strong className="col-10 center">
-										Bienvenido
-									</strong>
-									<em className="col-10 center">
-										{state.auth.user.substring(0, state.auth.user.indexOf('@'))}
-									</em>
-								</small>
-								<small style={{ color: 'darkblue' }} onClick={() => Logout()} className='p-1 hover'>
-									Salir
-								</small>
-							</div>
-							||
-							<Login/>
-						}
-					</li>
-					{state.auth.role == 'admin' &&
-						<>
-							<div className='dropdown'>
-								Mantenimiento
-								<div className="center col-12 dropdown-content">
+			<div className={`login ${openMenuClass}`}>
+				{state.auth.user &&
+					<div className='col-10 flex-wrap center'>
+						<small className='center' style={{ textAlign: 'center' }}>
+							<strong className="col-10 center">
+								Bienvenido
+							</strong>
+							<em className="col-10 center">
+								{state.auth.user.substring(0, state.auth.user.indexOf('@'))}
+							</em>
+						</small>
+						<small style={{ color: 'darkblue' }} onClick={() => Logout()} className='p-1 hover'>
+							Salir
+						</small>
+					</div>
+					||
+					<Login />
+				}
+				{state.auth.role == 'admin' &&
+					<>
+						<div className='dropdown'>
+							Mantenimiento
+							<div className="center col-12 dropdown-content">
+								<ul  >
 									<li onClick={() => HandleMenu(false)}>
 										<Link to="/categories">Categorias</Link>
 									</li>
@@ -148,11 +146,13 @@ const Header = () => {
 									<li onClick={() => HandleMenu(false)}>
 										<Link to="/products">Productos</Link>
 									</li>
-								</div>
+								</ul>
 							</div>
-							<div className='dropdown'>
-								Cuentas
-								<div className="center col-12 dropdown-content">
+						</div>
+						<div className='dropdown'>
+							Cuentas
+							<div className="center col-12 dropdown-content">
+								<ul>
 									<li onClick={() => HandleMenu(false)}>
 										<Link to="/accounts">Cuentas</Link>
 									</li>
@@ -162,28 +162,32 @@ const Header = () => {
 									<li onClick={() => HandleMenu(false)}>
 										<Link to="/payment/create">Agregar abono</Link>
 									</li>
-								</div>
+								</ul>
 							</div>
-							<li onClick={() => HandleMenu(false)}>
-								<Link to="/investments">Inversiones</Link>
-							</li>
-							<li onClick={() => HandleMenu(false)}>
-								<Link to="/customers">Clientes</Link>
-							</li>
-							<li onClick={() => HandleMenu(false)}>
-								<Link to={`/orders`}>Ordenes</Link>
-							</li>
-						</>}
-					{state.auth.user &&
+						</div>
 						<li onClick={() => HandleMenu(false)}>
-							<Link to={`/orders/customer/${state.auth.sub}`}>Mis ordenes</Link>
+							<Link to="/investments">Inversiones</Link>
 						</li>
-					}
-				</ul>
+						<li onClick={() => HandleMenu(false)}>
+							<Link to="/customers">Clientes</Link>
+						</li>
+						<li onClick={() => HandleMenu(false)}>
+							<Link to={`/orders`}>Ordenes</Link>
+						</li>
+					</>}
+				{state.auth.user &&
+					<li onClick={() => HandleMenu(false)}>
+						<Link to={`/orders/customer/${state.auth.sub}`}>Mis ordenes</Link>
+					</li>
+				}
 			</div>
 
-			<div className="MyOrder" style={openStyleClass}>
-				<img height={30} className="z-10" style={{ opacity: 0.6, position: "absolute" }} src={close} onClick={() => HandleCart(!openStyle)} />
+			<div className={`MyOrder ${openCartClass}`}>
+				<div  onClick={() => HandleCart(!openStyle)} className='p-1 z-10' style={{ right: '5px', top: '5px', position: 'absolute' }} >
+					<img height={30} className="z-10"
+						style={{ opacity: 0.6 }}
+						src={close} onClick={() => HandleCart(!openStyle)}/>
+				</div >
 				<MyOrder HandleCart={HandleCart} />
 			</div>
 		</nav>

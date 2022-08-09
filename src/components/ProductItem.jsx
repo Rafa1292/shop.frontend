@@ -16,7 +16,7 @@ const ProductItem = ({ product }) => {
 			<img className='product-item-img' src={product.image} alt={product.title} />
 
 			<div className="product-info d-flex px-2">
-				<span className='p-0 col-10'>
+				<span className='p-0 col-10' style={{height: '40px'}}>
 					{product.name}
 				</span>
 				<div className=' flex-wrap col-10 justify-end flex-wrap'>
