@@ -15,7 +15,7 @@ import Login from '@containers/Login'
 const Header = () => {
 	const history = useHistory();
 	const [openStyle, setOpenStyle] = useState(false);
-	const [openCartClass, setOpenCartClass] = useState('');
+	const [openCartClass, setOpenCartClass] = useState('close-cart');
 	const { state, resetAuthState } = useContext(AppContext);
 	const [openMenu, setOpenMenu] = useState(false);
 	const [openMenuClass, setOpenMenuClass] = useState('');
@@ -97,6 +97,9 @@ const Header = () => {
 
 	return (
 		<>
+						<div className={`col-10 MyOrder center ${openCartClass}`}>
+					<MyOrder />
+				</div>
 			<nav className='z-10 center items-center'>
 
 				<div className="dot-menu-container">
@@ -106,7 +109,7 @@ const Header = () => {
 							<img src={userblack} height='44' alt="menu" className={`menu hamb-menu-close `} />
 						</Link>
 						||
-						<img onClick={()=> HandleMenu(!openMenu)} src={dotMenu} height='44' alt="menu" className={`menu hamb-menu-close ${openHambMenuClass}`} />
+						<img onClick={() => HandleMenu(!openMenu)} src={dotMenu} height='44' alt="menu" className={`menu hamb-menu-close ${openHambMenuClass}`} />
 					}
 				</div>
 
@@ -133,17 +136,17 @@ const Header = () => {
 
 				<div className={`flex-wrap login ${openMenuClass}`} >
 					{state.auth.user &&
-						<div className='col-10 my-2 flex-wrap center' style={{boxShadow: '0px 6px 10px -8px rgba(0,0,0,.3)'}}>
+						<div className='col-10 my-2 flex-wrap center' style={{ boxShadow: '0px 6px 10px -8px rgba(0,0,0,.3)' }}>
 							<small className='center p-1 col-5 items-center flex-wrap' style={{ textAlign: 'left' }}>
 								<strong className="col-10 center">
 									Bienvenido
-								<em className="col-10 center">
-									{state.auth.user.substring(0, state.auth.user.indexOf('@'))}
-								</em>
+									<em className="col-10 center">
+										{state.auth.user.substring(0, state.auth.user.indexOf('@'))}
+									</em>
 								</strong>
 							</small>
 							<small style={{ color: 'darkblue', justifyContent: 'flex-end' }} onClick={() => Logout()} className='p-2 d-flex col-5 hover'>
-							<img  src={logout} height='40' style={{opacity: '0.8'}} alt="menu" />
+								<img src={logout} height='40' style={{ opacity: '0.8' }} alt="menu" />
 							</small>
 						</div>
 						||

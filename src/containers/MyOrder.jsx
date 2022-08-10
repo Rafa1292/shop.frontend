@@ -129,15 +129,21 @@ const MyOrder = (props) => {
 					</div>
 					||
 					<div className='col-10 my-order-content'>
-						{state.items.map(item => (
-							<OrderItem item={item} key={`orderItem-${item.productMove.productId}`} />
-						))}
+						{state.items.length > 0 &&
+							state.items.map(item => (
+								<OrderItem item={item} key={`orderItem-${item.productMove.productId}`} />
+							))
+							||
+							<span className='col-10 center items-center' style={{height: '100%'}}>
+								No tienes productos en el carrito
+							</span>
+						}
 					</div>
 				}
 			</div>
-			{!orderComplete
+			{!orderComplete && state.items.length > 0
 				&&
-				<div className="col-10 center fit-content" style={{bottom: '10px'}}>
+				<div className="col-10 center fit-content" style={{ bottom: '10px' }}>
 					<div className="col-md-6 flex-wrap totalCart my-1 py-2">
 						<p>
 							<span>Total</span>
