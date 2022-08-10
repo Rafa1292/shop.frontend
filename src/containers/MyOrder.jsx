@@ -137,7 +137,7 @@ const MyOrder = (props) => {
 			</div>
 			{!orderComplete
 				&&
-				<div className="col-10 center fit-content" style={{bottom: '10px', position: 'absolute'}}>
+				<div className="col-10 center fit-content" style={{bottom: '10px'}}>
 					<div className="col-md-6 flex-wrap totalCart my-1 py-2">
 						<p>
 							<span>Total</span>

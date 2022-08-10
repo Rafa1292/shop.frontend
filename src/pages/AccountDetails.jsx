@@ -1,7 +1,8 @@
-import React, { useParams, useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Title from '@components/Title';
 import { useGet, usePost } from '../hooks/useAPI';
 import { formatMoney } from '@helpers/formatHelper'
+import { useParams } from 'react-router-dom';
 
 const AccountDetails = () => {
     const [account, setAccount] = useState({ paymethods: [] });
@@ -10,7 +11,7 @@ const AccountDetails = () => {
     const [accountHistories, setAccountHistories] = useState([]);
     const [entryForm, setEntryForm] = useState(false);
     const [costForm, setCostForm] = useState(false);
-    const { accountId } = useParams();
+    const { accountId } = useParams;
     const amount = useRef(0);
     const description = useRef(0);
     const reducer = (accumalator, currentValue) => currentValue.debit ?

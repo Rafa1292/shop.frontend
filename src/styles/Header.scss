@@ -138,12 +138,12 @@ nav {
 		bottom: 0;
 		left: 0;
 		width: 100vw;
-		height: 90vh;
+		height: 100vh;
 	}
 
 	100% {
 		width: 100vw;
-		height: 90vh;
+		height: 100vh;
 		bottom: 0;
 		left: 0;
 	}
@@ -152,7 +152,7 @@ nav {
 @keyframes closelogin {
 	0% {
 		width: 100vw;
-		height: 90vh;
+		height: 100vh;
 		bottom: 0;
 		left: 0;
 	}
@@ -161,7 +161,7 @@ nav {
 		bottom: 0;
 		left: 0;
 		width: 100vw;
-		height: 90vh;
+		height: 100vh;
 	}
 
 	100% {
@@ -179,9 +179,8 @@ nav {
 	overflow-y: scroll;
 	position: absolute;
 	display: flex;
-	padding: 2vw;
+	padding-bottom: 40px;
 	background-color: rgba(255, 255, 255,1);
-	padding: 1rem;
 	box-sizing: border-box;
 	margin: 0 !important;
 	width: 0;

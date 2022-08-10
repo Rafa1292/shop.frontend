@@ -5,7 +5,7 @@ import AppContext from '../context/AppContext';
 import face from '@icons/face.png';
 import googleauth from '@icons/googleauth.png';
 
-const Login = () => {
+const Login = ({HandleMenu}) => {
     const email = useRef('');
     const password = useRef('');
     const history = useHistory();
@@ -70,7 +70,7 @@ const Login = () => {
             <div className='col-10 p-0 center' style={{ marginTop: '2rem', borderTop: '1px solid rgba(0,0,0,.2)' }}>
                 <span className='col-10 center py-2 ' >¿No estas registrado?</span>
                 <div className="col-md-6 center">
-                    <Link className='col-10 center' to={'/register'}>
+                    <Link className='col-10 center' onClick={()=> HandleMenu(false)} style={{zIndex: '100'}} to={'/register'}>
                         <button type='button' className='col-8 btn ' placeholder='Iniciar sesion'>
                             Registrarse
                         </button>
