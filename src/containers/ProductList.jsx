@@ -4,6 +4,7 @@ import '@styles/ProductList.scss';
 import { useGetList } from '../hooks/useAPI';
 import Loader from '@components/Loader';
 import checkGris from '@icons/checkGris.png'
+import { Link } from "react-router-dom";
 
 const ProductList = () => {
 	let [products, setProducts] = useState([]);
@@ -109,7 +110,9 @@ const ProductList = () => {
 						<span className='col-10 center'>
 						Solicita informacion
 						<strong className='mx-1'>
+							<Link style={{color: 'white'}} to={'/credit-info'}>
 							aqui
+							</Link>
 						</strong>
 
 						</span>

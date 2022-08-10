@@ -22,6 +22,7 @@ import Customers from '@pages/Customers';
 import CustomerOrders from '@pages/CustomerOrders';
 import Order from '@pages/Order';
 import NewPassword from '@pages/NewPassword';
+import CreditInfo from '@pages/CreditInfo.jsx';
 import Investments from '@pages/Investments';
 import CreateInvestment from '@pages/CreateInvestment';
 import InvestmentDetail from '@pages/InvestmentDetail';
@@ -42,6 +43,7 @@ const App = () => {
 				<Layout>
 					<Switch>
 						<Route exact path="/login" component={Login} />
+						<Route exact path="/credit-info" component={CreditInfo} />
 						<Route exact path="/privacy-policy" component={PrivacyPolicy} />
 						<Route exact path="/delete-my-data" component={DeleteMyData} />
 						<Route exact path="/register" component={Register} />

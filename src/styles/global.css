@@ -160,6 +160,9 @@ a {
 .mt-0{
 	margin-top: 0;
 }
+.mt-2{
+	margin-top: 1rem;
+}
 .my-1{
 	margin: 0.5rem 0 !important;
 }
@@ -188,6 +191,10 @@ a {
 }
 .p-3{
 	padding: 1.5rem;
+}
+
+.pt-2{
+	padding-top: 1rem;
 }
 
 .d-none{
