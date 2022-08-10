@@ -17,7 +17,7 @@ const CreditInfo = () => {
             Hablar con un agente
             <img className='mx-1' src={wapp} height={20} />
         </a>
-            <div className='col-md-5 p-2 center' style={{paddingTop: '40px'}}>
+            <div className='col-md-5 center' style={{padding: '40px 1rem'}}>
                 <h3>Crédito a 4 meses!!!</h3>
                 <br />
                 <p className='col-10 '>

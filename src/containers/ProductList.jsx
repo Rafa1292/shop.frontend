@@ -104,19 +104,17 @@ const ProductList = () => {
 				<Loader />
 				||
 				<>
-					<div className="col-10 items-center center text-center" style={{ zIndex: '5', fontSize: '12px', height: '40px', color: 'white', background: '#CA2218', position: 'fixed', top: '0' }}>
-						Credito a 4 meses!!!
-						<br />
-						<span className='col-10 center'>
-						Solicita informacion
-						<strong className='mx-1'>
-							<Link style={{color: 'white'}} to={'/credit-info'}>
-							aqui
-							</Link>
-						</strong>
+						<Link to={'/credit-info'} className="col-10 items-center center text-center" style={{ zIndex: '5', fontSize: '12px', height: '40px', color: 'white', background: '#CA2218', position: 'fixed', top: '0' }}>
+							Credito a 4 meses!!!
+							<br />
+							<span className='col-10 center'>
+								Solicita informacion
+								<strong className='mx-1'>
+									aqui
+								</strong>
 
-						</span>
-					</div>
+							</span>
+						</Link>
 					<div className="col-10 flex-wrap" style={{ marginTop: '40px' }}>
 						<div className="col-md-4 spaceAround flex-wrap my-2">
 							{colors.map(color => (
