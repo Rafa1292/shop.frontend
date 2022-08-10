@@ -84,22 +84,15 @@
 @keyframes opencart {
 	0% {
 		width: 0;
-		bottom: 0;
+		top: 100vh;
 		right: -103vw;
 		height: 0;
-	}
-
-	80% {
-		bottom: 0;
-		right: 0;
-		width: 100vw;
-		height: 100vh;
 	}
 
 	100% {
 		width: 100vw;
 		height: 100vh;
-		bottom: 0;
+		top: 0;
 		right: 0;
 	}
 }
@@ -108,20 +101,13 @@
 	0% {
 		width: 100vw;
 		height: 100vh;
-		bottom: 0;
+		top: 0;
 		right: 0;
-	}
-
-	20% {
-		bottom: 0;
-		right: 0;
-		width: 100vw;
-		height: 100vh;
 	}
 
 	100% {
 		width: 0;
-		bottom: 0;
+		top: 100vh;
 		right: -103vw;
 		height: 0;
 	}

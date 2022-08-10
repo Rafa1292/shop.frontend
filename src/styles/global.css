@@ -47,6 +47,24 @@ color: rgba(0,0,0,.5);
 a {
 	text-decoration: none;
 }
+
+.dropdown-menu {
+	font-weight: bold;
+	margin: 5px 0;
+	border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.dropdown-container {
+	box-shadow: inset 0px 0px 9px -2px rgb(0 0 0 / 20%);
+	height: 0;
+	transition: all ease 500ms;
+	overflow: hidden;
+	background: rgba(0,0,0,.05);
+}
+.dropdown-menu:hover .dropdown-container {
+	height: 100px;
+	overflow-y: scroll;
+}
+
 .z-1{
 	z-index: 1;
 }

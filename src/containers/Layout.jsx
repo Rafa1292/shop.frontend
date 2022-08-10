@@ -30,7 +30,7 @@ const Layout = ({ children }) => {
 		}
 	}, []);
 	return (
-		<div className="layout center">
+		<div className="layout center" style={{position: 'relative'}}>
 			<Header />
 			{
 				!loader &&

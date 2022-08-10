@@ -5,7 +5,7 @@ import AppContext from '../context/AppContext';
 import face from '@icons/face.png';
 import googleauth from '@icons/googleauth.png';
 
-const Login = ({HandleMenu}) => {
+const Login = () => {
     const email = useRef('');
     const password = useRef('');
     const history = useHistory();
@@ -16,6 +16,7 @@ const Login = ({HandleMenu}) => {
             username: email.current.value.toString(),
             password: password.current.value
         };
+
         const response = await usePost('auth/login', user);
         if (!response.error) {
             localStorage.removeItem('token');
@@ -34,7 +35,7 @@ const Login = ({HandleMenu}) => {
     }
 
     return (
-        <div className='col-sm-4 flex-wrap center content-center' style={{ overflowY: 'scroll', height: 'calc(100vh - 40px)', paddingBottom: '100px' }}>
+        <div className='col-sm-4 flex-wrap center content-center' style={{ height: 'calc(100vh - 40px)', paddingBottom: '100px' }}>
             <strong
                 style={{
                     textOverflow: 'ellipsis',
@@ -70,9 +71,9 @@ const Login = ({HandleMenu}) => {
             <div className='col-10 p-0 center' style={{ marginTop: '2rem', borderTop: '1px solid rgba(0,0,0,.2)' }}>
                 <span className='col-10 center py-2 ' >¿No estas registrado?</span>
                 <div className="col-md-6 center">
-                    <Link className='col-10 center' onClick={()=> HandleMenu(false)} style={{zIndex: '100'}} to={'/register'}>
-                        <button type='button' className='col-8 btn ' placeholder='Iniciar sesion'>
-                            Registrarse
+                    <Link className='col-10 center' style={{zIndex: '100'}} to={'/register'}>
+                        <button type='button' className='col-8 btn '>
+                            Registrarses
                         </button>
                     </Link>
                 </div>

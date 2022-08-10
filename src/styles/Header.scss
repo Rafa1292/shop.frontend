@@ -91,6 +91,12 @@ nav {
 	left: 0 !important;
 }
 
+li{
+	font-size: 15px;
+	padding: 10px 0px;
+	border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
 .close-menu-button {
 	position: absolute;
 	background: black;
@@ -175,11 +181,11 @@ nav {
 
 .login{
 	z-index: 10;
-	align-items: flex-start;
+	align-content: baseline;
 	overflow-y: scroll;
 	position: absolute;
 	display: flex;
-	padding-bottom: 40px;
+	padding: 40px 0;
 	background-color: rgba(255, 255, 255,1);
 	box-sizing: border-box;
 	margin: 0 !important;

@@ -82,7 +82,7 @@ const MyOrder = (props) => {
 	}
 
 	return (
-		<>
+		<div className='col-10'>
 			<div className="col-10 center flex-wrap">
 				<p className="title-order col-10 center z-1" >Orden actual</p>
 				{!orderComplete &&
@@ -149,7 +149,7 @@ const MyOrder = (props) => {
 					</button>
 				</div>
 			}
-		</>
+		</div>
 	);
 }
 

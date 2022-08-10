@@ -2,6 +2,7 @@ import React, { useRef, useContext } from 'react';
 import { usePost } from '../hooks/useAPI';
 import { useHistory } from "react-router-dom"
 import '@styles/CreateAccount.scss';
+import swal from 'sweetalert';
 
 const CreateAccount = () => {
     const history = useHistory();
@@ -26,6 +27,10 @@ const CreateAccount = () => {
                 }
             }
 
+            if(user.password.lenght < 8)
+            {
+                swal("Error", "La contraseña debe contener almenos 8 caracteres")
+            }
             const response = await usePost('users', user);
             console.log(response)
             if (!response.error) {
@@ -42,7 +47,7 @@ const CreateAccount = () => {
                     <input type="text" id="Nombre" ref={name} placeholder="Nombre" className="input col-10" />
                 </div>
                 <div className="col-10 py-1 center">
-                    <input type="text" id="Correo" ref={email} placeholder="Correo" className="input col-10" />
+                    <input type="email" id="Correo" ref={email} placeholder="Correo" className="input col-10" />
                 </div>
                 <div className="col-10 py-1 center">
                     <input type="text" id="Telefono" ref={phone} placeholder="Telefono" className="input col-10" />
