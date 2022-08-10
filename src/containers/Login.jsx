@@ -73,7 +73,7 @@ const Login = () => {
                 <div className="col-md-6 center">
                     <Link className='col-10 center' style={{zIndex: '100'}} to={'/register'}>
                         <button type='button' className='col-8 btn '>
-                            Registrarses
+                            Registrarse
                         </button>
                     </Link>
                 </div>

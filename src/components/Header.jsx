@@ -97,10 +97,10 @@ const Header = () => {
 
 	return (
 		<>
-						<div className={`col-10 MyOrder center ${openCartClass}`}>
-					<MyOrder />
-				</div>
-			<nav className='z-10 center items-center'>
+			<div className={`col-10 MyOrder center ${openCartClass}`}>
+				<MyOrder />
+			</div>
+			<nav className=' center items-center'>
 
 				<div className="dot-menu-container">
 					{
