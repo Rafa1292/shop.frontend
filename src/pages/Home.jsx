@@ -10,7 +10,6 @@ const Home = () => {
 	
 	useEffect(async () => {
 		if (token) {
-			console.log(token)
 			let tempToken = token;
 			do {
 				tempToken = tempToken.replace("-", ".");
@@ -18,7 +17,6 @@ const Home = () => {
 			  localStorage.removeItem('token');
 			  localStorage.setItem('token', tempToken);
 			  await setRole();
-			  history.push('/');
 		}
     }, [])
 	return (
