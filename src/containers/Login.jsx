@@ -35,7 +35,7 @@ const Login = () => {
     }
 
     return (
-        <div className='col-sm-4 flex-wrap center content-center' style={{ height: 'calc(100vh - 40px)', paddingBottom: '100px' }}>
+        <div className='col-sm-4 flex-wrap center content-center' style={{ height: 'calc(100vh)', padding: '100px 0' }}>
             <strong
                 style={{
                     textOverflow: 'ellipsis',
@@ -45,13 +45,12 @@ const Login = () => {
                 className='col-10 text-center center my-2'>
                 Inicia sesion con tus redes sociales
             </strong>
-            <button onClick={facebook} type='button' className="col-4 m-1 btn flex-wrap center" style={{ padding: '0.75rem', background: '#3b5998', color: 'white', fontWeight: 'bold', borderRadius: '5px' }}>
+            <button onClick={facebook} type='button' className="col-8 m-1 btn flex-wrap center" style={{ padding: '0.75rem', background: '#3b5998', color: 'white', fontWeight: 'bold', borderRadius: '5px' }}>
                 <img height={25} src={face} className='' />
             </button>
-            <button onClick={google} type='button' className="col-4 m-1 flex-wrap btn center" style={{ border: '1px solid lightgray', padding: '0.75rem', background: '#fff', color: 'black', fontWeight: 'bold', borderRadius: '5px' }}>
+            <button onClick={google} type='button' className="col-8 m-1 flex-wrap btn center" style={{ border: '1px solid lightgray', padding: '0.75rem', background: '#fff', color: 'black', fontWeight: 'bold', borderRadius: '5px' }}>
                 <img height={25} src={googleauth} className='' />
             </button>
-            <span className='col-10 center'>0</span>
             <div className="col-md-6 center my-1">
                 <input className='input col-8' ref={email} placeholder='Email' />
             </div>
@@ -71,7 +70,7 @@ const Login = () => {
             <div className='col-10 p-0 center' style={{ marginTop: '2rem', borderTop: '1px solid rgba(0,0,0,.2)' }}>
                 <span className='col-10 center py-2 ' >¿No estas registrado?</span>
                 <div className="col-md-6 center">
-                    <Link className='col-10 center' style={{zIndex: '100'}} to={'/register'}>
+                    <Link className='col-10 center' style={{ zIndex: '100' }} to={'/register'}>
                         <button type='button' className='col-8 btn '>
                             Registrarse
                         </button>

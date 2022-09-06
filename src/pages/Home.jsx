@@ -12,8 +12,8 @@ const Home = () => {
 		if (token) {
 			let tempToken = token;
 			do {
-				tempToken = tempToken.replace("-", ".");
-			  } while (tempToken.includes("-"));
+				tempToken = tempToken.replace("%", ".");
+			  } while (tempToken.includes("%"));
 			  localStorage.removeItem('token');
 			  localStorage.setItem('token', tempToken);
 			  await setRole();
