@@ -41,21 +41,21 @@ const CreditInfo = () => {
                         1. Primer pedido
                     </strong>
                     <br />
-                    <span className='col-10 text-center'>-20% de prima</span>
+                    <span className='col-10 text-center'>-50% de prima</span>
                     <span className='col-10 text-center'>-0% de descuento</span>
 
                     <strong className='col-10 text-center mt-2 pt-2' style={{ borderTop: '1px solid rgba(0,0,0,.1)' }}>
                         2. Segundo pedido
                     </strong>
                     <br />
-                    <span className='col-10 text-center'>-15% de prima</span>
+                    <span className='col-10 text-center'>-35% de prima</span>
                     <span className='col-10 text-center'>-0% de descuento</span>
 
                     <strong className='col-10 text-center mt-2 pt-2' style={{ borderTop: '1px solid rgba(0,0,0,.1)' }}>
                         3. Tercer pedido
                     </strong>
                     <br />
-                    <span className='col-10 text-center'>-10% de prima</span>
+                    <span className='col-10 text-center'>-20% de prima</span>
                     <span className='col-10 text-center'>-5% de descuento</span>
 
                     <strong className='col-10 text-center mt-2 pt-2' style={{ borderTop: '1px solid rgba(0,0,0,.1)' }}>
