@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import '@styles/Header.scss';
 import MyOrder from '../containers/MyOrder';
-import logo_desatados from '@icons/logo_desatados.png';
+import desatados from '@logos/desatados.png';
 import userblack from '@icons/userblack.png';
 import AppContext from '../context/AppContext';
 import shoppingCart from '@icons/icon_shopping_cart.svg';
@@ -116,14 +116,10 @@ const Header = () => {
 				<Link onClick={() => Home()} className='center mx-2 items-center'
 					style={{
 						zIndex: '100',
-						background: 'white',
-						borderRadius: '90px',
-						overflow: 'hidden',
 						height: '100px',
 						width: '100px',
-						boxShadow: '0px 5px 6px -2px rgba(0,0,0,.4)'
 					}} to='/'>
-					<img src={logo_desatados} alt="logo" className="nav-logo" />
+					<img src={desatados} alt="logo" className="nav-logo" />
 				</Link>
 
 				<div
