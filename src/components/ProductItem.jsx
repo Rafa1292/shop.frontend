@@ -1,13 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import '@styles/ProductItem.scss';
 import AppContext from '../context/AppContext';
-import addToCartImage from '@icons/addCartVector.png';
 import shopcart from '@icons/shopcart.png';
 import { formatMoney } from '@helpers/formatHelper'
 import wapp from '@icons/wapp.png';
 
 const ProductItem = ({ product }) => {
-	const { addToCart } = useContext(AppContext);
+	const { addToCart, setPictureToSee } = useContext(AppContext);
 
 	const handleClick = item => {
 		addToCart(item);
@@ -15,7 +14,7 @@ const ProductItem = ({ product }) => {
 
 	return (
 		<div className="ProductItem">
-			<img className='product-item-img' src={product.image} alt={product.title} />
+			<img onClick={()=>setPictureToSee(product.image)} className='product-item-img' src={product.image} alt={product.title} />
 
 			<div className="product-info d-flex px-2">
 				<span className='p-0 col-10' style={{ height: '40px' }}>

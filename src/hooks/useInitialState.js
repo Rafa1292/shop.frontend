@@ -3,6 +3,7 @@ import { useGet } from '../hooks/useAPI';
 import swal from 'sweetalert';
 
 const initialState = {
+	pictureToSee: '',
 	credit: false,
 	customerId: 0,
 	expiringDate: new Date(new Date().setMonth(new Date().getMonth() + 4)),
@@ -142,6 +143,13 @@ const useInitialState = () => {
 		setState(initialState);
 	}
 
+	const setPictureToSee = (url) =>{
+		setState({
+			...state,
+			pictureToSee: url
+		});
+	}
+
 	return {
 		state,
 		changeSeeMode,
@@ -152,7 +160,8 @@ const useInitialState = () => {
 		setRole,
 		resetAuthState,
 		setFirstPay,
-		setCredit
+		setCredit,
+		setPictureToSee
 	}
 }
 

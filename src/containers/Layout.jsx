@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useState, useRef } from 'react';
 import Header from '@components/Header';
+import PictureView from '@components/PictureView';
 import AppContext from '../context/AppContext';
 import Loader from '@components/Loader';
 import { usePatch } from '../hooks/useAPI';
@@ -11,7 +12,7 @@ const Layout = ({ children }) => {
 	const phone = useRef(0);
 
 	const addPhoneNumber = async () => {
-		const response = await usePatch(`customers/${state.auth.sub}`, {phone: phone.current.value.toString()});
+		const response = await usePatch(`customers/${state.auth.sub}`, { phone: phone.current.value.toString() });
 
 		if (!response.error) {
 			await setRole();
@@ -30,7 +31,11 @@ const Layout = ({ children }) => {
 		}
 	}, []);
 	return (
-		<div className="layout center" style={{position: 'relative'}}>
+		<div className="layout center" style={{ position: 'relative' }}>
+			{
+				state.pictureToSee.length > 0 &&
+				<PictureView />
+			}
 			<Header />
 			{
 				!loader &&
@@ -42,7 +47,7 @@ const Layout = ({ children }) => {
 							)
 							:
 							(
-								<div className="col-10 center items-center content-center" style={{height: '80%'}}>
+								<div className="col-10 center items-center content-center" style={{ height: '80%' }}>
 									<h4 className='col-10 text-center '>Antes de continuar...</h4>
 									<span className='col-8 my-2 center'>
 										Puedes brindarnos tu numero de telefono?
@@ -50,7 +55,7 @@ const Layout = ({ children }) => {
 									<span className='col-10 my-2 center d-flex '>
 										<input type="number" placeholder="Telefono" className="input my-2" ref={phone} />
 										<span className='my-2 center col-10'>
-											<input type='button' className='btn success mx-2' value='Agregar' onClick={()=>addPhoneNumber()} />
+											<input type='button' className='btn success mx-2' value='Agregar' onClick={() => addPhoneNumber()} />
 										</span>
 									</span>
 									<small className='col-8 text-center center'>
