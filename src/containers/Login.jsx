@@ -51,7 +51,7 @@ const Login = () => {
             <button onClick={google} type='button' className="col-8 m-1 flex-wrap btn center" style={{ border: '1px solid lightgray', padding: '0.75rem', background: '#fff', color: 'black', fontWeight: 'bold', borderRadius: '5px' }}>
                 <img height={25} src={googleauth} className='' />
             </button>
-            <div className="col-md-6 center my-1">
+            {/* <div className="col-md-6 center my-1">
                 <input className='input col-8' ref={email} placeholder='Email' />
             </div>
             <div className="col-md-6 my-1 center">
@@ -64,10 +64,10 @@ const Login = () => {
             </div>
             <Link className='col-10 center' to={'/password-recovery'}>
                 <small className='col-10 center p-1'>¿Olvidó su contraseña?</small>
-            </Link>
+            </Link> */}
 
 
-            <div className='col-10 p-0 center' style={{ marginTop: '2rem', borderTop: '1px solid rgba(0,0,0,.2)' }}>
+            {/* <div className='col-10 p-0 center' style={{ marginTop: '2rem', borderTop: '1px solid rgba(0,0,0,.2)' }}>
                 <span className='col-10 center py-2 ' >¿No estas registrado?</span>
                 <div className="col-md-6 center">
                     <Link className='col-10 center' style={{ zIndex: '100' }} to={'/register'}>
@@ -76,7 +76,7 @@ const Login = () => {
                         </button>
                     </Link>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 }
