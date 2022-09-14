@@ -14,6 +14,7 @@ const ProductList = () => {
 	const [loading, setLoading] = useState(true);
 	const [brandsId, setBrandsId] = useState([]);
 	const [colorsId, setColorsId] = useState([]);
+	const [files, setFiles] = useState(10);
 
 	useEffect(async () => {
 		await loadProducts();
@@ -26,7 +27,7 @@ const ProductList = () => {
 		const response = await useGetList('products');
 		if (!response?.error) {
 			setProducts(response.content);
-			setTempProducts(response.content);
+			setTempProducts(response.content.slice(0, files));
 		}
 	};
 
@@ -82,7 +83,7 @@ const ProductList = () => {
 		await filter(tempColorsId, false);
 	}
 
-	const filter = async (idList, isBrand) => {
+	const filter = async (idList, isBrand, newFiles) => {
 		let productList = products;
 		const tempBrandsId = isBrand ? idList : brandsId;
 		const tempColorsId = isBrand ? colorsId : idList;
@@ -94,8 +95,15 @@ const ProductList = () => {
 				tempColorsId.indexOf(x.secondaryColorId) != -1) :
 			productList = productList;
 
+		const tempFiles = newFiles ? newFiles : files;
+		await setTempProducts(productList.slice(0, tempFiles));
+	}
 
-		await setTempProducts(productList);
+
+	const showMore = async () => {
+		const newFiles = files + 10;
+		await setFiles(newFiles);
+		await filter(brandsId, true, newFiles);
 	}
 
 	return (
@@ -104,17 +112,17 @@ const ProductList = () => {
 				<Loader />
 				||
 				<>
-						<Link to={'/credit-info'} className="col-10 items-center center text-center" style={{ zIndex: '5', fontSize: '12px', height: '40px', color: 'white', background: '#CA2218', position: 'fixed', top: '0' }}>
-							Credito a 4 meses!!!
-							<br />
-							<span className='col-10 center'>
-								Solicita informacion
-								<strong className='mx-1'>
-									aqui
-								</strong>
+					<Link to={'/credit-info'} className="col-10 items-center center text-center" style={{ zIndex: '5', fontSize: '12px', height: '40px', color: 'white', background: '#CA2218', position: 'fixed', top: '0' }}>
+						Credito a 4 meses!!!
+						<br />
+						<span className='col-10 center'>
+							Solicita informacion
+							<strong className='mx-1'>
+								aqui
+							</strong>
 
-							</span>
-						</Link>
+						</span>
+					</Link>
 					<div className="col-10 flex-wrap" style={{ marginTop: '40px' }}>
 						<div className="col-md-4 spaceAround flex-wrap my-2">
 							{colors.map(color => (
@@ -139,11 +147,11 @@ const ProductList = () => {
 						</div>
 						<div className="col-md-4 my-2 flex-wrap spaceAround">
 							{brands.map(brand => (
-								<span className="items-center justify-end my-1" style={{ width: '130px' }} key={brand.id}>
+								<label for={`brand-${brand.id}`} className="items-center justify-end my-1" style={{ width: '130px' }} key={brand.id}>
 									<img height={20} src={brand.image} />
 									{brand.name}
-									<input type={'checkbox'} onChange={e => filterBrands(brand.id, e.target.checked)} />
-								</span>
+									<input id={`brand-${brand.id}`} type={'checkbox'} onChange={e => filterBrands(brand.id, e.target.checked)} />
+								</label>
 							))}
 						</div>
 					</div>
@@ -151,6 +159,10 @@ const ProductList = () => {
 						{tempProducts.map(product => (
 							<ProductItem product={product} key={product.id} />
 						))}
+					</div>
+
+					<div className='col-10 center text-center p-2 hover' style={{ cursor: 'pointer', color: 'blue' }} onClick={() => showMore()}>
+						Mostrar mas
 					</div>
 				</>
 			}
