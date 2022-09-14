@@ -27,6 +27,7 @@ const MyOrder = (props) => {
 
 	const sendOrder = async () => {
 		let newCart = JSON.parse(JSON.stringify(state))
+		delete newCart.pictureToSee;
 		newCart.items.forEach(item => { delete item.product; });
 		delete newCart.auth;
 		if (await validateNewCart(newCart)) {

@@ -12,7 +12,8 @@ const Layout = ({ children }) => {
 	const phone = useRef(0);
 
 	const addPhoneNumber = async () => {
-		const response = await usePatch(`customers/${state.auth.sub}`, { phone: phone.current.value.toString() });
+		console.log(state)
+		const response = await usePatch(`customers/${state.customerId}`, { phone: phone.current.value.toString() });
 
 		if (!response.error) {
 			await setRole();

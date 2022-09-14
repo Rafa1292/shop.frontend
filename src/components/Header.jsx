@@ -209,7 +209,7 @@ const Header = () => {
 							</>}
 						{state.auth.user &&
 							<li className='col-10 center' onClick={() => HandleMenu(false)}>
-								<Link to={`/orders/customer/${state.auth.sub}`}>Mis ordenes</Link>
+								<Link to={`/orders/customer/${state.customerId}`}>Mis ordenes</Link>
 							</li>
 						}
 					</div>
