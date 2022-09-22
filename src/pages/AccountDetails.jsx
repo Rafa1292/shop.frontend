@@ -11,7 +11,7 @@ const AccountDetails = () => {
     const [accountHistories, setAccountHistories] = useState([]);
     const [entryForm, setEntryForm] = useState(false);
     const [costForm, setCostForm] = useState(false);
-    const { accountId } = useParams;
+    const { accountId } = useParams();
     const amount = useRef(0);
     const description = useRef(0);
     const reducer = (accumalator, currentValue) => currentValue.debit ?
